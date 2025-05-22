@@ -1,0 +1,8 @@
+5. Avoid N+1 Query Problem
+
+•	Use .Include() for related data, but only when necessary. For complex scenarios, consider explicit loading or projection.
+Example:
+
+var orders = await dbContext.Orders
+    .Include(o => o.OrderItems)
+    .ToListAsync();

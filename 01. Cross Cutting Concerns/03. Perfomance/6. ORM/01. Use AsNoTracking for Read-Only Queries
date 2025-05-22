@@ -1,0 +1,7 @@
+1. Use AsNoTracking for Read-Only Queries
+
+•	By default, EF Core tracks all entities, which adds overhead. Use .AsNoTracking() for queries where you don’t need to update the entities.
+Example:
+
+var products = await dbContext.Products.AsNoTracking().ToListAsync();
+

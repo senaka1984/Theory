@@ -1,0 +1,19 @@
+17. Use In-Memory Caching
+
+•	Use IMemoryCache for frequently accessed data that doesn't change often.
+Example:
+
+public class MyService
+{
+    private readonly IMemoryCache _cache;
+    public MyService(IMemoryCache cache) => _cache = cache;
+
+    public async Task<MyData> GetDataAsync()
+    {
+        return await _cache.GetOrCreateAsync("mykey", entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5);
+            return FetchDataFromDbAsync();
+        });
+    }
+}

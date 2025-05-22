@@ -1,0 +1,29 @@
+3. Validate and Sanitize Input
+
+•	Always validate and sanitize user input to prevent SQL Injection and XSS attacks.
+Example: Model Validation:
+
+public class UserInput
+{
+    [Required]
+    [StringLength(50, MinimumLength = 3)]
+    public string Name { get; set; }
+
+    [EmailAddress]
+    public string Email { get; set; }
+}
+
+[HttpPost("submit")]
+public IActionResult Submit([FromBody] UserInput input)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest(ModelState);
+    }
+
+    return Ok("Input is valid.");
+}
+
+
+
+

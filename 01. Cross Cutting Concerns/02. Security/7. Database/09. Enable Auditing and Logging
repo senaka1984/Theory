@@ -1,0 +1,5 @@
+
+9. Enable Auditing and Logging
+
+•	Enable SQL Server auditing to track access and changes to the database.
+•	Log all database queries and errors in your application for monitoring and debugging.

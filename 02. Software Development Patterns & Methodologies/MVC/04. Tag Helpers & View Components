@@ -1,0 +1,13 @@
+4. Tag Helpers & View Components
+
+•	Tag Helpers: Server-side components that enable HTML-like syntax in Razor views for dynamic rendering (e.g., <form asp-action="Create">).
+•	View Components: Reusable, self-contained components for rendering parts of a page (like partial views, but with logic).
+Example Tag Helper:
+
+<form asp-action="Create"></form>
+
+
+public class CartViewComponent : ViewComponent
+{
+    public IViewComponentResult Invoke() => View(cartService.GetCart());
+}

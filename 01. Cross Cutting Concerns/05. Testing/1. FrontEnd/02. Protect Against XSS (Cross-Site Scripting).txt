@@ -1,0 +1,20 @@
+a.Avoid Dangerous HTML Injection
+	•Never use dangerouslySetInnerHTML unless absolutely necessary. If you must use it, sanitize the input using libraries like DOMPurify.
+
+Example:
+import DOMPurify from 'dompurify';
+
+const sanitizedHTML = DOMPurify.sanitize(userInput);
+return <div dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />;
+
+b.Escape User Input
+	•Escape all user-generated content before rendering it in the DOM.
+
+c.Use a Content Security Policy (CSP)
+•	Configure a Content-Security-Policy header in your backend to restrict the sources of scripts, styles, and other resources.
+
+Example CSP Header:
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted-cdn.com; style-src 'self' 'unsafe-inline';
+
+
+

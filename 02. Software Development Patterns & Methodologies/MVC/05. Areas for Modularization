@@ -1,0 +1,14 @@
+05. Areas for Modularization
+
+•	Areas allow you to partition a large MVC app into smaller functional groupings (e.g., Admin, Customer).
+•	Each area has its own controllers, views, and models.
+Example Structure:
+
+/Areas
+  /Admin
+    /Controllers
+    /Views
+  /Customer
+    /Controllers
+    /Views
+

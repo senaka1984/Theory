@@ -1,0 +1,5 @@
+
+4. Minimize Policy Overhead
+
+•	Avoid excessive or complex policies (e.g., heavy transformations, regex, or scripts) in the gateway.
+•	Move complex logic to backend services when possible.

@@ -1,0 +1,33 @@
+8. Use Indexes in the Database
+•	Ensure your database tables have appropriate indexes for frequently queried columns.
+---
+9. Minimize Database Calls
+•	Avoid multiple round-trips by combining queries or using .ToListAsync() only when needed.
+---
+10. Use Connection Pooling
+•	Connection pooling is enabled by default, but ensure your connection string and environment do not disable it.
+---
+
+11. Cache Frequently Used Data
+•	Use in-memory caching (e.g., IMemoryCache) for data that doesn’t change often.
+---
+12. Profile and Monitor Queries
+•	Use tools like EF Core logging, SQL Profiler, or Application Insights to identify slow queries and optimize them.
+---
+
+13. Use No-Tracking with Identity Resolution (EF Core 5+)
+•	If you need no-tracking but want to avoid duplicate entities in the result, use .AsNoTrackingWithIdentityResolution().
+---
+14. Avoid Lazy Loading in High-Performance Scenarios
+•	Prefer explicit loading or eager loading with .Include() to avoid unexpected extra queries.
+---
+
+15. Use Split Queries for Large Includes (EF Core 5+)
+•	For queries with multiple includes, use .AsSplitQuery() to avoid Cartesian explosion.
+Example:
+
+var blogs = await dbContext.Blogs
+    .Include(b => b.Posts)
+    .AsSplitQuery()
+    .ToListAsync();
+

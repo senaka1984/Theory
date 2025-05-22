@@ -1,0 +1,5 @@
+4. Avoid Unnecessary Renders
+
+•	Use keys correctly in lists.
+•	Avoid passing new object/array references as props unless necessary.
+•	Use the React DevTools Profiler to identify wasted renders.

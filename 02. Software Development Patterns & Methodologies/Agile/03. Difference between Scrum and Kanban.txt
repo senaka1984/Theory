@@ -1,0 +1,24 @@
+
+| Feature                | Scrum                                         	 | Kanban                                      |
+|------------------------|---------------------------------------------------|-------------------------------------------------| 
+| Approach               | Iterative, time-boxed sprints (1–4 weeks)         | Continuous flow, no fixed iterations            | 
+| Roles              	 | Defined roles: Product Owner, Scrum Master, Team  | No required roles (can be used with any team)   | 
+| Work Planning      	 | Sprint Planning: select work for the sprint       | Work is pulled as capacity allows               | 
+| Work Board         	 | Sprint Backlog, Product Backlog                   | Kanban board with columns (To Do, Doing, Done)  | 
+| WIP Limits         	 | Not enforced by default                           | Explicit WIP (Work In Progress) limits          | 
+| Meetings           	 | Sprint Planning, Daily Scrum, Review, Retrospective | No required meetings, but can use stand-ups     | 
+| Change During Cycle	 | Changes discouraged during sprint                 | Changes allowed at any time                     | 
+| Delivery           	 | At end of each sprint                             | Continuous, as soon as work is done             | 
+| Metrics            	 | Velocity (story points per sprint)                | Lead time, cycle time, throughput               |
+
+
+When to Use Kanban
+•	Continuous delivery environments where work arrives unpredictably.
+•	Teams focused on optimizing flow and reducing cycle time.
+•	Maintenance, support, or operations teams where priorities shift frequently.
+•	When you want to visualize and limit WIP to improve efficiency.
+Typical use: Support/maintenance, DevOps, service teams, or when you want to start with minimal process overhead.
+---
+Summary
+•	Scrum is best for teams that want structure, regular planning, and time-boxed delivery.
+•	Kanban is best for teams needing flexibility, continuous delivery, and a focus on flow.

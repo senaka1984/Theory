@@ -1,0 +1,80 @@
+01. Amazon Web Services (AWS) Serverless Computing
+
+Amazon Web Services (AWS) Serverless Computing is a cloud-native development model that allows you to build and run applications and services without managing infrastructure. With serverless, AWS automatically provisions, scales, and manages the servers required to run your code, so you can focus on writing business logic.
+
+Key AWS Serverless Services
+1. AWS Lambda
+•	Run code in response to events (HTTP requests, file uploads, database changes, etc.).
+•	No server management—just upload your code and set triggers.
+•	Automatic scaling based on the number of incoming requests.
+•	Pay only for compute time consumed (billed per millisecond).
+Example Use Cases: REST APIs, data processing, scheduled tasks, event-driven workflows.
+---
+
+2. Amazon API Gateway
+•	Create, publish, and manage RESTful and WebSocket APIs for your backend services.
+•	Integrates with AWS Lambda and other AWS services.
+•	Handles authorization, throttling, and monitoring for your APIs.
+---
+3. AWS Step Functions
+•	Orchestrate multiple AWS services into serverless workflows.
+•	Visual workflow designer for complex business processes.
+---
+
+4. Amazon EventBridge (formerly CloudWatch Events)
+•	Event bus for building event-driven architectures.
+•	Route events from AWS services, SaaS apps, or custom sources to Lambda and other targets.
+---
+5. Amazon S3 (Simple Storage Service)
+•	Serverless object storage for files, images, and backups.
+•	Trigger Lambda functions on file uploads or changes.
+---
+6. Amazon DynamoDB
+•	Serverless NoSQL database with automatic scaling and high availability.
+•	Integrates with Lambda for event-driven data processing.
+---
+
+7. AWS Fargate
+•	Serverless compute engine for containers (ECS/EKS).
+•	Run containers without managing servers or clusters.
+---
+Benefits of AWS Serverless
+•	No server management: AWS handles provisioning, patching, and scaling.
+•	Automatic scaling: Instantly scales up or down based on demand.
+•	Cost-effective: Pay only for what you use (no idle server costs).
+•	Faster time to market: Focus on business logic, not infrastructure.
+---
+
+Typical Serverless Architecture Example
+1.	API Gateway receives HTTP requests.
+2.	API Gateway triggers a Lambda function.
+3.	Lambda processes the request, interacts with DynamoDB or S3.
+4.	Lambda returns a response to API Gateway, which sends it to the client.
+---
+Sample Lambda Function (C#)
+
+using Amazon.Lambda.Core;
+
+public class Function
+{
+    public string FunctionHandler(string input, ILambdaContext context)
+    {
+        return $"Hello, {input}!";
+    }
+}
+
+
+
+When to Use AWS Serverless
+•	Event-driven applications
+•	RESTful APIs and microservices
+•	Data processing pipelines
+•	Scheduled jobs and automation
+•	Rapid prototyping and MVPs
+---
+
+
+
+
+
+

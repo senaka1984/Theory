@@ -1,0 +1,28 @@
+
+a. OAuth 2.0 and OpenID Connect
+•	Use OAuth 2.0 or OpenID Connect to secure APIs by requiring clients to present access tokens.
+•	Azure API Management can integrate with identity providers like Azure Active Directory (AAD), Auth0, or Okta.
+Steps:
+1.	Configure an OAuth 2.0 authorization server in Azure API Management.
+2.	Require a valid access token for API requests.
+Example Policy: Validate JWT Token Add the following policy to validate a JWT token:
+
+<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized">
+    <openid-config url="https://login.microsoftonline.com/{tenant-id}/v2.0/.well-known/openid-configuration" />
+    <required-claims>
+        <claim name="aud" match="all">
+            <value>your-api-audience</value>
+        </claim>
+    </required-claims>
+</validate-jwt>
+
+
+b. Subscription Keys
+•	Require clients to include a subscription key in their requests to access the API.
+•	Azure API Management automatically generates subscription keys for each client.
+Steps:
+1.	Enable subscription keys in the API settings.
+2.	Require the Ocp-Apim-Subscription-Key header in API requests.
+Example Policy: Check Subscription Key
+
+<check-header name="Ocp-Apim-Subscription-Key" exists="true" />

@@ -1,0 +1,11 @@
+Avoid Hardcoding Secrets
+•	Never hardcode sensitive information (e.g., API keys, secrets) in your React app. Use environment variables instead.
+Example:
+const apiKey = process.env.REACT_APP_API_KEY;
+
+
+Use Backend Proxies
+•	Proxy API requests through your backend to avoid exposing sensitive information in the frontend.
+---
+
+

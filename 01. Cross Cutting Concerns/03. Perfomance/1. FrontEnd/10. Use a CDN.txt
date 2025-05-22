@@ -1,0 +1,23 @@
+
+
+10. Use a CDN
+
+•	Serve static assets (JS, CSS, images) from a CDN for faster delivery.
+---
+11. Prefetch and Preload Resources
+•	Use <link rel="preload"> and <link rel="prefetch"> for critical resources.
+---
+12. Avoid Blocking the Main Thread
+•	Offload heavy computations to Web Workers if needed.
+•	Avoid large synchronous operations in the main thread.
+---
+13. Enable HTTP/2 or HTTP/3
+•	Ensure your server supports HTTP/2 or HTTP/3 for multiplexed, faster resource loading.
+
+
+14. Monitor and Analyze Performance
+•	Use Lighthouse, Web Vitals, and React Profiler to measure and track performance.
+---
+15. Progressive Web App (PWA)
+•	Consider making your React app a PWA for offline support and faster repeat visits.
+---

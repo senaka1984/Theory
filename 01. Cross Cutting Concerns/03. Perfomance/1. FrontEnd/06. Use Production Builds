@@ -1,0 +1,5 @@
+
+6. Use Production Builds
+
+
+•	Always deploy the production build (npm run build), which is optimized and minified.

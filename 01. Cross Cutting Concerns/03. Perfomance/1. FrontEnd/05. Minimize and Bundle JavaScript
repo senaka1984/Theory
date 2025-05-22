@@ -1,0 +1,5 @@
+
+5. Minimize and Bundle JavaScript
+
+•	Use tools like Webpack or Vite to minify and bundle your code.
+•	Remove unused dependencies and code (tree-shaking).

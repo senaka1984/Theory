@@ -1,0 +1,62 @@
+Key Concepts of ASP.NET Core MVC
+
+1. Model
+•	Represents the application's data and business logic.
+•	Typically consists of C# classes that map to database tables or business entities.
+2. View
+•	Responsible for rendering the UI.
+•	Uses Razor syntax (.cshtml files) to generate HTML dynamically.
+3. Controller
+•	Handles incoming HTTP requests, processes user input, interacts with the model, and returns a view or data.
+•	Each controller is a C# class that inherits from Controller or ControllerBase.
+
+Basic Example
+Model
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
+
+
+
+public class ProductsController : Controller
+{
+    public IActionResult Index()
+    {
+        var products = new List<Product>
+        {
+            new Product { Id = 1, Name = "Book", Price = 10.99m },
+            new Product { Id = 2, Name = "Pen", Price = 1.99m }
+        };
+        return View(products);
+    }
+}
+
+@model IEnumerable<Product>
+
+<h2>Products</h2>
+<ul>
+@foreach (var product in Model)
+{
+    <li>@product.Name - $@product.Price</li>
+}
+</ul>
+
+Routing
+•	By default, routes are defined as /Controller/Action/{id?}.
+•	You can customize routing in Program.cs or Startup.cs:
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+Features
+•	Model Binding & Validation
+•	Dependency Injection
+•	Filters (Authorization, Exception, Action, Result)
+•	Tag Helpers & View Components
+•	Areas for modularization
+•	Support for RESTful APIs (with ControllerBase)

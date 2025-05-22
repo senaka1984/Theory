@@ -1,0 +1,42 @@
+02. Implement Authentication and Authorization
+
+Authentication
+--------------
+•	Use JWT (JSON Web Tokens) for stateless authentication.
+•	Use OAuth 2.0 or OpenID Connect for secure user authentication.
+Example: Adding JWT Authentication:
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://your-identity-provider.com";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidAudience = "your-audience",
+            ValidIssuer = "your-issuer"
+        };
+    });
+
+app.UseAuthentication();
+
+
+Authorization
+-------------
+•	Use role-based or policy-based authorization to restrict access to specific endpoints.
+Example: Role-Based Authorization:
+
+[Authorize(Roles = "Admin")]
+[HttpGet("admin-data")]
+public IActionResult GetAdminData()
+{
+    return Ok("This is admin-only data.");
+}
+
+
+
+
+
+
+

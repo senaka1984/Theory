@@ -1,0 +1,75 @@
+General AWS Security Questions
+------------------------------
+
+1.	What is IAM in AWS?
+•	IAM (Identity and Access Management) is a service that enables you to manage access to AWS resources securely by creating users, groups, and roles with specific permissions.
+
+2.	What is the principle of least privilege?
+•	Granting only the permissions necessary for users or services to perform their required tasks—nothing more.
+
+3.	How do you secure data at rest in AWS?
+•	Use encryption services like AWS KMS, enable encryption for S3 buckets, EBS volumes, RDS, and DynamoDB.
+
+4.	How do you secure data in transit in AWS?
+•	Use SSL/TLS for all communications, including S3, API Gateway, and ELB endpoints.
+
+5.	What is a security group?
+•	A virtual firewall for your EC2 instances to control inbound and outbound traffic.
+
+6.	What is a NACL (Network Access Control List)?
+•	An optional layer of security for your VPC that acts as a stateless firewall for controlling traffic in and out of subnets.
+
+Serverless and Application Security
+-----------------------------------
+7.	How do you secure AWS Lambda functions?
+•	Assign least-privilege IAM roles, encrypt environment variables, use VPC for private resources, and store secrets in AWS Secrets Manager or SSM Parameter Store.
+
+8.	How do you secure API Gateway endpoints?
+•	Use IAM authentication, Cognito user pools, Lambda authorizers, enable throttling, and use AWS WAF for protection.
+
+9.	How do you manage secrets in AWS?
+•	Use AWS Secrets Manager or SSM Parameter Store to store, rotate, and manage secrets securely.
+
+10.	What is AWS KMS and how is it used?
+•	AWS Key Management Service (KMS) is used to create and manage cryptographic keys for encrypting data at rest and in transit.
+
+Monitoring and Compliance
+------------------------
+11.	How do you monitor AWS resources for security events?
+•	Use AWS CloudTrail for API auditing, CloudWatch for logs and alarms, and AWS Config for resource compliance.
+
+12.	What is AWS GuardDuty?
+•	A threat detection service that continuously monitors for malicious activity and unauthorized behavior.
+
+13.	How do you ensure compliance in AWS?
+•	Use AWS Config, AWS Artifact, and AWS Security Hub to monitor, audit, and report on compliance.
+---
+
+Scenario-Based Questions
+-------------------------
+14.	How would you restrict access to an S3 bucket?
+•	Use bucket policies, IAM policies, and block public access settings. Enable server-side encryption.
+
+15.	How do you protect against DDoS attacks in AWS?
+•	Use AWS Shield, AWS WAF, and enable rate limiting on API Gateway.
+
+16.	How do you secure communication between microservices in AWS?
+•	Use VPC, security groups, private subnets, mTLS, and IAM roles for service-to-service authentication.
+
+17.	What steps would you take if you detected a compromised IAM key?
+•	Immediately deactivate or delete the key, investigate CloudTrail logs, rotate credentials, and review permissions.
+
+
+
+Best Practices
+--------------
+
+18.	What are some AWS security best practices?
+•	Enable MFA, use least privilege, rotate credentials, encrypt data, monitor with CloudTrail, and regularly audit resources.
+
+19.	How do you implement least privilege for Lambda functions?
+•	Assign each function an IAM role with only the permissions it needs, and nothing more.
+
+20.	How do you secure access to RDS databases?
+•	Use VPC security groups, enable encryption, use IAM authentication (where supported), and restrict public access.
+

@@ -1,0 +1,121 @@
+
+Performance
+ deadlocks - -- React / Javascript / C# / EF core / sql / File access  --> improve performance in a application. prevent deadlocks. what else?
+ 
+ Improving application performance and preventing deadlocks are critical for building robust and efficient systems. However, there are many other strategies and best practices to enhance application performance and reliability. Here's a comprehensive list:
+---
+1. Prevent Deadlocks
+•	Avoid Nested Locks: Minimize the use of nested locks to reduce the risk of circular dependencies.
+•	Use Lock Timeout: Implement timeouts for locks to prevent indefinite waiting.
+•	Lock Ordering: Always acquire locks in a consistent order across threads.
+•	Prefer Asynchronous Programming: Use async/await to avoid blocking threads unnecessarily.
+•	Minimize Lock Scope: Keep the critical section (code inside the lock) as small as possible.
+---
+2. Optimize Database Performance
+•	Indexing: Use proper indexing to speed up database queries.
+•	Query Optimization: Avoid expensive operations like SELECT * and use parameterized queries.
+•	Connection Pooling: Reuse database connections to reduce overhead.
+•	Caching: Cache frequently accessed data to reduce database load.
+•	Batch Operations: Combine multiple queries into a single batch to reduce round trips to the database.
+---
+3. Use Caching
+•	In-Memory Caching: Use tools like Redis or Memcached to store frequently accessed data in memory.
+•	Output Caching: Cache the results of expensive computations or API responses.
+•	Distributed Caching: Use distributed caching for scalability in multi-server environments.
+---
+4. Optimize Code Execution
+•	Avoid Unnecessary Allocations: Minimize object creation and reuse objects where possible.
+•	Use Efficient Data Structures: Choose the right data structure (e.g., Dictionary for lookups, List for sequential access).
+•	Minimize Boxing/Unboxing: Avoid unnecessary conversions between value types and reference types.
+•	Parallel Processing: Use parallelism (e.g., Parallel.For, Task.WhenAll) for CPU-bound tasks.
+•	Lazy Loading: Load data only when it is needed to reduce memory usage and improve startup time.
+---
+5. Optimize Asynchronous Operations
+•	Avoid Blocking Calls: Do not use .Result or .Wait() on asynchronous methods.
+•	Use ConfigureAwait(false): In library code, use ConfigureAwait(false) to avoid capturing the synchronization context unnecessarily.
+•	Task Batching: Group multiple asynchronous tasks to reduce overhead.
+---
+6. Improve Network Performance
+•	Reduce Payload Size: Compress data (e.g., Gzip) and minimize the size of API responses.
+•	Use HTTP/2: Take advantage of multiplexing and header compression in HTTP/2.
+•	Connection Reuse: Use persistent connections (e.g., HttpClient in .NET) to avoid the overhead of creating new connections.
+•	CDN (Content Delivery Network): Use a CDN to serve static assets closer to the user.
+---
+7. Optimize Memory Usage
+•	Garbage Collection Tuning: Optimize garbage collection settings for your application (e.g., server GC for high-throughput apps).
+•	Dispose Resources: Properly dispose of unmanaged resources (e.g., database connections, file streams).
+•	Avoid Memory Leaks: Use tools like memory profilers to identify and fix memory leaks.
+•	Pooling: Use object pools for frequently used objects to reduce allocation overhead.
+---
+8. Monitor and Profile
+•	Application Performance Monitoring (APM): Use tools like Application Insights, New Relic, or Dynatrace to monitor performance in real-time.
+•	Profiling: Use profilers (e.g., Visual Studio Profiler, dotTrace) to identify bottlenecks in your code.
+•	Logging: Implement structured logging to capture performance metrics and errors.
+---
+9. Optimize Front-End Performance
+•	Minify Assets: Minify JavaScript, CSS, and HTML files to reduce their size.
+•	Lazy Loading: Load images and other resources only when they are needed.
+•	Bundle and Compress: Bundle multiple files into one and compress them to reduce HTTP requests.
+•	Reduce DOM Manipulations: Minimize direct DOM manipulations to improve rendering performance.
+---
+10. Scalability
+•	Horizontal Scaling: Add more servers to handle increased load.
+•	Vertical Scaling: Increase the resources (CPU, RAM) of existing servers.
+•	Load Balancing: Distribute traffic across multiple servers using a load balancer.
+•	Microservices: Break down monolithic applications into smaller, independently deployable services.
+---
+11. Optimize I/O Operations
+•	Asynchronous I/O: Use asynchronous APIs for file and network operations to avoid blocking threads.
+•	Buffering: Use buffered streams for file and network I/O to improve performance.
+•	Reduce Disk Access: Cache frequently accessed files in memory.
+---
+12. Security and Reliability
+•	Circuit Breaker Pattern: Prevent cascading failures by stopping calls to failing services temporarily.
+•	Retry Policies: Implement retry logic with exponential backoff for transient failures.
+•	Graceful Degradation: Provide fallback mechanisms when a service is unavailable.
+---
+13. Optimize Deployment
+•	Containerization: Use Docker to ensure consistent environments across development, testing, and production.
+•	CI/CD Pipelines: Automate builds, tests, and deployments to reduce errors and improve efficiency.
+•	Blue-Green Deployment: Minimize downtime during deployments by switching traffic between two environments.
+---
+14. Use Efficient Algorithms
+•	Algorithm Optimization: Choose the most efficient algorithm for the task (e.g., binary search instead of linear search).
+•	Big-O Analysis: Analyze the time and space complexity of your code to identify inefficiencies.
+---
+15. Test and Validate
+•	Load Testing: Use tools like JMeter or k6 to simulate high traffic and identify bottlenecks.
+•	Stress Testing: Test the application under extreme conditions to ensure stability.
+•	Unit Testing: Write unit tests to catch performance issues early in development.
+---
+16. Use Modern Frameworks and Libraries
+•	Framework Updates: Use the latest versions of frameworks and libraries to take advantage of performance improvements.
+•	Dependency Optimization: Remove unused dependencies and use lightweight alternatives where possible.
+---
+17. Optimize Threading
+•	Thread Pooling: Use thread pools to manage threads efficiently.
+•	Avoid Thread Contention: Minimize shared resources to reduce contention between threads.
+---
+18. Optimize API Design
+•	Pagination: Use pagination for APIs that return large datasets.
+•	GraphQL: Allow clients to request only the data they need.
+•	Batch Requests: Combine multiple API calls into a single request to reduce overhead.
+---
+19. Use Cloud-Native Features
+•	Auto-Scaling: Use cloud auto-scaling to handle variable workloads.
+•	Serverless Computing: Use serverless platforms (e.g., AWS Lambda, Azure Functions) for event-driven workloads.
+•	Managed Services: Use managed databases, queues, and caches to offload operational overhead.
+---
+20. Continuous Improvement
+•	Regularly review and refactor code to improve performance.
+•	Stay updated with best practices and new technologies.
+
+
+
+
+
+
+
+
+
+

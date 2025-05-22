@@ -1,0 +1,12 @@
+
+•	Restrict access to certain parts of your application based on user roles.
+•	Use React libraries like react-router to implement protected routes.
+
+import { Navigate } from 'react-router-dom';
+
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+    return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+
+

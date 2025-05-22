@@ -1,0 +1,7 @@
+
+Use Secure Storage for Tokens
+•	Store sensitive tokens (e.g., JWTs) in HttpOnly cookies instead of localStorage or sessionStorage to prevent XSS attacks.
+Implement Proper Logout
+•	Clear authentication tokens and session data on logout.
+Use Strong Password Policies
+•	Enforce strong password policies and implement rate-limiting on login attempts.

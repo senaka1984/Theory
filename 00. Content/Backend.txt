@@ -1,0 +1,214 @@
+1. Performance
+•	Technologies/Libraries:
+•	Asynchronous Programming: Use async/await for non-blocking I/O operations.
+•	Caching:
+•		In-Memory Caching: IMemoryCache in .NET Core.
+•		Distributed Caching: Redis (StackExchange.Redis), Memcached.
+•	Database Optimization:
+•		Use EF Core's AsNoTracking for read-only queries.
+•		Optimize queries with LINQ and stored procedures.
+•	Profiling Tools: MiniProfiler, Application Insights, New Relic.
+•	Compression: Use middleware like ResponseCompression for compressing responses.
+
+2. Security
+•	Technologies/Libraries:
+•	Authentication and Authorization:
+•		ASP.NET Core Identity for user management.
+•		JWT (JSON Web Tokens) with Microsoft.AspNetCore.Authentication.JwtBearer.
+•		OAuth2 and OpenID Connect with IdentityServer4 or Azure AD.
+•	Data Protection:
+•		Use IDataProtector for encrypting sensitive data.
+•		Use System.Security.Cryptography for hashing and encryption.
+•	Secure API Communication:
+•		Enforce HTTPS with UseHttpsRedirection.
+•		Use HSTS (HTTP Strict Transport Security).
+•	Dependency Auditing: Use tools like dotnet list package --vulnerable or Snyk.
+•	Input Validation: Use FluentValidation or Data Annotations.
+
+3. Database Management
+•	Technologies/Libraries:
+•	ORM (Object-Relational Mapping):
+•		EF Core for database interactions.
+•		Dapper for lightweight and high-performance queries.
+•	Database Migrations:
+•		Use EF Core migrations for schema changes.
+•	Database Providers:
+•		SQL Server, PostgreSQL, MySQL, SQLite (supported by EF Core).
+•	Connection Pooling:
+•		Configure connection pooling in appsettings.json.
+•	Database Monitoring:
+•	Use SQL Profiler or tools like Azure SQL Insights.
+
+4. API Development
+•	Technologies/Libraries:
+•	RESTful APIs:
+•		Use ASP.NET Core Web API for building RESTful services.
+•		Follow REST principles (e.g., proper HTTP methods, status codes).
+•	GraphQL:
+•		Use HotChocolate or GraphQL.NET for GraphQL APIs.
+•	API Documentation:
+•		Use Swagger/OpenAPI with Swashbuckle.AspNetCore.
+•	Versioning:
+•		Use Microsoft.AspNetCore.Mvc.Versioning for API versioning.
+•	Rate Limiting:
+•		Use AspNetCoreRateLimit for throttling API requests.
+
+5. Logging and Monitoring
+•	Technologies/Libraries:
+•	Logging:
+•		Use ILogger in .NET Core.
+•		Integrate with Serilog, NLog, or Log4Net for advanced logging.
+•	Monitoring:
+•		Use Application Insights, Dynatrace, or New Relic for performance monitoring.
+•	Centralized Logging:
+•		Use tools like ELK Stack (Elasticsearch, Logstash, Kibana) or Seq.
+•	Error Tracking:
+•		Use Sentry or Raygun for error tracking.
+
+
+6. Authentication and Authorization
+•	Technologies/Libraries:
+•	JWT Authentication:
+•		Use Microsoft.AspNetCore.Authentication.JwtBearer for token-based authentication.
+•	OAuth2 and OpenID Connect:
+•		Use IdentityServer4 or Azure AD for secure authentication.
+•	Role-Based Access Control (RBAC):
+•		Implement roles and policies using ASP.NET Core's AuthorizationPolicy.
+•	Multi-Factor Authentication (MFA):
+•		Integrate with third-party providers like Twilio or Authy.
+
+7. State Management
+•	Technologies/Libraries:
+•	Session Management:
+•		Use ISession for managing user sessions.
+•	Distributed State:
+•		Use Redis or SQL Server for distributed session storage.
+•	Caching:
+•		Use IMemoryCache for in-memory caching.
+•		Use Redis for distributed caching.
+
+
+8. Deployment and Hosting
+•	Technologies/Libraries:
+•	Containerization:
+•		Use Docker to containerize .NET Core applications.
+•	Orchestration:
+•		Use Kubernetes (K8s) for managing containerized applications.
+•	Cloud Hosting:
+•		Use Azure App Service, AWS Elastic Beanstalk, or Google Cloud Run.
+•	CI/CD Pipelines:
+•		Use GitHub Actions, Azure DevOps, or Jenkins for automated builds and deployments.
+
+9. Testing
+•	Technologies/Libraries:
+•	Unit Testing:
+•		Use xUnit, NUnit, or MSTest for unit tests.
+•	Integration Testing:
+•		Use Microsoft.AspNetCore.Mvc.Testing for testing Web APIs.
+•	Mocking:
+•		Use Moq or NSubstitute for mocking dependencies.
+•	End-to-End Testing:
+•		Use Playwright or Selenium for E2E tests.
+
+10. Error Handling
+•	Technologies/Libraries:
+•	Global Exception Handling:
+•		Use UseExceptionHandler middleware for centralized error handling.
+•	Custom Error Responses:
+•		Return standardized error responses using ProblemDetails.
+•	Error Logging:
+•		Log errors using Serilog or Application Insights.
+---
+
+11. Background Jobs and Scheduling
+•	Technologies/Libraries:
+•	Background Jobs:
+•		Use IHostedService or BackgroundService for background tasks.
+•		Use Hangfire or Quartz.NET for advanced job scheduling.
+•	Task Queues:
+•		Use RabbitMQ, Azure Service Bus, or Kafka for message queues.
+
+12. File Handling
+•	Technologies/Libraries:
+•	File Uploads:
+•		Use IFormFile for handling file uploads in Web APIs.
+•	File Storage:
+•		Use Azure Blob Storage, AWS S3, or Google Cloud Storage for storing files.
+•	File Streaming:
+•		Stream large files using FileStreamResult.
+---
+
+13. Real-Time Communication
+•	Technologies/Libraries:
+•	WebSockets:
+•		Use SignalR for real-time communication.
+•	Server-Sent Events (SSE):
+•		Use IActionResult to stream events to the client.
+•	Message Queues:
+•		Use RabbitMQ, Azure Service Bus, or Kafka for real-time messaging.
+
+14. Internationalization (i18n)
+•	Technologies/Libraries:
+•	Localization:
+•		Use IStringLocalizer and IViewLocalizer for resource-based localization.
+•	Date/Time Formatting:
+•		Use System.Globalization for culture-specific formatting.
+
+15. DevOps and Automation
+•	Technologies/Libraries:
+•	Infrastructure as Code (IaC):
+•		Use Terraform or Azure Resource Manager (ARM) templates.
+•	Build Automation:
+•		Use MSBuild or Cake for build automation.
+•	Monitoring and Alerts:
+•	Use Prometheus and Grafana for monitoring and alerting.
+
+
+16. API Design Best Practices
+•	Technologies/Libraries:
+•	Pagination:
+•		Implement pagination using Skip and Take in EF Core.
+•		Filtering and Sorting:
+•		Use LINQ for dynamic filtering and sorting.
+•	HATEOAS:
+•		Implement Hypermedia as the Engine of Application State (HATEOAS) for REST APIs.
+•	Rate Limiting:
+•		Use AspNetCoreRateLimit for throttling API requests.
+
+17. Static File Serving
+•	Technologies/Libraries:
+•	Static File Middleware:
+•		Use UseStaticFiles for serving static files like images, CSS, and JavaScript.
+•	Content Delivery Network (CDN):
+•		Use Azure CDN, AWS CloudFront, or Cloudflare for serving static assets.
+---
+
+18. Dependency Injection (DI)
+•	Technologies/Libraries:
+•	Built-In DI:
+•		Use ASP.NET Core's built-in DI container.
+•	Third-Party DI Containers:
+•		Use Autofac or Simple Injector for advanced DI scenarios.
+
+
+19. Analytics and Telemetry
+•	Technologies/Libraries:
+•	Application Insights:
+•		Use Azure Application Insights for telemetry and performance monitoring.
+•	Custom Metrics:
+•		Use Prometheus for collecting custom metrics.
+•	Error Tracking:
+•		Use Sentry or Raygun for tracking errors.
+
+
+20. Developer Experience
+•	Technologies/Libraries:
+•	Code Quality:
+•		Use SonarQube or Resharper for static code analysis.
+•	Linting and Formatting:
+•		Use tools like StyleCop or EditorConfig for consistent code formatting.
+•	Hot Reload:
+•		Use .NET Core's hot reload feature for faster development.
+•	Code Snippets:
+•		Use Visual Studio Code or JetBrains Rider for productivity.
+---

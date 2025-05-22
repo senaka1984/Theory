@@ -1,0 +1,9 @@
+Use CSRF Tokens
+•	Implement CSRF protection in your backend and include CSRF tokens in your API requests.
+Use SameSite Cookies
+•	Set the SameSite attribute on cookies to Strict or Lax to prevent them from being sent with cross-origin requests.
+Example:
+Set-Cookie: sessionId=abc123; Secure; HttpOnly; SameSite=Strict;
+
+
+

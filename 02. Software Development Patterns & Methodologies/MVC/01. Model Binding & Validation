@@ -1,0 +1,37 @@
+1. Model Binding & Validation
+
+•	Model Binding: Automatically maps HTTP request data (form fields, query strings, route data, JSON) to C# action method parameters or model objects.
+•	Validation: Uses data annotations (e.g., [Required], [StringLength], [Range]) to validate model properties. Validation errors are available in ModelState.
+
+public class Product
+{
+    [Required]
+    public string Name { get; set; }
+    [Range(0.01, 1000)]
+    public decimal Price { get; set; }
+}
+
+[HttpPost]
+public IActionResult Create(Product product)
+{
+    if (!ModelState.IsValid)
+        return View(product);
+    // Save product
+    return RedirectToAction("Index");
+}
+
+
+
+2. Dependency Injection
+•	Built-in support for injecting services (e.g., repositories, loggers) into controllers and other components.
+•	Register services in Program.cs or Startup.cs using builder.Services.AddScoped, AddSingleton, or AddTransient.
+Example:
+
+public class ProductsController : Controller
+{
+    private readonly IProductService _service;
+    public ProductsController(IProductService service)
+    {
+        _service = service;
+    }
+}

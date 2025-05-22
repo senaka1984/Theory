@@ -1,0 +1,35 @@
+Web API security with dotnet Web API
+====================================
+
+1. Use HTTPS
+
+2. Implement Authentication and Authorization
+
+3. Validate and Sanitize Input
+
+4. Protect Against CSRF (Cross-Site Request Forgery)
+
+5. Secure Sensitive Data
+	Avoid Hardcoding Secrets
+	Encrypt Sensitive Data
+	
+6. Use Rate Limiting
+
+7. Implement Logging and Monitoring
+
+8. Use Content Security Policy (CSP)
+
+9. Protect Against Clickjacking
+
+10. Secure Dependencies
+
+11. Use a Web Application Firewall (WAF)
+
+12. Test Your API
+
+13. Use Versioning
+
+14. Use Dependency Injection
+
+
+

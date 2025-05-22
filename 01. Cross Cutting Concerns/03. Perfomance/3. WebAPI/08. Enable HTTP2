@@ -1,0 +1,36 @@
+
+8. Enable HTTP/2
+
+•	HTTP/2 improves throughput and reduces latency for concurrent requests.
+•	Supported by Kestrel and IIS in .NET 9.
+---
+9. Use Health Checks and Monitoring
+•	Use AspNetCore.Diagnostics.HealthChecks and Application Insights or Prometheus for monitoring.
+---
+10. Profile and Monitor Regularly
+•	Use tools like dotnet-counters, dotnet-trace, Application Insights, or ELK Stack to identify bottlenecks.
+
+11. Optimize Middleware Pipeline
+•	Place performance-critical middleware (e.g., compression, caching) early in the pipeline.
+•	Remove unnecessary middleware.
+---
+12. Use CDN for Static Content
+•	Offload static files (images, JS, CSS) to a CDN to reduce server load.
+---
+13. Tune Kestrel and Hosting Settings
+•	Adjust thread pool, connection limits, and request queue length for high-load scenarios.
+---
+
+14. Minimize Exception Throwing
+•	Avoid using exceptions for control flow; exceptions are expensive.
+---
+15. Return Appropriate Status Codes
+•	Use 204 No Content for empty responses to reduce payload size.
+---
+16. Use Pagination for Large Data Sets
+•	Return data in pages to avoid large payloads and improve client responsiveness.
+---
+
+
+
+

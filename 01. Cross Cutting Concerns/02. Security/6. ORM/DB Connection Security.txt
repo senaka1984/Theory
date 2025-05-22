@@ -1,0 +1,30 @@
+security in db connection with sql server
+
+1. Use Secure Connection Strings
+	a. Use Integrated Security (Windows Authentication)
+	b. Use SQL Server Authentication (If Necessary)
+
+2. Encrypt the Connection
+
+3. Use Environment Variables for Connection Strings
+
+4. Use Azure Key Vault or Other Secret Management Tools
+
+5. Restrict Database User Permissions
+
+6. Enable SQL Server Firewall
+
+7. Use Always Encrypted for Sensitive Data
+
+8. Use Parameterized Queries
+
+9. Enable Auditing and Logging
+
+11. Use Role-Based Access Control (RBAC)
+
+12. Monitor and Detect Anomalies
+
+13. Backup and Encrypt Data
+
+14. Disable Unused Features
+

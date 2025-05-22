@@ -1,0 +1,11 @@
+7. Use Always Encrypted for Sensitive Data
+
+•	Use Always Encrypted to protect sensitive data (e.g., credit card numbers, SSNs) at the column level. The encryption keys are stored securely, and the data is encrypted/decrypted transparently.
+Steps:
+1.	Enable Always Encrypted in SQL Server.
+2.	Configure the encryption keys.
+3.	Update your connection string to include Column Encryption Setting=Enabled.
+
+Example Connection String:
+
+"Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;Encrypt=True;Column Encryption Setting=Enabled;"

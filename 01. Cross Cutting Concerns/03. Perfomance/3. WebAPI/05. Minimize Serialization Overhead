@@ -1,0 +1,4 @@
+5. Minimize Serialization Overhead
+
+•	Use fast serializers (e.g., System.Text.Json).
+•	Avoid over-fetching: return only the data needed by the client (use DTOs).

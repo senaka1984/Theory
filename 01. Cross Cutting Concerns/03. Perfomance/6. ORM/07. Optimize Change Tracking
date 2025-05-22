@@ -1,0 +1,7 @@
+7. Optimize Change Tracking
+
+•	For large updates, consider disabling change tracking temporarily:
+
+dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
+// perform bulk operations
+dbContext.ChangeTracker.AutoDetectChangesEnabled = true;

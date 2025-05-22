@@ -1,0 +1,5 @@
+
+Penetration Testing
+•	Perform regular penetration testing to identify vulnerabilities.
+Use Security Scanners
+•	Use tools like OWASP ZAP, Burp Suite, or Snyk to scan your application for vulnerabilities.

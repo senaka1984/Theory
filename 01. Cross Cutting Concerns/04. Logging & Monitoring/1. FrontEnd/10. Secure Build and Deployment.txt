@@ -1,0 +1,12 @@
+
+Minify and Obfuscate Code
+•	Use tools like Webpack to minify and obfuscate your React app's code during the build process.
+Disable Source Maps in Production
+•	Disable source maps in production to prevent exposing your source code.
+
+"scripts": {
+    "build": "react-scripts build && rm -rf build/static/js/*.map"
+}
+
+
+

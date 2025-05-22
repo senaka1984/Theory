@@ -1,0 +1,6 @@
+2. Encrypt the Connection
+
+•	Always encrypt the connection between your application and SQL Server to protect data in transit.
+Key Connection String Parameters:
+•	Encrypt=True: Ensures the connection is encrypted.
+•	TrustServerCertificate=False: Validates the server's SSL/TLS certificate.

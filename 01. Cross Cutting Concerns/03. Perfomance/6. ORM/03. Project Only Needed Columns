@@ -1,0 +1,8 @@
+3. Project Only Needed Columns
+
+•	Use .Select() to fetch only the required fields instead of entire entities.
+Example:
+
+var productNames = await dbContext.Products
+    .Select(p => p.Name)
+    .ToListAsync();

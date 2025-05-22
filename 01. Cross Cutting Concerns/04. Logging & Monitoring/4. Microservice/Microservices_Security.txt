@@ -1,0 +1,36 @@
+Security in Microservices using Docker and Kuebernetes
+======================================================
+
+1. Use Mutual TLS (mTLS) for Service-to-Service Communication	
+
+2. Use Network Policies
+
+3. Secure API Communication
+	Use HTTPS
+	Use Authentication and Authorization
+	
+4. Use Service Accounts
+
+5. Secure Secrets
+	Use Kubernetes Secrets
+	Use a Secret Management Tool
+	
+6. Implement Rate Limiting
+
+7. Monitor and Log Traffic
+
+8. Use Role-Based Access Control (RBAC)
+
+9. Use a Web Application Firewall (WAF)
+
+10. Regularly Update and Patch
+
+11. Use Image Scanning
+
+12. Isolate Sensitive Workloads
+
+13. Perform Regular Security Audits
+
+
+
+

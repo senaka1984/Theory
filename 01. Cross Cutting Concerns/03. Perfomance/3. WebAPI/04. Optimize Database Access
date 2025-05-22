@@ -1,0 +1,10 @@
+
+4. Optimize Database Access
+
+•	Use efficient queries and proper indexing.
+•	Use connection pooling (default in ADO.NET).
+•	Avoid N+1 query problems (e.g., with .Include() in EF Core).
+•	Use AsNoTracking() for read-only queries in Entity Framework.
+Example:
+
+var data = await _dbContext.Entities.AsNoTracking().ToListAsync();

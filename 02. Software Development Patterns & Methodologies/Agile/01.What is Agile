@@ -1,0 +1,28 @@
+01. What is Agile
+
+Agile is a software development methodology and a set of principles focused on delivering high-quality software through iterative, incremental development, and collaborative teamwork. Agile emphasizes flexibility, customer feedback, and rapid adaptation to change.
+---
+Key Characteristics of Agile:
+•	Iterative Development: Work is divided into small, manageable units called iterations or sprints (usually 1–4 weeks).
+•	Incremental Delivery: Software is developed and delivered in small increments, allowing for frequent releases and feedback.
+•	Collaboration: Close collaboration between cross-functional teams (developers, testers, business stakeholders, and customers).
+•	Customer Involvement: Continuous customer feedback is encouraged to ensure the product meets user needs.
+•	Embracing Change: Agile welcomes changing requirements, even late in the development process.
+•	Continuous Improvement: Teams regularly reflect on their processes and make adjustments for better efficiency and quality.
+
+Popular Agile Frameworks:
+•	Scrum: Uses fixed-length sprints, daily stand-ups, and defined roles (Product Owner, Scrum Master, Development Team).
+•	Kanban: Focuses on visualizing work, limiting work in progress, and continuous delivery.
+•	Extreme Programming (XP): Emphasizes technical excellence, test-driven development, and frequent releases.
+
+Agile Manifesto (Core Values):
+1.	Individuals and interactions over processes and tools
+2.	Working software over comprehensive documentation
+3.	Customer collaboration over contract negotiation
+4.	Responding to change over following a plan
+
+Benefits of Agile:
+•	Faster delivery of valuable software
+•	Improved ability to respond to change
+•	Higher product quality through continuous testing and feedback
+•	Increased customer satisfaction

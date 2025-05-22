@@ -1,0 +1,8 @@
+5. Use Compression
+
+•	Enable GZIP or Brotli compression for responses to reduce payload size and improve transfer speed.
+Example (Azure APIM Policy):
+
+<set-header name="Accept-Encoding" exists-action="override">
+  <value>gzip, deflate, br</value>
+</set-header>

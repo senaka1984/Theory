@@ -1,0 +1,6 @@
+12. Test Your API
+
+•	Perform regular security testing using tools like:
+•	OWASP ZAP: For automated vulnerability scanning.
+•	Burp Suite: For penetration testing.
+•	Postman: For API testing.

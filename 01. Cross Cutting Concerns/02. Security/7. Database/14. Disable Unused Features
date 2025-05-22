@@ -1,0 +1,10 @@
+
+14. Disable Unused Features
+
+•	Disable features and services that are not required, such as xp_cmdshell or SQL Server Agent, to reduce the attack surface.
+Example: Disabling xp_cmdshell
+
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 0;
+RECONFIGURE;

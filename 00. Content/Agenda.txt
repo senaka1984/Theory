@@ -1,0 +1,29 @@
+1. Security
+	- OWASP10, Cryptography, CORS , XSS, CSRF, JWT, OAuth, SSO
+	
+2. Cloud Computing 
+	- COncepts Storage, Event bus, Event Grid, functions, Database
+
+3. Database 
+	- SQL, Entity Framework, LINQ, IQueryable, IENumerable, FluentAPI, 
+
+4. Performance , Responsiveness, 
+	- Async, Front end, backend, Deadlock, memory leak, EF 	
+
+5. Devops
+	- Docker, Kubernetes, CICD, Terraform, security, git
+
+6. Design Patterns, Unit Testing, Design Architecture
+	- DDD, TDD, SOLID, Clean Architecture, https://12factor.net/
+
+7. Testing , logging and motiroing
+	unit, function, load 
+
+8. Javascript
+	
+9. React
+
+10. C#
+
+11. Scrum, behavioural
+

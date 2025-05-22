@@ -1,0 +1,7 @@
+a.Use HTTPS
+	•Always serve your React application over HTTPS to encrypt communication between the client and server.
+	•Ensure your backend API also uses HTTPS.
+b.Set Secure Headers
+	•Use security headers like Content-Security-Policy, Strict-Transport-Security, and X-Content-Type-Options in your backend responses.
+c.Validate API Responses
+	•Validate and sanitize all data received from the backend to prevent malicious payloads.

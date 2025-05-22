@@ -1,0 +1,7 @@
+
+7. Monitor and Log API Activity
+•	Use Azure Monitor and Application Insights to track API usage, errors, and performance.
+•	Enable diagnostic logging in Azure API Management.
+Steps:
+1.	Go to the Diagnostics section in Azure API Management.
+2.	Enable logging to Application Insights or Azure Monitor.

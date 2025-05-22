@@ -1,0 +1,10 @@
+| Area                | Technique/Tool                | 
+|---------------------|-------------------------------| 
+| Code Splitting      | React.lazy, Suspense          | 
+| Image Optimization  | WebP, compression, lazy load  | 
+| Memoization         | React.memo, useMemo, useCallback | 
+| State Management    | Local state, efficient global state | 
+| List Virtualization | react-window, react-virtualized | 
+| CSS Optimization    | CSS modules, purgecss         | 
+| CDN                 | Static asset delivery         | 
+| Monitoring          | Lighthouse, React Profiler    |

@@ -1,0 +1,11 @@
+1. Enable Caching
+
+•	Response Caching: Cache frequent, read-only responses at the gateway to reduce backend load and latency.
+•	Azure API Management: Use the <cache-lookup> and <cache-store> policies.
+•	AWS API Gateway: Enable API Gateway caching for methods.
+Example (Azure APIM Policy):
+
+•	Response Caching: Cache frequent, read-only responses at the gateway to reduce backend load and latency.
+•	Azure API Management: Use the <cache-lookup> and <cache-store> policies.
+•	AWS API Gateway: Enable API Gateway caching for methods.
+Example (Azure APIM Policy):

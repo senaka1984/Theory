@@ -1,0 +1,12 @@
+03. Memoization
+
+•	Use React.memo for functional components and useMemo/useCallback hooks to avoid unnecessary re-renders.
+Example:
+
+const MemoizedComponent = React.memo(function MyComponent(props) { ... });
+
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+const memoizedCallback = useCallback(() => { doSomething(a); }, [a]);
+
+
+

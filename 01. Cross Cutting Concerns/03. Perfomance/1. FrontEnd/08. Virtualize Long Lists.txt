@@ -1,0 +1,20 @@
+
+8. Virtualize Long Lists
+
+•	Use libraries like react-window or react-virtualized to render only visible items in large lists.
+Example:
+
+import { FixedSizeList as List } from 'react-window';
+
+<List
+  height={400}
+  itemCount={1000}
+  itemSize={35}
+  width={300}
+>
+  {({ index, style }) => <div style={style}>Row {index}</div>}
+</List>
+
+
+
+

@@ -1,0 +1,6 @@
+
+3. Optimize Backend Integration
+
+•	Keep-Alive: Use persistent connections to backend services.
+•	Connection Pooling: Ensure the gateway uses connection pooling for backend HTTP calls.
+•	Timeouts: Set appropriate timeouts to avoid hanging requests.

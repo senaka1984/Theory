@@ -1,0 +1,8 @@
+11. Use Role-Based Access Control (RBAC)
+
+•	Use roles to manage permissions for database users and applications.
+Example: Creating a Role
+
+CREATE ROLE app_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::dbo TO app_role;
+EXEC sp_addrolemember 'app_role', 'app_user';

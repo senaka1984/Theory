@@ -1,0 +1,11 @@
+5. Secure Sensitive Data
+Avoid Hardcoding Secrets
+•	Store sensitive data (e.g., API keys, connection strings) in environment variables or a secure vault like Azure Key Vault.
+Example: Using Environment Variables:
+
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+
+
+Encrypt Sensitive Data
+•	Use encryption to protect sensitive data at rest and in transit.
+

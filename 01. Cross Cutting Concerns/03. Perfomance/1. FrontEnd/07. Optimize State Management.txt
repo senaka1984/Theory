@@ -1,0 +1,5 @@
+07. Optimize State Management
+
+•	Keep local state close to where it’s used.
+•	Avoid lifting state up unnecessarily.
+•	For global state, use efficient libraries (e.g., Zustand, Recoil, Redux Toolkit).

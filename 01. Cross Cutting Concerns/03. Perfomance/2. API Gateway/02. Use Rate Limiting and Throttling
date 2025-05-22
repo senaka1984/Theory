@@ -1,0 +1,7 @@
+2. Use Rate Limiting and Throttling
+
+•	Prevent abuse and ensure fair usage by limiting requests per user or subscription.
+•	This protects backend services from spikes and DoS attacks.
+Example (Azure APIM Policy):
+
+<rate-limit-by-key calls="100" renewal-period="60" counter-key="@(context.Subscription.Id)" />

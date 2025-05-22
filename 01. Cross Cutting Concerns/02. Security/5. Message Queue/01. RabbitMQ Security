@@ -1,0 +1,29 @@
+1. RabbitMQ Security
+
+a. Use TLS/SSL for Encryption
+•	Enable TLS on RabbitMQ to encrypt data in transit.
+•	Update your .NET client to use amqps:// (the secure protocol).
+Example:
+
+var factory = new ConnectionFactory
+{
+    Uri = new Uri("amqps://user:password@rabbitmq-host:5671/vhost"),
+    Ssl = new SslOption
+    {
+        Enabled = true,
+        ServerName = "rabbitmq-host",
+        AcceptablePolicyErrors = SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateChainErrors
+    }
+};
+
+
+b. Use Strong Authentication
+•	Use strong, unique usernames and passwords.
+•	Avoid using the default guest account in production.
+c. Use Virtual Hosts and Permissions
+•	Create separate virtual hosts for different applications or environments.
+•	Assign users only the permissions they need (configure, write, read).
+d. Enable Access Control
+•	Use RabbitMQ’s built-in access control to restrict which users can access which resources.
+e. Firewall and Network Security
+•	Restrict access to RabbitMQ ports (default: 5672/5671) to trusted networks only.

@@ -1,0 +1,9 @@
+
+6. Use IP Restrictions
+•	Restrict access to APIs based on client IP addresses or ranges.
+Example Policy: IP Restriction
+
+<ip-filter action="allow">
+    <address-range from="192.168.1.1" to="192.168.1.255" />
+    <address-range from="203.0.113.0" to="203.0.113.255" />
+</ip-filter>

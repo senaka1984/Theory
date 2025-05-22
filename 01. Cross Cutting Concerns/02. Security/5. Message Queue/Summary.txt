@@ -1,0 +1,8 @@
+
+| Feature                | RabbitMQ                | Azure Service Bus         | AWS SQS/SNS              | |------------------------|-------------------------|-------------------------- |--------------------------| 
+| Encryption in Transit  | TLS/SSL                 | TLS (default)             | HTTPS (default)          | 
+| Encryption at Rest     | OS-level, plugins       | Default                   | SSE with KMS             | 
+| Authentication         | User/pass, TLS certs    | AAD, SAS                  | IAM, access keys         | 
+| Access Control         | vhosts, permissions     | RBAC, SAS                 | IAM policies             | 
+| Network Security       | Firewall, VPC           | Private Endpoints, IP     | VPC endpoints            | 
+| Audit/Monitoring       | Management UI, logs     | Azure Monitor             | CloudWatch, CloudTrail   |

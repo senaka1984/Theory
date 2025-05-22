@@ -1,0 +1,3 @@
+10. Secure Dependencies
+•	Regularly update your dependencies to patch known vulnerabilities.
+•	Use tools like dotnet list package --vulnerable to identify outdated or vulnerable packages.

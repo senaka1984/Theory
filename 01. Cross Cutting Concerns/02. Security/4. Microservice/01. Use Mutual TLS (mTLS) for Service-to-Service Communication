@@ -1,0 +1,26 @@
+1. Use Mutual TLS (mTLS) for Service-to-Service Communication
+
+Mutual TLS ensures that both the client and server authenticate each other during communication.
+How to Implement mTLS in Kubernetes:
+1.	Generate Certificates:
+•	Use tools like OpenSSL or cert-manager to generate certificates for each microservice.
+2.	Distribute Certificates:
+•	Store certificates securely in Kubernetes Secrets.
+3.	Configure Services:
+•	Configure each microservice to use the certificates for mutual authentication.
+4.	Use a Service Mesh:
+•	Tools like Istio, Linkerd, or Consul simplify mTLS setup by automatically managing certificates and encryption.
+
+Example: Using Istio for mTLS
+•	Install Istio in your Kubernetes cluster.
+•	Enable mTLS for a namespace:
+
+apiVersion: "security.istio.io/v1beta1"
+kind: "PeerAuthentication"
+metadata:
+  name: "default"
+  namespace: "your-namespace"
+spec:
+  mtls:
+    mode: STRICT
+

@@ -1,0 +1,14 @@
+1. Scrum
+•	Framework for managing work in sprints (typically 1–4 weeks).
+•	Roles: Product Owner, Scrum Master, Development Team.
+•	Artifacts: Product Backlog, Sprint Backlog, Increment.
+•	Events: Sprint Planning, Daily Scrum (stand-up), Sprint Review, Sprint Retrospective.
+---
+2. Kanban
+•	Visualizes work using a board with columns (e.g., To Do, In Progress, Done).
+•	Limits work in progress (WIP) to improve flow.
+•	Continuous delivery: No fixed-length iterations; work is pulled as capacity allows.
+---
+3. Extreme Programming (XP)
+•	Focuses on engineering practices for high-quality code.
+•	Practices: Test-Driven Development (TDD), Pair Programming, Continuous Integration, Refactoring, Simple Design, Collective Code Ownership.

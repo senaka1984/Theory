@@ -1,0 +1,50 @@
+Frontend security with react js application
+===========================================
+
+1. Secure API Communication
+	Use HTTPS
+	Set Secure Headers
+	Validate API Responses
+
+2. Protect Against XSS (Cross-Site Scripting)
+	Avoid Dangerous HTML Injection
+	Escape User Input
+	Use a Content Security Policy (CSP)
+	
+3. Protect Against CSRF (Cross-Site Request Forgery)
+	Use CSRF Tokens
+	Use SameSite Cookies
+	
+4. Secure Authentication
+	Use Secure Storage for Tokens
+	Implement Proper Logout
+	Use Strong Password Policies
+	
+5. Protect Against Clickjacking
+	Use X-Frame-Options
+	Use CSP Frame-Ancestors
+	
+6. Secure Dependencies
+	Audit Dependencies
+	Use Trusted Libraries
+	
+7. Protect Sensitive Data
+	Avoid Hardcoding Secrets
+	Use Backend Proxies
+	
+8. Implement Role-Based Access Control (RBAC)
+   
+9. Monitor and Log Security Events
+
+10. Secure Build and Deployment
+    Minify and Obfuscate Code
+	Disable Source Maps in Production
+	
+11. Regularly Test Your Application
+	Penetration Testing
+	Use Security Scanners
+	
+
+
+
+

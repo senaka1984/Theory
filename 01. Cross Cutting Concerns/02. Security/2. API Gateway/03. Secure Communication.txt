@@ -1,0 +1,17 @@
+
+a. Enforce HTTPS
+•	Require all API requests to use HTTPS to encrypt communication.
+Example Policy: Enforce HTTPS
+
+<choose>
+    <when condition="@(context.Request.OriginalUrl.Scheme != "https")">
+        <return-response>
+            <set-status code="400" reason="Bad Request" />
+            <set-body>HTTPS is required.</set-body>
+        </return-response>
+    </when>
+</choose>
+
+
+b. Use TLS for Backend Communication
+•	Ensure that communication between Azure API Management and backend APIs is encrypted using TLS.

@@ -1,0 +1,4 @@
+6. Use Dependency Injection Wisely
+
+•	Register services with the correct lifetime (Singleton, Scoped, Transient).
+•	Avoid unnecessary singletons that hold large state.

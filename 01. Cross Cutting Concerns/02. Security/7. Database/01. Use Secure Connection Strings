@@ -1,0 +1,23 @@
+
+1. Use Secure Connection Strings
+
+a. Use Integrated Security (Windows Authentication)
+•	Prefer Windows Authentication over SQL Server Authentication to avoid storing credentials in the connection string.
+Example Connection String:
+
+"Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=False;"
+
+
+•	Trusted_Connection=True: Enables Windows Authentication.
+•	Encrypt=True: Ensures the connection is encrypted.
+•	TrustServerCertificate=False: Prevents trusting self-signed certificates.
+
+
+b. Use SQL Server Authentication (If Necessary)
+
+•	If you must use SQL Server Authentication, avoid hardcoding credentials in your application. Use secure storage mechanisms like Azure Key Vault, AWS Secrets Manager, or environment variables.
+Example Connection String:
+
+"Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;Encrypt=True;TrustServerCertificate=False;"
+
+

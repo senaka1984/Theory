@@ -1,0 +1,35 @@
+API Gateway Security using AZURE
+================================
+
+1. Use Authentication and Authorization
+	a. OAuth 2.0 and OpenID Connect
+	b. Subscription Keys
+
+2. Protect Against Abuse
+	a. Rate Limiting
+	b. Throttling
+
+3. Secure Communication
+	a. Enforce HTTPS
+	b. Use TLS for Backend Communication
+	
+4. Validate and Sanitize Input
+
+5. Protect Against Cross-Site Request Forgery (CSRF)
+
+6. Use IP Restrictions
+
+7. Monitor and Log API Activity
+
+8. Use Content Security Policies
+
+9. Use Backend Authentication
+
+10. Use CORS (Cross-Origin Resource Sharing)
+
+11. Use Managed Identities
+
+12. Regularly Test and Audit APIs
+
+13. Use API Versioning
+

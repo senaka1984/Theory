@@ -1,0 +1,24 @@
+3. Secure API Communication
+
+Use HTTPS
+•	Ensure all communication between microservices is encrypted using HTTPS.
+Use Authentication and Authorization
+•	Use JWT (JSON Web Tokens) or OAuth 2.0 to authenticate and authorize requests between microservices.
+Example: Validate JWT in a Microservice
+
+services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://your-identity-provider.com";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidAudience = "your-audience",
+            ValidIssuer = "your-issuer"
+        };
+    });
+
+app.UseAuthentication();
+
+

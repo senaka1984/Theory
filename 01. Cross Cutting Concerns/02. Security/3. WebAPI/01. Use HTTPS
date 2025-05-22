@@ -1,0 +1,21 @@
+
+1. Use HTTPS
+•	Always use HTTPS to encrypt communication between the client and server.
+•	Redirect all HTTP traffic to HTTPS.
+
+How to Enforce HTTPS in .NET Web API:
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+    options.HttpsPort = 443;
+});
+
+var app = builder.Build();
+app.UseHttpsRedirection();
+app.Run();
+
+
+
+

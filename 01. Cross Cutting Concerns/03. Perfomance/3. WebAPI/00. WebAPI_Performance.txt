@@ -1,0 +1,15 @@
+Summary Table
+| Area                | Optimization Technique                | 
+|---------------------|---------------------------------------| 
+| Async               | async/await, Task-based APIs          | 
+| Caching             | Response, in-memory, distributed      | 
+| Compression         | GZIP/Brotli                           | 
+| DB Access           | Efficient queries, AsNoTracking       | 
+| Serialization       | System.Text.Json, DTOs                | 
+| Rate Limiting       | Middleware                            | 
+| HTTP/2              | Enable in Kestrel/IIS                 | 
+| Monitoring          | Health checks, Application Insights   | 
+| Middleware          | Optimize order, remove unused         | 
+| CDN                 | Static content                        | 
+| Exception Handling  | Avoid for control flow                | 
+| Pagination          | For large data sets                   |

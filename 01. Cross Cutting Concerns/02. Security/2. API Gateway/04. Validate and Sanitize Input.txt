@@ -1,0 +1,9 @@
+
+4. Validate and Sanitize Input
+•	Use policies to validate and sanitize incoming requests to prevent injection attacks.
+Example Policy: Validate Query Parameters
+
+<validate-parameters>
+    <parameter name="id" required="true" type="int" />
+</validate-parameters>
+

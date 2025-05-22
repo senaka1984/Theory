@@ -1,0 +1,12 @@
+6. Support for RESTful APIs (with ControllerBase)
+
+•	Use ControllerBase (instead of Controller) for API controllers.
+•	Provides features like [ApiController], automatic model validation, and content negotiation.
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    [HttpGet]
+    public IEnumerable<Product> Get() => _service.GetAll();
+}

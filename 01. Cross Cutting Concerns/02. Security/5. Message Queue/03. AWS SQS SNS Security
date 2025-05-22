@@ -1,0 +1,36 @@
+3. AWS SQS/SNS Security
+
+a. Use IAM Policies for Access Control
+•	Grant only the necessary permissions to users, roles, or services.
+•	Use resource-based policies to restrict who can send/receive messages.
+Example IAM Policy:
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage"
+      ],
+      "Resource": "arn:aws:sqs:us-east-1:123456789012:MyQueue"
+    }
+  ]
+}
+
+
+b. Use Server-Side Encryption (SSE)
+•	Enable SSE for SQS and SNS to encrypt messages at rest using AWS KMS.
+c. Use HTTPS Endpoints
+•	Always connect to SQS/SNS using HTTPS to encrypt data in transit.
+Example:
+
+var sqsClient = new AmazonSQSClient(new AmazonSQSConfig
+{
+    ServiceURL = "https://sqs.us-east-1.amazonaws.com"
+});
+
+
+d. VPC Endpoints
+•	Use VPC endpoints to keep traffic between your VPC and SQS/SNS private.

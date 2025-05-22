@@ -1,0 +1,10 @@
+5. Restrict Database User Permissions
+
+•	Follow the principle of least privilege:
+•	Create a dedicated database user for your application.
+•	Grant only the necessary permissions (e.g., SELECT, INSERT, UPDATE, DELETE).
+•	Avoid using the sa (system administrator) account.
+Example: Granting Minimal Permissions
+
+CREATE USER app_user FOR LOGIN app_user_login;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::dbo TO app_user;

@@ -1,0 +1,11 @@
+
+2. Optimize Images
+
+
+•	Use modern formats like WebP.
+•	Compress images and serve appropriately sized images for different devices (responsive images).
+•	Use loading="lazy" for offscreen images.
+Example:
+
+<img src="image.webp" alt="desc" loading="lazy" width="400" height="300" />
+

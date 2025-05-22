@@ -1,0 +1,14 @@
+9. Protect Against Clickjacking
+
+•	Use the X-Frame-Options header to prevent your API from being embedded in iframes.
+Example: Adding X-Frame-Options Header:
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    await next();
+});
+
+
+
+

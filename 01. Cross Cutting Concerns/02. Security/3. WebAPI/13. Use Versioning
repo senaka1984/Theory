@@ -1,0 +1,28 @@
+13. Use Versioning
+
+•	Implement API versioning to manage breaking changes and deprecations.
+Example: Adding API Versioning:
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ReportApiVersions = true;
+});
+
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
+public class MyController : ControllerBase
+{
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok("API Version 1.0");
+    }
+}
+
+
+14. Use Dependency Injection
+•	Use dependency injection to manage services and avoid hardcoding dependencies.
+
+

@@ -1,0 +1,12 @@
+3. Filters (Authorization, Exception, Action, Result)
+
+•	Authorization Filters: Run before anything else to check user permissions.
+•	Action Filters: Run before and after action methods (e.g., logging, modifying input/output).
+•	Exception Filters: Handle unhandled exceptions globally.
+•	Result Filters: Run before and after the action result is executed (e.g., modifying the response).
+Example:
+
+[Authorize]
+public IActionResult SecureAction() { ... }
+
+public class LogActionFilter : IActionFilter { ... }

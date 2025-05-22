@@ -1,0 +1,4 @@
+
+5. Protect Against Cross-Site Request Forgery (CSRF)
+•	Use anti-CSRF tokens for state-changing operations (e.g., POST, PUT, DELETE).
+•	Ensure that APIs are not directly accessible from browsers unless necessary.

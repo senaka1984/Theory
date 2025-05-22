@@ -1,0 +1,5 @@
+4. Use Batching for Bulk Operations
+
+•	For bulk inserts, updates, or deletes, use batching or third-party libraries like EFCore.BulkExtensions.
+---
+---

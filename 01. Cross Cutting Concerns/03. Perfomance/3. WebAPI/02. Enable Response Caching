@@ -1,0 +1,17 @@
+
+2. Enable Response Caching
+
+•	Use [ResponseCache] attribute or middleware to cache responses for frequently requested data.
+
+[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
+[HttpGet]
+public IActionResult GetCachedData()
+{
+    return Ok(_service.GetData());
+}
+
+
+
+
+
+

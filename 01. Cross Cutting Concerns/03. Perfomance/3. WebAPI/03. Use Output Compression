@@ -1,0 +1,10 @@
+3. Use Output Compression
+
+•	Enable GZIP or Brotli compression to reduce response size and improve transfer speed.
+Example (Program.cs):
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
+app.UseResponseCompression();

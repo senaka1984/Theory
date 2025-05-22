@@ -1,0 +1,113 @@
+07. MVC Performance
+
+| Area                | Optimization Technique                | 
+|---------------------|--------------------------------------|
+| Caching             | Response, in-memory, distributed      | 
+| Compression         | GZIP/Brotli                           | 
+| DB Access           | Async, AsNoTracking, indexes          | 
+| Static Assets       | Bundle, minify, CDN                   | 
+| Middleware          | Optimize order, remove unused         | 
+| Monitoring          | Logging, profiling, Application Insights | 
+| HTTP/2              | Enable in Kestrel/IIS                 | 
+| View Rendering      | Use partials, avoid heavy logic       | 
+| Exception Handling  | Avoid for control flow                | 
+| Pagination          | For large data sets                   |
+
+
+1. Enable Response Caching
+Cache frequently requested pages or data to reduce server processing.
+Example:
+
+[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
+public IActionResult Index()
+{
+    return View();
+}
+
+
+2. Use Output Compression
+Reduce the size of responses sent to clients by enabling GZIP or Brotli compression.
+Example (Program.cs):
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
+app.UseResponseCompression();
+
+
+3. Optimize Database Access
+•	Use asynchronous methods (async/await) for I/O operations.
+•	Use .AsNoTracking() for read-only queries in Entity Framework.
+•	Fetch only required columns and filter data at the database level.
+•	Add proper indexes to your database tables.
+---
+4. Minimize View Rendering Overhead
+•	Use View Components and Partial Views for reusable UI.
+•	Avoid complex logic in views; keep them focused on rendering.
+---
+
+5. Bundle and Minify Static Assets
+•	Use bundling and minification for CSS and JavaScript to reduce the number and size of HTTP requests.
+•	Serve static files from a CDN if possible.
+---
+6. Use In-Memory and Distributed Caching
+•	Use IMemoryCache for frequently accessed data.
+•	Use distributed caching (e.g., Redis) for data shared across servers.
+
+public class MyService
+{
+    private readonly IMemoryCache _cache;
+    public MyService(IMemoryCache cache) => _cache = cache;
+
+    public async Task<MyData> GetDataAsync()
+    {
+        return await _cache.GetOrCreateAsync("mykey", entry =>
+        {
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5);
+            return FetchDataFromDbAsync();
+        });
+    }
+}
+
+7. Optimize Middleware Pipeline
+•	Place performance-critical middleware (e.g., compression, caching) early in the pipeline.
+•	Remove unnecessary middleware.
+---
+8. Use Asynchronous Actions
+•	Make controller actions asynchronous to improve scalability.
+Example:
+
+public async Task<IActionResult> GetData()
+{
+    var data = await _service.GetDataAsync();
+    return View(data);
+}
+
+9. Profile and Monitor
+•	Use Application Insights, ELK Stack, or built-in logging to monitor performance and identify bottlenecks.
+•	Use tools like dotnet-trace and dotnet-counters for profiling.
+---
+10. Use HTTP/2
+•	HTTP/2 improves throughput and reduces latency for concurrent requests. Supported by Kestrel and IIS.
+---
+11. Minimize Exception Throwing
+•	Avoid using exceptions for control flow; exceptions are expensive.
+---
+12. Return Appropriate Status Codes
+•	Use 204 No Content for empty responses to reduce payload size.
+---
+13. Use Pagination for Large Data Sets
+•	Return data in pages to avoid large payloads and improve client responsiveness.
+---
+14. Deploy in Release Mode
+•	Always deploy the application in Release mode for optimized performance.
+---
+
+
+
+
+
+
+
+

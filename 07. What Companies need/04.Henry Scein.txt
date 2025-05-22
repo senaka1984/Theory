@@ -1,0 +1,38 @@
+Henry Schein
+================
+What You’ll Be Doing
+
+Build solutions end-to-end: analyse, design, code, create pipelines, automate tests, automate deployments, monitor, enhance, and maintain. We advocate the “you build it, you run it” DevOps mantra.
+Develop secure and resilient integrations across multiple hybrid systems (including cloud APIs to on-prem systems).
+Collaborate with product owners, engineers, and stakeholders on delivering high-quality solutions that make a difference to our customers.
+Continuously learn and drive your professional growth.
+Write readable and highly maintainable code.
+Read and analyse existing code and solutions.
+Identify opportunities to incrementally improve our code following the boy-scout rule: “Leave your code better than you found it”.
+Code reviews and pair programming.
+Develop tools or automation that accelerate the development process whilst improving the developer experience.
+
+What You’ll Be Working On
+
+Our industry leading cloud practice management system: https://www.dentrixascend.com/
+Migration to our modern technology stack
+Building solutions that deliver delightful user experiences to our Customer Support
+
+Your Technical Skills
+
+Senior-level proficiency in .NET 8 or higher, C#, and SQL. Experience with other languages is a great plus.
+Expert-level cloud development skills in AWS and/or Azure. Proficient in building well-architected cloud-based solutions that are secure, high-performing, resilient, and efficient.
+Mastery of software engineering best practices, especially in the areas of asynchronous programming, exception handling, and performance optimization, with the ability to guide others in these areas.
+Solid knowledge of API development (Minimal APIs, REST, gRPC), Authentication and Authorization, containerisation, service orchestration, distributed systems, databases (SQL Server or Postgres), CI/CD pipelines, unit testing, integration testing, infrastructure-as-code (Terraform or Bicep), and observability (OpenTelemetry).
+Extensive experience in conducting comprehensive code reviews. This includes the ability to critically analyse code, articulate specific, well-reasoned feedback, and engage in productive solution refinement.
+
+Your personal attributes
+
+You take ownership and get things done, driving projects with a bias for action and a commitment to delivering value incrementally.
+You learn rapidly from setbacks and adapt your approach to continuously improve.
+You transform ambiguous problems and abstract ideas — not rigid specifications — into delightful, high-quality, and remarkably simple solutions. You are driven by true craftsmanship, creativity, and a relentless pursuit of excellence in everything you build.
+You possess a genuine passion for continuous learning and self-improvement. You actively seek and value diverse perspectives, recognizing the limitations of your own viewpoint.
+You champion a "One Team" philosophy, effective in working with multiple teams towards shared goals. You believe in transparent collaboration, actively engaging with the team through huddles, interactive reviews, and whiteboarding.
+You have strong opinions, loosely held — you thrive in technical discussions, confidently propose and debate ideas, and drive well-reasoned solutions to help the team achieve the best outcomes. You're not one to just go with the flow; you help drive us forward.
+You are self-motivated, consistently seeking opportunities to contribute more, and take on greater responsibilities to propel the team forward. 
+You demonstrate strong interpersonal awareness, understanding team dynamics and the impact of your interactions.

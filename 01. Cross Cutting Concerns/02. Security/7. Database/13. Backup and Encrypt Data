@@ -1,0 +1,8 @@
+
+13. Backup and Encrypt Data
+
+•	Regularly back up your database and encrypt the backups to protect against data loss and unauthorized access.
+
+BACKUP DATABASE MyDatabase
+TO DISK = 'C:\Backups\MyDatabase.bak'
+WITH ENCRYPTION;

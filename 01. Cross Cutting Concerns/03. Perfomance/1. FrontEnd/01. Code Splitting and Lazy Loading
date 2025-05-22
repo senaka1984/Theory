@@ -1,0 +1,17 @@
+
+1. Code Splitting and Lazy Loading
+
+•	Split your bundle using React.lazy and React.Suspense to load components only when needed.
+Example:
+
+import React, { Suspense, lazy } from 'react';
+
+const HeavyComponent = lazy(() => import('./HeavyComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HeavyComponent />
+    </Suspense>
+  );
+}

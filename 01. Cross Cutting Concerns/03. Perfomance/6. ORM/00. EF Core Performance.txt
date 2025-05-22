@@ -1,0 +1,8 @@
+| Area              | Optimization Technique                  | 
+|---------------------|---------------------------------------| 
+| Tracking            | AsNoTracking, disable change tracking | 
+| Querying            | Filter, project, batch, compiled      | 
+| Loading             | Eager/explicit loading, avoid lazy    | 
+| Database            | Indexes, minimize round-trips         | 
+| Caching             | In-memory cache for static data       | 
+| Monitoring          | Logging, profiling, query analysis    |

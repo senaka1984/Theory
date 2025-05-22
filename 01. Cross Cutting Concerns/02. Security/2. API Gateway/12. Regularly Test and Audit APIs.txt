@@ -1,0 +1,4 @@
+
+12. Regularly Test and Audit APIs
+•	Perform regular penetration testing and vulnerability scans using tools like OWASP ZAP or Burp Suite.
+•	Use Azure Security Center to monitor and secure your API Management instance.

@@ -1,0 +1,7 @@
+
+
+Optimize CSS
+
+•	Use CSS-in-JS solutions or CSS modules to scope styles.
+•	Minimize and compress CSS files.
+•	Remove unused CSS (purgecss).

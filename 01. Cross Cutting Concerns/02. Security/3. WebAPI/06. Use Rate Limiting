@@ -1,0 +1,18 @@
+6. Use Rate Limiting
+•	Implement rate limiting to prevent abuse and mitigate Denial of Service (DoS) attacks.
+Example: Using ASP.NET Core Rate Limiting Middleware:
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("default", limiterOptions =>
+    {
+        limiterOptions.PermitLimit = 100;
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
+    });
+});
+
+app.UseRateLimiter();
+
+
+
+

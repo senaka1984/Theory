@@ -1,0 +1,8 @@
+
+9. Use Backend Authentication
+•	Secure communication between Azure API Management and backend APIs using client certificates, managed identities, or API keys.
+Example Policy: Add Backend Authentication Header
+
+<set-header name="Authorization" exists-action="override">
+    <value>Bearer your-backend-token</value>
+</set-header>

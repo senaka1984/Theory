@@ -1,0 +1,4 @@
+7. Monitor and Log Traffic
+
+•	Use tools like Prometheus, Grafana, and ELK Stack to monitor and log traffic between microservices.
+•	Enable Kubernetes Audit Logs to track API requests and changes.

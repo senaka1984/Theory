@@ -1,0 +1,6 @@
+
+Audit Dependencies
+•	Regularly audit your dependencies for vulnerabilities using tools like npm audit or yarn audit.
+Use Trusted Libraries
+•	Only use well-maintained and trusted libraries. Avoid outdated or unmaintained packages.
+---

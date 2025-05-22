@@ -1,0 +1,8 @@
+4. General Best Practices for All Queues
+
+•	Audit and Monitor: Enable logging and monitor access and usage.
+•	Rotate Credentials: Regularly rotate passwords, keys, and tokens.
+•	Validate and Sanitize Messages: Never trust message content; validate and sanitize before processing.
+•	Dead-Letter Queues: Use dead-letter queues to handle failed message processing securely.
+•	Limit Message Size: Restrict message size to prevent abuse or denial-of-service attacks.
+•	Patch and Update: Keep your message broker and client libraries up to date.

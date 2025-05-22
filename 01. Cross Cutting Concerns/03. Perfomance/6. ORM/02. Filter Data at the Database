@@ -1,0 +1,7 @@
+2. Filter Data at the Database
+
+•	Always filter data in the query (using .Where()) rather than in memory.
+
+var activeUsers = await dbContext.Users
+    .Where(u => u.IsActive)
+    .ToListAsync();

@@ -1,0 +1,5 @@
+6. Enable SQL Server Firewall
+
+•	Restrict access to the SQL Server instance by configuring the firewall to allow only trusted IP addresses.
+For Azure SQL Database:
+•	Use the Azure portal to configure the firewall and allow only specific IP ranges.

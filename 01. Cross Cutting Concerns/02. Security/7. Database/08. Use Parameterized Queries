@@ -1,0 +1,12 @@
+8. Use Parameterized Queries
+
+•	Always use parameterized queries or an ORM (e.g., Entity Framework) to prevent SQL Injection.
+Example: Using Parameterized Queries
+
+using (var connection = new SqlConnection(connectionString))
+{
+    var command = new SqlCommand("SELECT * FROM Users WHERE Username = @username", connection);
+    command.Parameters.AddWithValue("@username", username);
+    connection.Open();
+    var reader = command.ExecuteReader();
+}

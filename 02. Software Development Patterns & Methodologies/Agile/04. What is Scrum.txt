@@ -1,0 +1,51 @@
+
+Key Elements of Scrum
+1. Roles
+•	Product Owner:
+Defines and prioritizes the product backlog, represents the customer, and ensures the team delivers value.
+•	Scrum Master:
+Facilitates the Scrum process, removes impediments, and helps the team follow Scrum practices.
+•	Development Team:
+Cross-functional group responsible for delivering potentially shippable increments of the product at the end of each sprint.
+
+
+
+2. Artifacts
+•	Product Backlog:
+An ordered list of all desired work on the project (features, bug fixes, technical work, etc.).
+•	Sprint Backlog:
+The set of Product Backlog items selected for the current sprint, plus a plan for delivering them.
+•	Increment:
+The sum of all completed Product Backlog items during a sprint and previous sprints—essentially, the latest working version of the product.
+
+
+3. Events (Ceremonies)
+•	Sprint:
+A time-boxed iteration (usually 1–4 weeks) during which a usable product increment is created.
+•	Sprint Planning:
+Meeting at the start of the sprint to decide what will be delivered and how the work will be achieved.
+•	Daily Scrum (Stand-up):
+15-minute daily meeting for the team to synchronize activities and plan for the next 24 hours.
+•	Sprint Review:
+Held at the end of the sprint to inspect the increment and adapt the Product Backlog if needed. Stakeholders can provide feedback.
+•	Sprint Retrospective:
+Meeting after the Sprint Review for the team to reflect on the sprint and identify improvements for the next sprint.
+
+4. Scrum Artifacts Transparency
+•	All artifacts should be visible and transparent to all stakeholders to ensure shared understanding and alignment.
+---
+Scrum Process Overview
+1.	Product Owner maintains the Product Backlog.
+2.	At the start of each Sprint, the team selects items from the Product Backlog to work on (Sprint Planning).
+3.	The team works on these items during the Sprint, meeting daily (Daily Scrum).
+4.	At the end of the Sprint, the team demonstrates the increment (Sprint Review).
+5.	The team reflects on the process and identifies improvements (Sprint Retrospective).
+6.	The cycle repeats.
+---
+
+Benefits of Scrum
+•	Delivers working software frequently.
+•	Encourages regular feedback and adaptation.
+•	Improves transparency and team collaboration.
+•	Responds quickly to changing requirements.
+---

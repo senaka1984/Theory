@@ -1,0 +1,14 @@
+7. Implement Rate Limiting and Throttling
+
+•	Prevent abuse and ensure fair usage.
+Example:
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("default", limiterOptions =>
+    {
+        limiterOptions.PermitLimit = 100;
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
+    });
+});
+app.UseRateLimiter();

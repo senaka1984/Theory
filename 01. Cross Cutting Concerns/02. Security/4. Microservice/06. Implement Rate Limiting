@@ -1,0 +1,16 @@
+6. Implement Rate Limiting
+
+•	Use rate limiting to prevent abuse and mitigate Denial of Service (DoS) attacks.
+Example: Using Istio for Rate Limiting
+
+apiVersion: config.istio.io/v1alpha2
+kind: QuotaSpec
+metadata:
+  name: request-count
+  namespace: your-namespace
+spec:
+  rules:
+  - quotas:
+    - charge: 1
+      quota: requestcount
+

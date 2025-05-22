@@ -1,0 +1,4 @@
+
+11. Use Managed Identities
+•	Use Azure Managed Identities to securely access other Azure resources (e.g., Key Vault, Storage) without storing credentials.
+

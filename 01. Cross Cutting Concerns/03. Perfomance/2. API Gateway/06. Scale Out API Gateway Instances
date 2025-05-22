@@ -1,0 +1,4 @@
+6. Scale Out API Gateway Instances
+
+•	Use autoscaling features to add more gateway instances during high load.
+•	For Azure APIM, use the Premium or v2 tier for better scaling and performance.

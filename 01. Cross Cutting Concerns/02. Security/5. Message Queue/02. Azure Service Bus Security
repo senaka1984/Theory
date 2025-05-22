@@ -1,0 +1,23 @@
+2. Azure Service Bus Security
+
+
+a. Use Azure Active Directory (AAD) Authentication
+•	Prefer AAD over shared access keys for authentication.
+•	Assign least-privilege roles (e.g., Azure Service Bus Data Sender, Azure Service Bus Data Receiver).
+Example:
+
+var client = new ServiceBusClient(
+    "your-servicebus-namespace.servicebus.windows.net",
+    new DefaultAzureCredential());
+
+
+b. Use Shared Access Signatures (SAS) Carefully
+•	If using SAS, use short-lived tokens and restrict permissions (send, listen, manage).
+c. Encrypt Data in Transit
+•	Azure Service Bus uses TLS by default for all connections.
+d. Encrypt Data at Rest
+•	Data is encrypted at rest by default in Azure Service Bus.
+e. Network Security
+•	Use Private Endpoints or Service Endpoints to restrict access to your Service Bus namespace.
+•	Use IP firewall rules to allow only trusted IPs.
+

@@ -1,0 +1,15 @@
+Use X-Frame-Options
+•	Set the X-Frame-Options header to DENY or SAMEORIGIN in your backend to prevent your app from being embedded in an iframe.
+Example:
+X-Frame-Options: DENY;
+
+
+Use CSP Frame-Ancestors
+•	Use the frame-ancestors directive in your Content-Security-Policy header to control which domains can embed your app.
+Example:
+Content-Security-Policy: frame-ancestors 'self';
+
+
+
+
+

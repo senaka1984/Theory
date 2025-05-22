@@ -1,0 +1,9 @@
+6. Use Compiled Queries for Hot Paths
+
+•	For frequently executed queries, use compiled queries to reduce query translation overhead.
+Example:
+
+private static readonly Func<AppDbContext, int, Task<Product?>> _getProductById =
+    EF.CompileAsyncQuery((AppDbContext context, int id) =>
+        context.Products.FirstOrDefault(p => p.Id == id));
+

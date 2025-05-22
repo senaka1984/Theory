@@ -1,0 +1,6 @@
+3. Use Environment Variables for Connection Strings
+
+•	Store the connection string in environment variables instead of hardcoding it in your application.
+Example: Accessing Connection String from Environment Variables
+
+var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");

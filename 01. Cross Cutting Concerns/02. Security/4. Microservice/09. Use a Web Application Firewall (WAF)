@@ -1,0 +1,15 @@
+9. Use a Web Application Firewall (WAF)
+
+•	Deploy a WAF to filter and monitor HTTP traffic for malicious activity.
+
+10. Regularly Update and Patch
+•	Keep your Docker images, Kubernetes cluster, and dependencies up to date to patch known vulnerabilities.
+
+11. Use Image Scanning
+•	Scan Docker images for vulnerabilities using tools like Trivy, Aqua Security, or Clair.
+---
+12. Isolate Sensitive Workloads
+•	Use Kubernetes Namespaces to isolate sensitive workloads and apply stricter security policies.
+---
+13. Perform Regular Security Audits
+•	Use tools like Kube-bench and Kube-hunter to audit your Kubernetes cluster for security issues.

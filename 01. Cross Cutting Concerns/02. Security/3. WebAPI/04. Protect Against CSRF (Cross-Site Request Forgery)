@@ -1,0 +1,19 @@
+4. Protect Against CSRF (Cross-Site Request Forgery)
+•	Use anti-forgery tokens for state-changing operations (e.g., POST, PUT, DELETE).
+•	For APIs, prefer using SameSite cookies or custom headers for CSRF protection.
+Example: Using SameSite Cookies:
+
+builder.Services.AddAntiforgery(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.Strict;
+});
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-CSRF-Token", "your-csrf-token");
+    await next();
+});
+
+
+
+

@@ -1,0 +1,15 @@
+
+8. Use Content Security Policy (CSP)
+
+•	Use CSP headers to restrict the sources of scripts, styles, and other resources.
+Example: Adding CSP Header:
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self';");
+    await next();
+});
+
+
+
+

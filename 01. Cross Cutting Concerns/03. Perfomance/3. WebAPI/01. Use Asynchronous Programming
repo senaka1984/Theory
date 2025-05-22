@@ -1,0 +1,13 @@
+1. Use Asynchronous Programming
+
+•	Use async/await for I/O-bound operations (database, HTTP calls, file I/O) to free up threads and improve scalability.
+Example:
+
+[HttpGet]
+public async Task<IActionResult> GetData()
+{
+    var data = await _service.GetDataAsync();
+    return Ok(data);
+}
+
+
