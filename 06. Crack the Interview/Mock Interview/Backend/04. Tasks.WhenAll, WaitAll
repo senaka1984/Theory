@@ -1,0 +1,54 @@
+04. Tasks.WhenAll, WaitAll
+
+
+Task.WhenAll, Task.WaitAll, and similar concurrency utilities in your async/await discussion demonstrates deeper, real-world backend experience — 
+especially when handling parallelism in data processing, API calls, or I/O operations.
+
+Here’s how you can enhance your answer with parallel task coordination patterns:
+
+🧩 Task.WhenAll
+Use Case: Run multiple async operations concurrently and wait for all of them to finish.
+
+Deferred Execution: Begins execution immediately, returns a Task that completes when all supplied tasks complete.
+
+Exception Handling: If multiple tasks throw, the first is rethrown; others go into AggregateException.InnerExceptions.
+
+
+var tasks = new List<Task>
+{
+    FetchDataFromApi1Async(),
+    FetchDataFromApi2Async(),
+    FetchDataFromApi3Async()
+};
+await Task.WhenAll(tasks); // Efficient parallel awaits
+
+🔸 Best Practice: Use for I/O-bound operations like API/database calls — never for CPU-bound loops without throttling.
+
+⛔ Task.WaitAll
+Use Case: Same as WhenAll but blocks the calling thread.
+
+Danger: Like .Wait() and .Result, it can cause deadlocks in async environments like ASP.NET.
+
+
+Task[] tasks = { SomeAsyncMethod(), AnotherAsyncMethod() };
+Task.WaitAll(tasks); // Blocking - avoid in async code
+
+🛑 Avoid in async codebases. Use await Task.WhenAll() instead.
+
+
+🧠 Tips to Mention in an Interview:
+Combine Task.WhenAll() with ConfigureAwait(false) for performance in library code.
+
+Use Task.WhenAny() when you want the first successful result (e.g., failover strategies).
+
+For fire-and-forget with exception handling, consider:
+
+
+_ = Task.Run(async () => {
+    try { await DoWorkAsync(); }
+    catch (Exception ex) { LogError(ex); }
+});
+
+✅ Sample Interview Answer (Enhanced)
+"In scenarios where I need to perform parallel I/O, like calling multiple APIs, I use Task.WhenAll() to await all operations efficiently. 
+I avoid Task.WaitAll() as it blocks and can lead to deadlocks. I also wrap fire-and-forget operations carefully with exception handling to avoid unobserved task faults."

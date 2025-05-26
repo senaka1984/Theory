@@ -1,0 +1,60 @@
+05. Exception handling in Tasks.waitall whenall whenany
+
+
+Task.WaitAll() throws an exception immediately if any of the tasks fail, but there are important nuances around how exceptions are propagated.
+
+🔥 Exception Behavior of Task.WaitAll
+If any task throws, Task.WaitAll() throws an AggregateException.
+
+If multiple tasks throw exceptions, all of their exceptions are combined into that single AggregateException.
+
+✅ Code Example
+
+try
+{
+    Task task1 = Task.Run(() => throw new InvalidOperationException("Error in Task 1"));
+    Task task2 = Task.Run(() => throw new ArgumentException("Error in Task 2"));
+
+    Task.WaitAll(task1, task2);
+}
+catch (AggregateException ex)
+{
+    foreach (var e in ex.InnerExceptions)
+    {
+        Console.WriteLine($"Caught exception: {e.GetType().Name} - {e.Message}");
+    }
+}
+🟡 Output:
+
+Caught exception: InvalidOperationException - Error in Task 1
+Caught exception: ArgumentException - Error in Task 2
+
+🧠 Key Points
+Feature	Behavior
+Exception type	AggregateException
+When thrown	As soon as any task faults
+Other tasks	May continue running
+How to access exceptions	AggregateException.InnerExceptions
+
+💡 Best Practice
+If you want to wait for all tasks and handle exceptions individually:
+
+
+Task[] tasks = {
+    Task.Run(() => throw new InvalidOperationException()),
+    Task.Run(() => throw new ArgumentNullException())
+};
+
+try
+{
+    Task.WaitAll(tasks);
+}
+catch (AggregateException ex)
+{
+    ex.Handle(e =>
+    {
+        Console.WriteLine($"Handled: {e.Message}");
+        return true; // Mark exception as handled
+    });
+}
+Use ex.Handle() to avoid rethrowing if you've handled all exceptions.

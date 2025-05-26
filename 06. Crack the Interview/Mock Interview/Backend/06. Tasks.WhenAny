@@ -1,0 +1,49 @@
+06. Tasks.WhenAny
+
+Task.WhenAny is used when you want to react as soon as any one of the tasks completes, instead of waiting for all of them.
+
+✅ Syntax
+
+Task<Task> firstFinished = Task.WhenAny(task1, task2, task3);
+You usually await it and then inspect the result:
+
+
+var finishedTask = await Task.WhenAny(task1, task2, task3);
+var result = await finishedTask; // Await the completed task again to get its result
+
+📌 Real-world Use Cases
+
+Scenario	Why Use Task.WhenAny
+
+Multiple APIs providing the same data	Use the fastest response
+Fallback logic	If main task fails or is slow, move to backup
+Timeout implementation	Race task vs. delay
+
+🧠 Example: API Race
+
+var primary = FetchFromPrimaryApiAsync();
+var secondary = FetchFromBackupApiAsync();
+
+var winner = await Task.WhenAny(primary, secondary);
+var data = await winner; // Wait for the completed task to return the result
+
+Console.WriteLine("Used data from: " + winner == primary ? "Primary" : "Backup");
+
+⚠️ Gotchas
+Task.WhenAny returns the completed task, not its result — you must await it again.
+
+The other tasks keep running unless you explicitly cancel or ignore them.
+
+Exceptions from losing tasks are not thrown unless awaited.
+
+🛡️ With Timeout
+
+var dataTask = FetchDataAsync();
+var timeoutTask = Task.Delay(3000);
+
+var completed = await Task.WhenAny(dataTask, timeoutTask);
+
+if (completed == timeoutTask)
+    throw new TimeoutException("Operation timed out");
+
+var result = await dataTask;

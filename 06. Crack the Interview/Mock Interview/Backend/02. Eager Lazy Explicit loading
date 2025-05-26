@@ -1,0 +1,179 @@
+02. Difference between eager, lazy .. etc loading in ef core
+
+In Entity Framework Core (EF Core), the way related data is loaded from the database is controlled by loading strategies. These include:
+
+
+	🔹 1. Eager Loading
+Definition: Load related data up front, with the main entity, using .Include() or .ThenInclude().
+
+How it works:
+
+All required data is loaded in a single query (or a few optimized queries).
+
+Avoids extra round-trips to the database.
+
+Example:
+
+	var orders = context.Orders
+    .Include(o => o.Customer)
+    .Include(o => o.OrderItems)
+    .ToList();
+
+Use when:
+You know you’ll need the related data immediately.
+
+Performance is better with fewer round-trips.
+
+	🔹 2. Lazy Loading
+Definition: Related data is loaded only when accessed, not when the main entity is first retrieved.
+
+How it works:
+
+Triggers a separate query each time you access a navigation property.
+
+Requires navigation properties to be marked virtual and proxies to be enabled.
+
+Setup:
+
+Install-Package Microsoft.EntityFrameworkCore.Proxies
+services.AddDbContext<AppDbContext>(options =>
+    options.UseLazyLoadingProxies().UseSqlServer(connectionString));
+
+
+Use when:
+
+You don’t always need related data.
+
+You want a simpler object model but are okay with extra queries.
+
+Caution:
+
+May cause N+1 query problems, hurting performance if not managed.
+
+
+	🔹 3. Explicit Loading
+Definition: Load related data manually, by calling .Load() on the navigation property.
+
+How it works:
+
+Gives you full control over when related data is loaded.
+
+Example:
+
+
+var order = context.Orders.First(o => o.Id == 1);
+context.Entry(order).Reference(o => o.Customer).Load();
+context.Entry(order).Collection(o => o.OrderItems).Load();
+
+Use when:
+
+You want to load related data only conditionally or selectively.
+
+You need precise control (e.g., in performance-sensitive code).
+
+
+	🔄 Summary Comparison
+
+| Feature     | Eager Loading              | Lazy Loading       | Explicit Loading        |
+| ----------- | -------------------------- | ------------------ | ----------------------- |
+| When loaded | Immediately                | When accessed      | On demand (manual)      |
+| Query count | Usually 1                  | 1 + N (per access) | Multiple (controlled)   |
+| Syntax      | `.Include()`               | Virtual nav props  | `.Entry().Load()`       |
+| Performance | Efficient (if used wisely) | Risky if overused  | Efficient if controlled |
+
+
+	✅ Best Practice Tips
+Prefer Eager Loading for small or medium object graphs.
+
+Avoid Lazy Loading in loops or large datasets — watch for N+1 queries.
+
+Use Explicit Loading when loading data based on user input or conditions.
+
+
+
+
+
+✅ Step-by-step Lazy Loading Example in EF Core
+
+📦 1. Install Required Package
+Make sure to install the proxies package:
+dotnet add package Microsoft.EntityFrameworkCore.Proxies
+
+🛠️ 2. Model Classes with Virtual Navigation Properties
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Name { get; set; }
+
+    // 🔑 Must be virtual for lazy loading
+    public virtual ICollection<Post> Posts { get; set; }
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+
+    public int BlogId { get; set; }
+
+    // 🔑 Must be virtual for lazy loading
+    public virtual Blog Blog { get; set; }
+}
+
+🧱 3. DbContext Configuration
+public class AppDbContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
+    {
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .UseLazyLoadingProxies() // 🔁 Enable Lazy Loading
+            .UseSqlServer("YourConnectionStringHere");
+    }
+}
+
+🧪 4. Lazy Loading in Action
+using var context = new AppDbContext();
+
+// Load blog only (no related posts yet)
+var blog = context.Blogs.FirstOrDefault(b => b.BlogId == 1);
+
+// ❗ No posts loaded yet
+Console.WriteLine($"Blog: {blog.Name}");
+
+// ❗ Now EF Core will run a separate SQL query to fetch Posts
+foreach (var post in blog.Posts)
+{
+    Console.WriteLine($"Post: {post.Title}");
+}
+
+🔍 What Happens Internally?
+When blog.Posts is accessed:
+
+EF Core detects the virtual navigation property.
+
+A new SQL query is run to load Posts related to blog.
+
+⚠️ Lazy Loading Warning
+
+N+1 problem risk:
+  If you loop through many blogs and access `blog.Posts`, it will issue 1 query per blog.
+
+
+
+
+
+
+
+
+
+
+
+

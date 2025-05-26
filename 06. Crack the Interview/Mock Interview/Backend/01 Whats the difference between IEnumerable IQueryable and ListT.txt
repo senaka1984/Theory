@@ -1,0 +1,181 @@
+
+01. What’s the difference between IEnumerable, IQueryable, and List<T> in C#?
+
+
+a. IEnumerable<T>
+
+	Represents a forward-only, read-only cursor over a collection.
+
+	Deferred execution (especially in LINQ to Objects).
+
+	Use Case: In-memory iteration (e.g., when data is already loaded from the database).
+	
+		List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
+
+		// IEnumerable for in-memory iteration
+		IEnumerable<string> nameStartsWithA = names.Where(n => n.StartsWith("A"));
+
+		foreach (var name in nameStartsWithA)
+		{
+			Console.WriteLine(name); // Output: Alice
+		}
+
+
+b. IQueryable<T>
+
+	Inherits from IEnumerable<T> but designed for remote querying (like Entity Framework querying SQL databases).
+
+	Supports expression trees that are translated to SQL.
+
+	Use Case: Fetching and filtering data at the database level to improve performance.
+	
+			using (var context = new AppDbContext())
+			{
+			IQueryable<User> query = context.Users.Where(u => u.IsActive);
+		
+			// LINQ expression is converted to SQL and executed on the database
+			var activeUsers = query.ToList(); // Materializes the result
+		
+			foreach (var user in activeUsers)
+			{
+				Console.WriteLine(user.Name);
+			}
+			}
+
+	
+	🧠 Use when querying a remote data source like SQL Server using Entity Framework. Enables deferred and optimized execution at the database level.
+	
+
+c. List<T>
+
+	A concrete implementation of a generic collection.
+
+	Data is already materialized in memory.
+
+	Allows adding/removing items and indexed access.
+
+	Use Case: When you need to store and manipulate a full collection of items in memory.
+	
+		IList<int> numbers = new List<int> { 1, 2, 3 };
+
+		// Add, Remove, Indexing supported
+		numbers.Add(4);
+		numbers.Remove(2);
+		
+		Console.WriteLine(numbers[0]); // Output: 1
+		
+		🧠 Use when you need a fully-loaded collection in memory and want to modify it.
+
+
+
+⚠️ Interview Tip:
+
+Always mention:
+
+	Execution behavior (deferred vs immediate)
+
+	Where the filtering happens (server vs memory)
+
+	Performance implications
+	
+	
+🔄 Summary Table
+	
+	| Interface     | When to Use                         | Key Feature                         |
+	| ------------- | ----------------------------------- | ----------------------------------- |
+	| `IEnumerable` | In-memory iteration                 | LINQ to Objects, no SQL translation |
+	| `IQueryable`  | Querying database via ORM like EF   | Deferred SQL execution              |
+	| `IList`       | Loaded collection with modification | Indexed access, Add/Remove          |
+
+
+🔍 1. Execution Behavior: Deferred vs Immediate
+
+	| Interface     | Execution     | Description                                                                |
+	| ------------- | ------------- | -------------------------------------------------------------------------- |
+	| `IEnumerable` | **Deferred**  | Execution of LINQ queries occurs when you **iterate** over the collection. |
+	| `IQueryable`  | **Deferred**  | Query is **translated to SQL** and executed when you **enumerate** it.     |
+	| `IList`       | **Immediate** | Data is **already loaded** and available. No deferred behavior.            |
+
+🌐 2. Where Filtering Happens: Server vs Memory
+
+	| Interface     | Filtering Location    | Description                                                                |
+	| ------------- | --------------------- | -------------------------------------------------------------------------- |
+	| `IEnumerable` | **Memory (Client)**   | Filtering is done **after** data is loaded into memory.                    |
+	| `IQueryable`  | **Server (Database)** | Filtering is **translated to SQL** and executed at the **database level**. |
+	| `IList`       | **Memory (Client)**   | Already loaded in memory, so filtering is done on the client side.         |
+
+
+🚀 3. Performance Implications
+
+	| Interface     | Performance                    | Considerations                                                                 |
+	| ------------- | ------------------------------ | ------------------------------------------------------------------------------ |
+	| `IEnumerable` | Slower for large datasets      | Loads **all data into memory** before filtering. Not ideal for large datasets. |
+	| `IQueryable`  | **Optimal for large datasets** | **Only relevant data** is fetched from the DB. Efficient and scalable.         |
+	| `IList`       | Depends on collection size     | Best for in-memory manipulation but not suitable for querying large data sets. |
+
+
+
+✅ Conclusion: Which to Use When?
+	| Use Case                                          | Recommended Interface |
+	| ------------------------------------------------- | --------------------- |
+	| Querying from a database (e.g., Entity Framework) | `IQueryable<T>`       |
+	| In-memory collection filtering or transformation  | `IEnumerable<T>`      |
+	| Data manipulation with index or add/remove        | `IList<T>`            |
+
+
+
+
+To query large datasets efficiently, you should avoid loading all data into memory before filtering. Instead, push the filtering to the database/server-side. Here's how to do it:
+
+✅ Use IQueryable (Not IEnumerable)
+		
+		Why?
+		IQueryable translates your LINQ query to SQL, so filtering and pagination happen at the database level, not in memory.
+		
+		var filteredUsers = dbContext.Users
+			.Where(u => u.IsActive && u.CreatedDate >= DateTime.UtcNow.AddMonths(-1))
+			.OrderBy(u => u.LastName)
+			.Take(100); // Efficiently fetch only 100 users
+		
+		foreach (var user in filteredUsers)
+		{
+			Console.WriteLine($"{user.FirstName} {user.LastName}");
+		}
+
+✅ Avoids loading unnecessary data.
+
+
+4. Avoid ToList() Early in Query Chain:
+
+// ❌ Bad: Brings all users into memory, then filters
+var users = dbContext.Users.ToList().Where(u => u.IsActive);
+
+// ✅ Good: Filters in SQL, returns only matching users
+var users = dbContext.Users.Where(u => u.IsActive).ToList();
+
+
+
+
+⚠️ Summary
+
+
+| Technique               | In-Memory (Bad) | Server-Side (Good)        |
+| ----------------------- | --------------- | ------------------------- |
+| `.ToList().Where()`     | ❌               | ✅ `.Where().ToList()`     |
+| `IEnumerable` filtering | ❌               | ✅ `IQueryable` filtering  |
+| Fetch all data          | ❌               | ✅ Pagination + Projection |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
