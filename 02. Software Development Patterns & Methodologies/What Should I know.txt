@@ -1,0 +1,185 @@
+What Should I know?
+
+Here's a structured list of Software Development Patterns and Methodologies that are frequently asked about in interviews for Senior Developers, Architects, and Tech Leads.
+
+This list is grouped into Design Patterns, Architectural Patterns, Development Methodologies, and Best Practice Concepts — all of which are critical in designing robust, scalable, and maintainable systems.
+
+✅ 1. Design Patterns (Gang of Four - GoF)
+These are common object-oriented programming solutions to recurring design problems.
+
+🔹 Creational Patterns
+Singleton – Ensure a class has only one instance
+
+Factory Method – Delegate instantiation to subclasses
+
+Abstract Factory – Group of factories with a common theme
+
+Builder – Construct complex objects step by step
+
+Prototype – Clone existing objects
+
+🔹 Structural Patterns
+Adapter – Convert interface of a class to another
+
+Decorator – Add responsibilities to objects dynamically
+
+Facade – Simplify a complex subsystem
+
+Proxy – Provide a surrogate or placeholder
+
+Composite – Treat individual and composite objects uniformly
+
+Bridge – Separate abstraction from implementation
+
+Flyweight – Share objects to support large numbers
+
+🔹 Behavioral Patterns
+Observer – Notify many objects when one changes
+
+Strategy – Select algorithm at runtime
+
+Command – Encapsulate a request as an object
+
+State – Change behavior based on internal state
+
+Template Method – Define skeleton of algorithm
+
+Chain of Responsibility – Pass requests along a chain
+
+Mediator – Simplify communication between classes
+
+Memento – Save and restore object state
+
+Visitor, Interpreter, Iterator
+
+✅ 2. Architectural Patterns
+These focus on high-level software structure and deployment decisions.
+
+Monolithic Architecture
+
+Layered Architecture (N-tier) – UI, Business, Data Access layers
+
+Hexagonal (Ports & Adapters)
+
+Clean Architecture (by Uncle Bob)
+
+Microservices Architecture
+
+Service-Oriented Architecture (SOA)
+
+Event-Driven Architecture
+
+Serverless Architecture
+
+CQRS (Command Query Responsibility Segregation)
+
+Event Sourcing
+
+Client-Server / Peer-to-Peer
+
+✅ 3. Software Development Methodologies
+These are project-level practices for team collaboration, delivery, and feedback.
+
+🔹 Agile-Based
+Scrum – Sprints, stand-ups, backlog, roles (PO, SM, Dev)
+
+Kanban – Visual workflow, WIP limits
+
+XP (Extreme Programming) – TDD, pair programming, refactoring
+
+SAFe (Scaled Agile Framework) – Enterprise-scale agile
+
+🔹 Traditional / Hybrid
+Waterfall – Sequential stages
+
+Spiral Model – Risk-driven iterative approach
+
+V-Model – Validation/verification paired with dev stages
+
+✅ 4. Development Practices & Concepts
+These are cross-cutting principles and techniques to ensure code quality, scalability, and team alignment.
+
+🔹 Principles
+SOLID Principles
+
+DRY (Don’t Repeat Yourself)
+
+KISS (Keep It Simple, Stupid)
+
+YAGNI (You Aren’t Gonna Need It)
+
+Separation of Concerns
+
+Law of Demeter (Least Knowledge)
+
+🔹 Dev Practices
+Test-Driven Development (TDD)
+
+Behavior-Driven Development (BDD)
+
+Domain-Driven Design (DDD)
+
+Entities, Value Objects, Aggregates, Repositories, Ubiquitous Language
+
+CI/CD – Continuous Integration and Delivery
+
+Infrastructure as Code (IaC)
+
+Code Reviews / Pair Programming
+
+Design by Contract
+
+✅ 5. Code Architecture Concepts
+Dependency Injection / Inversion of Control
+
+Modularity and Componentization
+
+Eventual Consistency (vs Strong Consistency)
+
+CAP Theorem
+
+API-first Design
+
+Versioning Strategies
+
+Idempotency in APIs
+
+✅ 6. Testing & Quality Patterns
+Test Pyramid
+
+Mocking / Stubbing / Spying
+
+AAA (Arrange-Act-Assert) Testing Pattern
+
+Fakes vs Mocks
+
+Contract Testing (e.g., Pact)
+
+✅ 7. Enterprise Patterns
+Unit of Work
+
+Repository Pattern
+
+Service Locator
+
+Domain Events
+
+Anti-Corruption Layer (ACL)
+
+Saga Pattern (distributed transactions)
+
+Outbox Pattern
+
+Circuit Breaker
+
+Bulkhead
+
+Would you like:
+
+A visual mind map of these patterns?
+
+A PDF printable summary?
+
+Or real-world usage examples (e.g., “where did you use strategy pattern in your projects”)?
+
+Let me know how you want to go deeper!

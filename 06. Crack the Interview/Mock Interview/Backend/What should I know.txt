@@ -1,0 +1,150 @@
+For a Senior Backend Developer role, interviewers typically assess a mix of core technical skills, design thinking, code quality, problem solving, and communication. Here's a structured breakdown of common interview areas, especially relevant if you're applying for roles in C#, .NET, or similar stacks.
+
+✅ 1. Software Design Principles
+These test your ability to write clean, maintainable, and scalable code.
+
+SOLID principles (very common)
+
+Design Patterns (e.g., Repository, Factory, Strategy, Singleton, Mediator, CQRS)
+
+Dependency Injection & Inversion of Control
+
+Separation of Concerns / Clean Architecture
+
+DRY, KISS, YAGNI principles
+
+✅ 2. Asynchronous Programming (C#)
+Highly important in modern scalable apps:
+
+async/await, Task, Task<T>
+
+Parallelism vs Concurrency
+
+Task.WhenAll, Task.WhenAny
+
+Deadlocks, ConfigureAwait(false)
+
+Fire-and-forget patterns (and risks)
+
+Thread safety, lock, Interlocked, ConcurrentDictionary
+
+✅ 3. API Design & REST Principles
+HTTP Methods (GET, POST, PUT, DELETE, PATCH)
+
+Idempotency, Status Codes
+
+REST vs GraphQL (sometimes asked)
+
+Pagination, filtering, versioning
+
+OpenAPI / Swagger
+
+Secure API design (rate limiting, auth, validation)
+
+✅ 4. .NET Ecosystem / C# Specifics
+Memory management / garbage collection
+
+Value types vs reference types
+
+Struct vs class
+
+LINQ (deferred vs immediate execution)
+
+IEnumerable vs IQueryable
+
+Delegates, Func/Action, events
+
+✅ 5. Database Design & Querying
+SQL Server / PostgreSQL / other RDBMS
+
+Writing efficient SQL queries (joins, subqueries, window functions)
+
+Indexes, query performance, execution plans
+
+Transactions, ACID properties
+
+EF Core: migrations, tracking vs no-tracking, lazy/eager/explicit loading
+
+Stored procedures (benefits and drawbacks)
+
+✅ 6. Unit Testing & TDD
+Writing testable code (interfaces, mocking, DI)
+
+xUnit / NUnit / Moq
+
+Test Pyramid
+
+Code coverage vs test quality
+
+TDD cycles (Red-Green-Refactor)
+
+✅ 7. Security Best Practices
+OWASP Top 10 (XSS, CSRF, SQL injection, etc.)
+
+Authentication/Authorization: JWT, OAuth2, IdentityServer, OpenID Connect
+
+Data protection (encryption, hashing, secrets management)
+
+Secure coding practices
+
+✅ 8. DevOps & CI/CD (often expected at senior level)
+Git branching strategies (GitFlow, trunk-based)
+
+Build pipelines (Azure DevOps, GitHub Actions, etc.)
+
+Docker, containers, Docker Compose
+
+Deployment strategies (blue-green, canary)
+
+Infrastructure as Code (optional but valued)
+
+✅ 9. Cloud Platforms (especially Azure/AWS)
+App Services / Function Apps
+
+SQL Database / Cosmos DB
+
+Queues (Azure Queue, Service Bus, AWS SQS)
+
+Key Vault / Secrets Manager
+
+Application Insights / Logging
+
+Cost/performance tradeoffs in cloud services
+
+✅ 10. System Design / Architecture
+Microservices vs monoliths
+
+Synchronous vs asynchronous communication
+
+Messaging queues (RabbitMQ, Azure Service Bus)
+
+Event-driven design
+
+Caching (Redis, in-memory)
+
+Circuit breakers, retries, timeouts
+
+CAP theorem (Consistency, Availability, Partition Tolerance)
+
+✅ 11. Soft Skills & Behavioral Questions
+Decision-making under pressure
+
+Mentoring juniors
+
+Handling technical debt
+
+Dealing with failed deployments
+
+Communicating with non-technical stakeholders
+
+Optional But Bonus Topics:
+DDD (Domain Driven Design)
+
+Event Sourcing
+
+CQRS
+
+gRPC
+
+Performance tuning (memory leaks, GC analysis)
+

@@ -1,0 +1,195 @@
+For a Senior Frontend Developer interview—especially if you're working with JavaScript, React, and JSX—you'll be tested on core web fundamentals, modern JS features, component architecture, performance, testing, and sometimes accessibility and design.
+
+Here’s a structured list of common frontend interview areas:
+
+✅ 1. JavaScript Fundamentals (ES6+)
+Scope, Hoisting, Closures
+
+var vs let vs const
+
+Arrow functions vs regular functions
+
+Template literals, destructuring, rest/spread
+
+Promises, async/await
+
+Truthy/falsy, coercion, equality (== vs ===)
+
+this, call, apply, bind
+
+Event loop, microtasks vs macrotasks
+
+Modules: import/export, CommonJS vs ESM
+
+✅ 2. DOM & Browser APIs
+DOM manipulation (document.querySelector, etc.)
+
+Event handling & delegation
+
+Bubbling and capturing
+
+localStorage, sessionStorage, cookies
+
+Fetch API and error handling
+
+Debounce vs throttle
+
+Custom events, MutationObserver, IntersectionObserver
+
+✅ 3. React (Core Concepts)
+JSX syntax and rules
+
+Functional components vs class components
+
+Hooks:
+
+useState, useEffect, useRef, useMemo, useCallback, useReducer
+
+Props, state, lifting state up
+
+Controlled vs uncontrolled components
+
+Fragment, Portals, Error Boundaries
+
+Refs and accessing DOM
+
+key prop and reconciliation
+
+✅ 4. React (Advanced Topics)
+Context API (state sharing across components)
+
+Custom Hooks
+
+Code splitting and lazy loading (React.lazy, Suspense)
+
+Compound components
+
+Render props and higher-order components (HOCs)
+
+Forward refs
+
+useLayoutEffect vs useEffect
+
+✅ 5. State Management
+React Context (for simple apps)
+
+Redux: actions, reducers, middleware (redux-thunk, redux-saga)
+
+Zustand, Recoil, or Jotai (if your stack uses them)
+
+Best practices for separating UI and business logic
+
+✅ 6. Routing
+React Router DOM
+
+Nested routes
+
+Route parameters
+
+Redirects
+
+Programmatic navigation
+
+useNavigate, useParams, useLocation
+
+✅ 7. Styling & CSS-in-JS
+CSS Modules, SCSS
+
+Tailwind CSS (if used in your stack)
+
+Styled Components / Emotion
+
+Responsive design (media queries, flexbox, grid)
+
+BEM naming convention
+
+✅ 8. Forms & Validation
+Controlled vs uncontrolled forms
+
+Field validation (custom + libraries like Formik / React Hook Form)
+
+yup schema validation
+
+Error messages and accessibility
+
+✅ 9. Testing
+Unit testing: Jest
+
+Component testing: React Testing Library (RTL)
+
+fireEvent, userEvent, mocking APIs
+
+Snapshot testing
+
+E2E testing: Cypress / Playwright (optional but nice)
+
+✅ 10. Performance Optimization
+Re-renders and reconciliation
+
+useMemo, useCallback, memoization
+
+React Profiler
+
+Avoiding unnecessary props/state updates
+
+Lazy loading routes/components/images
+
+Virtualization (e.g., react-window, react-virtualized)
+
+✅ 11. Accessibility (a11y)
+Semantic HTML
+
+ARIA roles
+
+Keyboard navigation
+
+Screen reader compatibility
+
+Lighthouse / axe-core checks
+
+✅ 12. Build Tools & Dev Environment
+Webpack / Vite / Parcel basics
+
+Babel, transpilation
+
+ESLint, Prettier
+
+Source maps, environment variables
+
+Git and version control workflow (rebasing, squashing, PR review)
+
+✅ 13. API Integration
+Fetch, Axios
+
+RESTful APIs
+
+Error and loading state handling
+
+Aborting requests
+
+Retry mechanisms
+
+Optional: GraphQL (useQuery, Apollo, caching)
+
+✅ 14. TypeScript (if used)
+Interfaces, types, enums
+
+Typing props, state, hooks
+
+Utility types (Partial, Pick, Record, Omit)
+
+Discriminated unions
+
+✅ 15. Soft Skills & Architecture
+Component hierarchy design
+
+Reusability and DRY principles
+
+Debugging with DevTools
+
+Collaborating with designers (Figma, Storybook)
+
+Team discussions on tradeoffs (e.g., Context vs Redux)
+
+PR reviews, documentation habits
+
