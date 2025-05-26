@@ -1,0 +1,91 @@
+
+10. CPU vs IO bound
+
+Understanding CPU-bound vs I/O-bound operations is fundamental to writing efficient asynchronous code in C# (and beyond).
+
+🧠 Definition
+
+| Type          | Description                                                               | Example                                          |
+| ------------- | ------------------------------------------------------------------------- | ------------------------------------------------ |
+| **CPU-bound** | Work that requires **intensive computation** and ties up the CPU          | Image processing, encryption, sorting large data |
+| **I/O-bound** | Work that **waits on external resources** (disk, network, database, etc.) | Calling a web API, reading from disk, DB query   |
+
+
+⚙️ Execution Behavior in Async Programming
+
+| Feature           | CPU-bound                             | I/O-bound                               |
+| ----------------- | ----------------------------------    | --------------------------------------- |
+| Thread usage      | Ties up a CPU thread                  | Frees thread while waiting for response |
+| Async benefit     | Limited benefit unless offloaded      | Major benefit — frees up threads        |
+| Use `Task.Run()`? | ✅ Yes, to offload from main thread	| ❌ No, just `await` the async method    |
+| Typical method    | `Task.Run(() => DoWork())`            | `await ReadFromDiskAsync()`             |
+
+
+
+🚀 Code Example: CPU-bound
+
+public async Task<int> GetCalculatedValueAsync()
+{
+    return await Task.Run(() => ExpensiveCalculation());
+}
+
+private int ExpensiveCalculation()
+{
+    Thread.Sleep(3000); // simulate heavy CPU work
+    return 42;
+}
+🌐 Code Example: I/O-bound
+
+public async Task<string> GetWebContentAsync()
+{
+    using var client = new HttpClient();
+    return await client.GetStringAsync("https://example.com");
+}
+Note: You should not wrap the I/O-bound GetStringAsync() in Task.Run.
+
+🎯 Why it matters
+CPU-bound work should be offloaded from the main thread (e.g., in ASP.NET or UI apps) using Task.Run().
+
+I/O-bound work benefits greatly from async/await because it frees up threads and improves scalability.
+
+
+
+
+
+Here’s a decision chart to help you determine when to use Task.Run() vs await directly — based on whether your work is CPU-bound or I/O-bound:
+
+✅ Decision Chart: Task.Run() vs await
+
+             ┌────────────────────────────┐
+             │ Is the operation I/O-bound?│
+             └────────────┬───────────────┘
+                          │Yes
+                          ▼
+               ┌─────────────────────┐
+               │ Already returns Task│
+               └───────┬─────────────┘
+                       │Yes                No
+                       ▼                   ▼
+            ┌──────────────────┐   ┌─────────────────────────────┐
+            │Just use await    │   │Wrap blocking I/O in Task.Run│
+            │await IOBoundAsync│   │await Task.Run(() => Blocking)│
+            └──────────────────┘   └─────────────────────────────┘
+
+                          │No (CPU-bound)
+                          ▼
+             ┌───────────────────────────────┐
+             │ Use Task.Run to offload to BG │
+             │ thread: await Task.Run(() => )│
+             └───────────────────────────────┘
+
+
+
+🧠 Quick Summary
+
+| Scenario                                     | Use `Task.Run()`?         | Example                                        |
+| -------------------------------------------- | ------------------------- | ---------------------------------------------- |
+| CPU-intensive processing                     | ✅ Yes                     | `await Task.Run(() => ExpensiveWork())`        |
+| Asynchronous API call                        | ❌ No                      | `await httpClient.GetAsync(url)`               |
+| Blocking I/O call (e.g., `File.ReadAllText`) | ✅ Yes                     | `await Task.Run(() => File.ReadAllText(path))` |
+| UI work in WinForms/WPF                      | ✅ Yes (to avoid blocking) | `Task.Run(() => ...)`                          |
+| Async method already available               | ❌ No                      | Just `await SomeAsyncMethod()`                 |

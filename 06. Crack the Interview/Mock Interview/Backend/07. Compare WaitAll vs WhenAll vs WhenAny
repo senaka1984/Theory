@@ -66,6 +66,7 @@ var task1 = Task.Delay(3000);
 var task2 = Task.Delay(1000);
 var completed = await Task.WhenAny(task1, task2);
 Console.WriteLine("A task completed");
+
 ✅ Completes as soon as one task finishes
 
 You still need to inspect or await the completed task if you want results/exceptions

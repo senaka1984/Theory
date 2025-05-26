@@ -1,0 +1,50 @@
+
+09. Tasks.Run
+
+🧩 What is Task.Run?
+
+Task.Run(() => {
+    // CPU-bound work here
+});
+It queues work to the thread pool and runs it on a background thread.
+
+Used to offload CPU-bound tasks so they don’t block the calling (often UI or request) thread.
+
+✅ When to Use Task.Run
+
+✅ Use Task.Run When...								| ❌ Avoid Task.Run When...
+----------------------------------------------------------------------------------------------------------
+You have CPU-bound work in a UI or ASP.NET app		| You're already in an async method doing I/O work
+You want to avoid blocking the main thread			| You use it just to make synchronous code "look async"
+You need to wrap legacy synchronous methods safely	| You're writing a library (let the consumer decide)
+
+🔍 Example 1: Offloading CPU Work
+
+public async Task ProcessDataAsync()
+{
+    var result = await Task.Run(() => ExpensiveComputation());
+    Console.WriteLine(result);
+}
+
+private int ExpensiveComputation()
+{
+    Thread.Sleep(3000); // simulate CPU-bound work
+    return 42;
+}
+🧵 Thread Pool Considerations
+
+Every Task.Run consumes a thread pool thread.
+
+Avoid overusing it on high-load apps — it can lead to thread starvation.
+
+🚫 Bad Use Case Example
+
+// BAD: wrapping I/O-bound async in Task.Run
+await Task.Run(() => SomeHttpClientCallAsync()); // anti-pattern
+Why bad? Because the async call already returns a Task and releases the thread. Wrapping it in Task.Run just wastes a thread pool thread.
+
+🧠 Rule of Thumb
+CPU-bound → Task.Run
+I/O-bound → async/await (no need for Task.Run)
+
+Let me know if you'd like to see best practices for ASP.NET or UI apps (WPF/WinForms) around Task.Run.

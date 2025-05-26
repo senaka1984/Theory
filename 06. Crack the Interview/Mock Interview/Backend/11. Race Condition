@@ -1,0 +1,61 @@
+11. Race Condition
+
+A race condition occurs when two or more threads access shared data at the same time, and the final outcome depends on the timing of their execution, 
+leading to unpredictable or incorrect behavior.
+
+🧠 Real-World Analogy
+
+Imagine two people editing a shared Google Doc simultaneously — if they both overwrite each other’s text without knowing what the other is doing, 
+the result may be incomplete or incorrect. That’s a race condition.
+
+💻 Example in C#
+
+int counter = 0;
+
+Parallel.For(0, 1000, i =>
+{
+    counter++;  // Not thread-safe!
+});
+
+Console.WriteLine(counter);  // Might not be 1000 due to race condition
+
+Here, multiple threads increment counter concurrently without synchronization — so some increments are lost.
+
+
+✅ How to Prevent Race Conditions
+
+1. Locking (synchronization):
+
+object lockObj = new object();
+int counter = 0;
+
+Parallel.For(0, 1000, i =>
+{
+    lock (lockObj)
+    {
+        counter++;
+    }
+});
+
+2.	 Thread-safe types:
+
+Use Interlocked or Concurrent collections.
+
+Interlocked.Increment(ref counter);
+
+3. Avoid shared state: Prefer immutable or thread-local variables.
+
+🚨 Common Scenarios with Race Conditions
+
+Updating shared counters or state
+
+Reading/writing files concurrently
+
+Dependency injection lifetimes (Singleton + Scoped)
+
+Setting flags or booleans in multithreaded logic
+
+
+
+
+

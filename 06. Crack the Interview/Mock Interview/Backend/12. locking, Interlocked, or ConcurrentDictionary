@@ -1,0 +1,59 @@
+11. locking, Interlocked, or ConcurrentDictionary
+
+✅ 1. lock — Basic Synchronization
+
+Use lock to prevent multiple threads from executing a critical section at the same time.
+
+object lockObj = new object();
+int counter = 0;
+
+Parallel.For(0, 1000, i =>
+{
+    lock (lockObj)
+    {
+        counter++;
+    }
+});
+
+Console.WriteLine($"Final counter (with lock): {counter}"); // Should be 1000
+
+✅ 2. Interlocked — Lightweight Thread-Safe Counter
+Interlocked provides atomic operations for variables shared across threads.
+
+int counter = 0;
+
+Parallel.For(0, 1000, i =>
+{
+    Interlocked.Increment(ref counter);
+});
+
+Console.WriteLine($"Final counter (with Interlocked): {counter}"); // Should be 1000
+
+
+🔹 More operations: Increment, Decrement, Add, CompareExchange.
+
+
+
+✅ 3. ConcurrentDictionary — Safe Concurrent Reads/Writes
+Safe alternative to Dictionary<TKey, TValue> in multithreaded scenarios.
+
+var dict = new ConcurrentDictionary<int, int>();
+
+Parallel.For(0, 1000, i =>
+{
+    dict.TryAdd(i, i * 10);
+});
+
+Console.WriteLine($"Items in dictionary: {dict.Count}"); // Should be 1000
+
+
+Example with AddOrUpdate:
+
+ 
+var stock = new ConcurrentDictionary<string, int>();
+stock.TryAdd("Apple", 1);
+
+// Thread-safe increment
+stock.AddOrUpdate("Apple", 1, (key, oldValue) => oldValue + 1);
+
+Console.WriteLine($"Apple stock: {stock["Apple"]}");
