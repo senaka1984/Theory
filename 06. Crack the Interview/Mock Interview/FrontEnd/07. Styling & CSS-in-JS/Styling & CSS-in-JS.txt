@@ -1,0 +1,10 @@
+✅ 7. Styling & CSS-in-JS
+CSS Modules, SCSS
+
+Tailwind CSS (if used in your stack)
+
+Styled Components / Emotion
+
+Responsive design (media queries, flexbox, grid)
+
+BEM naming convention

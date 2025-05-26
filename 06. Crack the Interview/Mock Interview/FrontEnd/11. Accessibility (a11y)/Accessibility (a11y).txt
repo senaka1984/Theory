@@ -1,0 +1,11 @@
+✅ 11. Accessibility (a11y)
+Semantic HTML
+
+ARIA roles
+
+Keyboard navigation
+
+Screen reader compatibility
+
+Lighthouse / axe-core checks
+

@@ -1,0 +1,14 @@
+✅ 5. Database Design & Querying
+
+SQL Server / PostgreSQL / other RDBMS
+
+Writing efficient SQL queries (joins, subqueries, window functions)
+
+Indexes, query performance, execution plans
+
+Transactions, ACID properties
+
+EF Core: migrations, tracking vs no-tracking, lazy/eager/explicit loading
+
+Stored procedures (benefits and drawbacks)
+

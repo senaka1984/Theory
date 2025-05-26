@@ -1,0 +1,21 @@
+
+✅ 3. React (Core Concepts)
+
+JSX syntax and rules
+
+Functional components vs class components
+
+Hooks:
+
+useState, useEffect, useRef, useMemo, useCallback, useReducer
+
+Props, state, lifting state up
+
+Controlled vs uncontrolled components
+
+Fragment, Portals, Error Boundaries
+
+Refs and accessing DOM
+
+key prop and reconciliation
+

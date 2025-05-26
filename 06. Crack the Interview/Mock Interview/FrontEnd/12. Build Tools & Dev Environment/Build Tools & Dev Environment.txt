@@ -1,0 +1,10 @@
+✅ 12. Build Tools & Dev Environment
+Webpack / Vite / Parcel basics
+
+Babel, transpilation
+
+ESLint, Prettier
+
+Source maps, environment variables
+
+Git and version control workflow (rebasing, squashing, PR review)

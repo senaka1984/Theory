@@ -1,0 +1,14 @@
+✅ 1. Software Design Principles
+
+These test your ability to write clean, maintainable, and scalable code.
+
+SOLID principles (very common)
+
+Design Patterns (e.g., Repository, Factory, Strategy, Singleton, Mediator, CQRS)
+
+Dependency Injection & Inversion of Control
+
+Separation of Concerns / Clean Architecture
+
+DRY, KISS, YAGNI principles
+

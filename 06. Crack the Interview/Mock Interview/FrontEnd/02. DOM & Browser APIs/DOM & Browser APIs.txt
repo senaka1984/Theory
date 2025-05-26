@@ -1,0 +1,16 @@
+
+✅ 2. DOM & Browser APIs
+
+DOM manipulation (document.querySelector, etc.)
+
+Event handling & delegation
+
+Bubbling and capturing
+
+localStorage, sessionStorage, cookies
+
+Fetch API and error handling
+
+Debounce vs throttle
+
+Custom events, MutationObserver, IntersectionObserver

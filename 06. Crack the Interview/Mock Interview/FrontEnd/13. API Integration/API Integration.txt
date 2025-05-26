@@ -1,0 +1,12 @@
+✅ 13. API Integration
+Fetch, Axios
+
+RESTful APIs
+
+Error and loading state handling
+
+Aborting requests
+
+Retry mechanisms
+
+Optional: GraphQL (useQuery, Apollo, caching)

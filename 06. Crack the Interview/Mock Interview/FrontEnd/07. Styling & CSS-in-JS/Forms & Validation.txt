@@ -1,0 +1,8 @@
+✅ 8. Forms & Validation
+Controlled vs uncontrolled forms
+
+Field validation (custom + libraries like Formik / React Hook Form)
+
+yup schema validation
+
+Error messages and accessibility

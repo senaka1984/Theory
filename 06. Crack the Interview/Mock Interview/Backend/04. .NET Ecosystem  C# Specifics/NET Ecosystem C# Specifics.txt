@@ -1,0 +1,14 @@
+
+✅ 4. .NET Ecosystem / C# Specifics
+
+Memory management / garbage collection
+
+Value types vs reference types
+
+Struct vs class
+
+LINQ (deferred vs immediate execution)
+
+IEnumerable vs IQueryable
+
+Delegates, Func/Action, events

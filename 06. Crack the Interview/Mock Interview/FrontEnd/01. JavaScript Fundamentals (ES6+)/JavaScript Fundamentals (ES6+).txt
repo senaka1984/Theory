@@ -1,0 +1,21 @@
+
+✅ 1. JavaScript Fundamentals (ES6+)
+
+Scope, Hoisting, Closures
+
+var vs let vs const
+
+Arrow functions vs regular functions
+
+Template literals, destructuring, rest/spread
+
+Promises, async/await
+
+Truthy/falsy, coercion, equality (== vs ===)
+
+this, call, apply, bind
+
+Event loop, microtasks vs macrotasks
+
+Modules: import/export, CommonJS vs ESM
+

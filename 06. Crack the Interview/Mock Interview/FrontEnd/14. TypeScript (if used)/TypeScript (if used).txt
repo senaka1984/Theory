@@ -1,0 +1,8 @@
+✅ 14. TypeScript (if used)
+Interfaces, types, enums
+
+Typing props, state, hooks
+
+Utility types (Partial, Pick, Record, Omit)
+
+Discriminated unions

@@ -1,0 +1,11 @@
+
+✅ 9. Testing
+Unit testing: Jest
+
+Component testing: React Testing Library (RTL)
+
+fireEvent, userEvent, mocking APIs
+
+Snapshot testing
+
+E2E testing: Cypress / Playwright (optional but nice)

@@ -1,0 +1,13 @@
+✅ 3. API Design & REST Principles
+HTTP Methods (GET, POST, PUT, DELETE, PATCH)
+
+Idempotency, Status Codes
+
+REST vs GraphQL (sometimes asked)
+
+Pagination, filtering, versioning
+
+OpenAPI / Swagger
+
+Secure API design (rate limiting, auth, validation)
+

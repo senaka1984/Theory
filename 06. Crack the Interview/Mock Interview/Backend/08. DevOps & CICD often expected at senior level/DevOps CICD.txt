@@ -1,0 +1,12 @@
+✅ DevOps & CI/CD 
+
+Git branching strategies (GitFlow, trunk-based)
+
+Build pipelines (Azure DevOps, GitHub Actions, etc.)
+
+Docker, containers, Docker Compose
+
+Deployment strategies (blue-green, canary)
+
+Infrastructure as Code (optional but valued)
+

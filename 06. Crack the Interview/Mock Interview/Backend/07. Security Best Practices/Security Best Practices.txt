@@ -1,0 +1,9 @@
+✅ Security Best Practices
+
+OWASP Top 10 (XSS, CSRF, SQL injection, etc.)
+
+Authentication/Authorization: JWT, OAuth2, IdentityServer, OpenID Connect
+
+Data protection (encryption, hashing, secrets management)
+
+Secure coding practices

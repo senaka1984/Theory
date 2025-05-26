@@ -1,0 +1,11 @@
+
+✅ 5. State Management
+
+React Context (for simple apps)
+
+Redux: actions, reducers, middleware (redux-thunk, redux-saga)
+
+Zustand, Recoil, or Jotai (if your stack uses them)
+
+Best practices for separating UI and business logic
+

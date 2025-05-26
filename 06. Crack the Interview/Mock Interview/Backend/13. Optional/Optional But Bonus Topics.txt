@@ -1,0 +1,11 @@
+Optional But Bonus Topics:
+
+DDD (Domain Driven Design)
+
+Event Sourcing
+
+CQRS
+
+gRPC
+
+Performance tuning (memory leaks, GC analysis)

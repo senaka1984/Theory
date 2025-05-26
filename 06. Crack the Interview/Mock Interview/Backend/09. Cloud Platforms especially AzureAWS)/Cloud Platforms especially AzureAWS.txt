@@ -1,0 +1,14 @@
+✅ Cloud Platforms (especially Azure/AWS)
+
+App Services / Function Apps
+
+SQL Database / Cosmos DB
+
+Queues (Azure Queue, Service Bus, AWS SQS)
+
+Key Vault / Secrets Manager
+
+Application Insights / Logging
+
+Cost/performance tradeoffs in cloud services
+

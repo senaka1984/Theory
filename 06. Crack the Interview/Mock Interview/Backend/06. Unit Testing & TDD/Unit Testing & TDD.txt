@@ -1,0 +1,12 @@
+✅ 6. Unit Testing & TDD
+
+Writing testable code (interfaces, mocking, DI)
+
+xUnit / NUnit / Moq
+
+Test Pyramid
+
+Code coverage vs test quality
+
+TDD cycles (Red-Green-Refactor)
+

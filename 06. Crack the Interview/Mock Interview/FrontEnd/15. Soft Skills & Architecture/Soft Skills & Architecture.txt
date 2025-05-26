@@ -1,0 +1,13 @@
+✅ 15. Soft Skills & Architecture
+Component hierarchy design
+
+Reusability and DRY principles
+
+Debugging with DevTools
+
+Collaborating with designers (Figma, Storybook)
+
+Team discussions on tradeoffs (e.g., Context vs Redux)
+
+PR reviews, documentation habits
+

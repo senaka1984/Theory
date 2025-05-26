@@ -1,0 +1,12 @@
+✅ 6. Routing
+React Router DOM
+
+Nested routes
+
+Route parameters
+
+Redirects
+
+Programmatic navigation
+
+useNavigate, useParams, useLocation

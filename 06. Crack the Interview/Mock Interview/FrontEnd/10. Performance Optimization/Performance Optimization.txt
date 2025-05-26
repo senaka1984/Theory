@@ -1,0 +1,13 @@
+✅ 10. Performance Optimization
+Re-renders and reconciliation
+
+useMemo, useCallback, memoization
+
+React Profiler
+
+Avoiding unnecessary props/state updates
+
+Lazy loading routes/components/images
+
+Virtualization (e.g., react-window, react-virtualized)
+

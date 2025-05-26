@@ -1,0 +1,16 @@
+✅ 4. React (Advanced Topics)
+
+Context API (state sharing across components)
+
+Custom Hooks
+
+Code splitting and lazy loading (React.lazy, Suspense)
+
+Compound components
+
+Render props and higher-order components (HOCs)
+
+Forward refs
+
+useLayoutEffect vs useEffect
+

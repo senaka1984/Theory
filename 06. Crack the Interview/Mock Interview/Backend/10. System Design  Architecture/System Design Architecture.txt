@@ -1,0 +1,15 @@
+✅  System Design Architecture
+
+Microservices vs monoliths
+
+Synchronous vs asynchronous communication
+
+Messaging queues (RabbitMQ, Azure Service Bus)
+
+Event-driven design
+
+Caching (Redis, in-memory)
+
+Circuit breakers, retries, timeouts
+
+CAP theorem (Consistency, Availability, Partition Tolerance)
