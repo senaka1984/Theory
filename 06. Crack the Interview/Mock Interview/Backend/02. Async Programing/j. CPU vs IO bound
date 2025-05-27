@@ -50,8 +50,6 @@ I/O-bound work benefits greatly from async/await because it frees up threads and
 
 
 
-
-
 Here’s a decision chart to help you determine when to use Task.Run() vs await directly — based on whether your work is CPU-bound or I/O-bound:
 
 ✅ Decision Chart: Task.Run() vs await
@@ -82,8 +80,8 @@ Here’s a decision chart to help you determine when to use Task.Run() vs await 
 
 🧠 Quick Summary
 
-| Scenario                                     | Use `Task.Run()`?         | Example                                        |
-| -------------------------------------------- | ------------------------- | ---------------------------------------------- |
+| Scenario                                     | Use `Task.Run()`?          | Example                                        |
+| -------------------------------------------- | -------------------------  | ---------------------------------------------- |
 | CPU-intensive processing                     | ✅ Yes                     | `await Task.Run(() => ExpensiveWork())`        |
 | Asynchronous API call                        | ❌ No                      | `await httpClient.GetAsync(url)`               |
 | Blocking I/O call (e.g., `File.ReadAllText`) | ✅ Yes                     | `await Task.Run(() => File.ReadAllText(path))` |

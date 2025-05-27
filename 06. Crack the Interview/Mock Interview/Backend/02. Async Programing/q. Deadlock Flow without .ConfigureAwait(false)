@@ -1,0 +1,62 @@
+
+🔁 Deadlock Flow without .ConfigureAwait(false)
+
+// UI thread
+public string GetData()
+{
+    // ⛔️ Blocks the thread and waits for async to complete
+    return SomeAsyncMethod().Result;
+}
+
+public async Task<string> SomeAsyncMethod()
+{
+    await Task.Delay(1000); // Captures the current (UI) context
+    return "done";
+}
+
+
+❌ What Happens:
+
+
+1. GetData() is called on the UI thread.
+
+2. .Result blocks the UI thread.
+
+3. SomeAsyncMethod() runs and awaits Task.Delay(1000).
+
+4. The continuation tries to resume on the UI thread — but it’s blocked.
+
+5. 🧨 Deadlock.
+
+✅ Fix with .ConfigureAwait(false)
+
+public string GetData()
+{
+    return SomeAsyncMethod().ConfigureAwait(false).GetAwaiter().GetResult();
+}
+
+public async Task<string> SomeAsyncMethod()
+{
+    await Task.Delay(1000); // Context is NOT captured
+    return "done";
+}
+
+
+✅ What Happens:
+1. await Task.Delay() doesn't capture the UI context.
+
+2. The continuation resumes on a ThreadPool thread.
+
+3. The main thread is no longer blocking the required thread.
+
+4. ✅ No deadlock.
+
+🔧 If You Can't Change SomeAsyncMethod():
+If SomeAsyncMethod() is out of your control and doesn’t use .ConfigureAwait(false), you should NOT call .Result or .Wait() from a context-bound thread (like ASP.NET or UI).
+
+Instead:
+
+Wrap it in Task.Run() to run off the UI thread:
+
+string result = Task.Run(() => SomeAsyncMethod()).GetAwaiter().GetResult();
+That way, the blocking happens on a ThreadPool thread, not the context-bound one.

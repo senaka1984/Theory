@@ -2,9 +2,11 @@
 
 ✅ Synchronous vs Asynchronous Programming:
 
-In synchronous programming, code execution happens line by line, and each operation blocks the thread until it completes. If a task takes time (e.g., reading a file, calling a web API), it will block the calling thread, reducing scalability, especially in web applications.
+In synchronous programming, code execution happens line by line, and each operation blocks the thread until it completes. If a task takes time
+ (e.g., reading a file, calling a web API), it will block the calling thread, reducing scalability, especially in web applications.
 
-In asynchronous programming, operations can be executed without blocking the thread. This is enabled using the async and await keywords in .NET, which allow for non-blocking execution while maintaining readable, linear-style code.
+In asynchronous programming, operations can be executed without blocking the thread. This is enabled using the async and await keywords in .NET,
+ which allow for non-blocking execution while maintaining readable, linear-style code.
 
 
 ⚙️ How async/await Works Under the Hood:
@@ -15,6 +17,7 @@ When await is called on an awaitable (like Task or Task<T>), control is returned
 Once the operation completes, execution resumes from the point of await using a continuation.
 
 🧠 When to Use async/await:
+
 Ideal scenarios include:
 
 Calling I/O-bound operations like:
