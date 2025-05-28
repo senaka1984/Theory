@@ -1,0 +1,62 @@
+
+03. Command Vs Query Vs Event
+
+✅ Command:
+
+	🎯 A command is an instruction to the system to perform an action or change its state.
+
+	🎯 Commands are typically imperative—they tell the system what to do (e.g., "CreateOrder", "UpdateInventory").
+
+	🎯 The primary goal of a command is to trigger a change in the system state. It is a request for action.
+
+	🎯 Commands are synchronous in many cases. The sender expects a response, usually to acknowledge that the action has been successfully performed or to indicate any issues.
+
+		Example of Command:
+		------------------
+		
+			A user clicks a button to submit an order: "CreateOrder".
+			The system will then execute the action and change the state (e.g., creating a new order in the database).
+
+✅ Query:
+
+	🎯 A query is a request for information. It does not alter the system’s state.
+
+	🎯 Queries are typically declarative—they ask the system to provide something (e.g., "GetUserDetails", "FetchOrders").
+
+	🎯 The primary goal of a query is to retrieve data, not to change the state of the system.
+
+	🎯 Queries are typically synchronous because they return a response directly with the requested information.
+
+		Example of Query:
+		------------------
+		
+			A user requests to view the details of an order: "GetOrderDetails".
+			The system will return information about the order without making any changes to its state.
+
+✅ Event:
+
+	🎯 An event, on the other hand, represents a state change that has already occurred in the system. It is a notification or a signal that something has happened 
+		(e.g., "OrderPlaced", "PaymentCompleted").
+
+	🎯 Events are typically asynchronous and are used to notify other components that a significant action has occurred, so they can react to it.
+
+	🎯 Events inform the system that something has happened, whereas commands ask the system to do something.
+
+		Example of Event:
+		-----------------
+
+			🧠 After an order is placed, the system emits an event: "OrderPlaced".
+
+			🧠 Other services can then react to this event by performing actions like updating inventory, sending a confirmation email, or processing payment.
+
+✅ Key Differences:
+
+	🎯 Command: "Tell the system to perform an action." (e.g., "CreateOrder")
+
+	🎯 Query: "Ask the system for information." (e.g., "GetOrderDetails")
+
+	🎯 Event: "Notify the system that something has already happened." (e.g., "OrderPlaced")
+
+So, while commands and queries are important for requesting actions or information, events represent state changes that have already taken place. They are distinct concepts 
+and are handled differently within an Event-Driven Architecture (EDA).
+

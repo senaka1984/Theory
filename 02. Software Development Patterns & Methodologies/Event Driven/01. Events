@@ -1,0 +1,135 @@
+01. Events
+
+🚀 Events in Event-Driven Architecture (EDA) 
+============================================
+
+✅ 1. Definition of Event:
+
+	An event is a significant change in state within a system. In Event-Driven Architecture (EDA), events are the core data structure that drives the system's behavior. 
+	When something happens that needs to be communicated, an event is emitted. These events are often consumed by other parts of the system to trigger actions or responses.
+
+✅ 2. Microservices Architecture and EDA
+
+	Microservices Architecture:
+	--------------------------
+	Microservices architecture is a design pattern where an application is divided into a collection of small, loosely coupled, and independently deployable services. 
+	Each service is responsible for a specific business function and communicates with others via well-defined APIs.
+
+	Microservices work well with EDA because of the loose coupling between services. Each microservice can emit events and listen for events from others, 
+	allowing for asynchronous communication and greater flexibility.
+
+	In this setup, each service can:
+
+		=> Produce events when certain actions or state changes occur.
+
+		=> Consume events from other services to respond or trigger subsequent actions.
+
+✅ 3. Command and Query
+
+	🎯 Command:
+		A command is an action requested by a client or system to change the state of the system.
+
+		It is imperative—it asks the system to do something, typically leading to a state change (e.g., “CreateOrder”).
+
+		Commands are often associated with a write operation in databases.
+
+	🎯 Query:
+		A query is a request for information. It does not modify the system state, but simply retrieves data.
+
+		It is declarative—it asks the system to provide something, typically a read operation (e.g., “GetOrderDetails”).
+
+		Queries are often optimized for reading data from a system without causing any side effects.
+
+✅ Problems with Command and Query:
+
+	1. Tight Coupling:
+		In traditional architectures, commands and queries can be tightly coupled, meaning that the systems producing them must know a lot about the state and data 
+		of other parts of the system. This can make the system less flexible, harder to scale, and more difficult to maintain.
+
+	2. Handling Complex Workflows:
+		Commands often trigger side effects or changes in other parts of the system. Managing these side effects can become complex in a monolithic architecture, 
+		as each change might affect multiple areas. Scaling and maintaining such systems becomes harder.
+
+	3. Inconsistent Data:
+		When using commands, there's a risk that commands might alter system state without providing a clear way to communicate the results back. 
+		Queries may provide stale or inconsistent data because the system's state may have changed in the background without proper synchronization.
+
+	4. Scalability Issues:
+		A system with combined command and query handling may face scalability issues as the demand for writing operations (commands) 
+		and reading operations (queries) can overwhelm the system. These operations often need to be handled differently for optimal performance, 
+		especially in a distributed system.
+
+✅ Event: (Solution to Command/Query Issues)
+		Events serve as a key component in addressing many issues with command/query handling. By using events, systems can handle state changes in an asynchronous, 
+		decoupled manner.
+
+🌐 Benefits of Using Events:
+
+	🎯 Decoupling: Event producers (services generating events) are decoupled from event consumers (services reacting to events). 
+	Consumers do not need to know about the producers, and vice versa, promoting loose coupling.
+
+	🎯 Scalability: Since events can be handled independently, systems can scale more easily, with multiple consumers handling events asynchronously.
+
+	🎯 Real-time Communication: Events allow systems to communicate and react in real-time, which is crucial for reactive applications like IoT systems or e-commerce platforms.
+
+
+✅ Contents of an Event
+	The contents of an event typically include the following elements:
+
+🧠 Event Type/Name:
+
+	A string or identifier that describes the type of event (e.g., OrderPlaced, PaymentCompleted). This tells the consumers what happened.
+
+🧠 Event Data:
+
+	The payload or body of the event, containing the actual information about the event. For instance:
+
+	In an OrderPlaced event, the data might include:
+
+		orderId
+
+		customerId
+
+		orderAmount
+
+		items (list of items in the order)
+
+	In a PaymentCompleted event, the data might include:
+
+		paymentId
+
+		orderId
+
+		paymentAmount
+
+		paymentStatus
+
+🧠 Timestamp:
+
+	The time when the event was generated. This is important for event ordering, replaying events, or debugging.
+
+🧠 Event Source (Optional):
+
+	The system or service that emitted the event, helping in tracing and understanding the origin of the event.
+
+🧠 Metadata (Optional):
+
+	Additional context about the event, such as versioning, correlation ID, or other contextual information that may help with processing or debugging.
+
+🧠 Event ID (Optional):
+
+	A unique identifier for the event, which helps in tracking and ensuring idempotency.
+
+✅ Summary of Key Points:
+
+	🎯 Command: Requests a system to change its state.
+
+	🎯 Query: Requests a system to retrieve information without changing state.
+
+	🎯 Event: A notification of a state change, emitted by a service or system and consumed asynchronously by others.
+
+	🎯 Microservices architecture fits well with EDA by allowing each service to react to and produce events independently.
+
+	🎯 Events enable loose coupling, real-time data flow, and better scalability, addressing the challenges posed by tightly coupled commands and queries.
+
+By adopting an event-driven approach, you can create more flexible, scalable, and resilient systems that are easy to maintain and extend.
