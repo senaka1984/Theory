@@ -1,0 +1,112 @@
+
+07. How to run event driven synchronously
+
+Running an Event-Driven Architecture (EDA) synchronously means ensuring that events trigger actions immediately and the system waits for the results of those actions before proceeding, rather than processing events asynchronously in the background.
+
+In a typical asynchronous EDA, the producer emits an event, and consumers process that event at their own pace, often in parallel and without blocking the producer. However, if you need to make your event-driven system synchronous, here’s how you can approach it:
+
+🌍📈 How to Implement Synchronous Event-Driven Systems
+
+1. Synchronous Event Processing:
+
+Ensure that when an event is emitted, the consumer must process the event and return a response before continuing. This could be achieved by using a synchronous communication model like HTTP requests or a blocking message queue that forces the producer to wait for the event to be handled before proceeding.
+
+Example: You can emit an event and block the producer until it gets an acknowledgment from the consumer. The consumer would process the event and return a response immediately.
+
+Message Queue with Synchronous Handling:
+In a typical messaging system, you might configure the consumer to acknowledge the message only after it has processed it. This would create a synchronous flow, where the producer waits for confirmation from the consumer.
+
+Example (with RabbitMQ):
+
+Use synchronous consumers that acknowledge messages only after processing them.
+
+The producer sends an event and waits for the consumer’s acknowledgment or response.
+
+csharp
+Copy
+// Producer waits for acknowledgment after sending the event
+var eventMessage = "Event Data";
+channel.BasicPublish(exchange: "", routingKey: "eventQueue", body: Encoding.UTF8.GetBytes(eventMessage));
+var response = WaitForConsumerResponse();  // Producer waits for response from consumer
+
+2. Blocking Event Consumers:
+
+Consumers can be synchronous (blocking). When the consumer receives an event, it processes it immediately and blocks further processing until it is done.
+
+The producer will block until the consumer finishes processing.
+
+Example (HTTP Event Handler):
+
+The producer calls a synchronous HTTP endpoint where the consumer processes the event and sends an immediate response.
+
+csharp
+Copy
+// Producer sends HTTP request to consumer synchronously
+var httpClient = new HttpClient();
+var response = httpClient.PostAsync("http://consumer-service/processEvent", content).Result;
+
+3. Event-Driven Synchronous Workflow with a Response:
+
+If you need to synchronize events in a workflow, you can model the event processing flow such that after each event, the consumer responds to the producer with the outcome of the event processing.
+
+The producer will wait for a callback or response message from the consumer after each event is handled, before moving to the next step.
+
+Example (using an event bus with synchronous response):
+
+The event producer sends an event to an event bus or messaging system. Each consumer listens for that event and immediately processes it, sending back a response message or an acknowledgment.
+
+csharp
+Copy
+// Producer publishes event and waits for the consumer response synchronously
+eventBus.Publish(eventData);
+var response = eventBus.WaitForResponse(eventId); // Blocking until response is received
+
+4. Direct Request-Response Model:
+
+Instead of using an event bus or messaging queue, implement a direct request-response pattern. This is common when you need immediate results from a service, and it ensures that the event handling is synchronous.
+
+For instance, you might send an HTTP request to a consumer service, wait for it to finish processing, and then return the result back to the producer.
+
+Example:
+
+The producer sends a request to the consumer via HTTP or gRPC, waits for the consumer to process the event, and receives the response synchronously.
+
+csharp
+Copy
+// Producer makes synchronous HTTP request to consumer
+var result = httpClient.GetAsync("http://consumer-service/handleEvent").Result;
+
+
+==> Considerations for Synchronous Event-Driven Systems
+
+Performance Impact: Synchronous event-driven systems can create bottlenecks if the consumer is slow or has a high processing time. This can cause the producer to wait for long periods, which impacts system performance.
+
+Error Handling: With synchronous systems, if the consumer fails, the producer is likely to be blocked until the error is resolved. This can create cascading failures, especially if you have long chains of synchronous events.
+
+Latency: Since each event is processed immediately, synchronous systems can increase latency as the system waits for the consumer to complete its work before proceeding.
+
+Scalability: While asynchronous systems are more scalable, synchronous systems might not scale as well. The consumer becomes a single point of contention, and multiple producers might struggle to handle events simultaneously.
+
+==>  When to Use Synchronous Event-Driven Systems
+
+Short, Simple Processes: If the events represent simple, quick actions where immediate results are needed (e.g., updating a system after a button click).
+
+Request-Response Workflows: If you need a response after each event (e.g., making a decision based on processing an event and returning the result).
+
+Transaction Integrity: When you need to ensure that an action is completed before moving to the next, such as in financial transactions.
+
+==>  When Not to Use Synchronous Event-Driven Systems
+
+High-Volume, Low-Latency Systems: If your system needs to handle a large number of events quickly, synchronously waiting for each event to complete can cause delays and scalability issues.
+
+Long-running Processes: Synchronous systems are unsuitable for long-running background tasks or tasks that can be processed asynchronously in parallel (e.g., processing orders in e-commerce).
+
+Summary
+
+While Event-Driven Architecture (EDA) is typically asynchronous to allow for scalable, parallel processing, you can implement a synchronous EDA where:
+
+The producer waits for a response or acknowledgment from the consumer before continuing.
+
+Consumers process events immediately and block further events until the current one is completed.
+
+This approach is useful when you require immediate feedback after an event is processed, but it can come with trade-offs in performance, latency, and scalability.
