@@ -1,5 +1,9 @@
 04. Event Sourcing and CQRS
 
+CQRS (Command Query Responsibility Segregation) is not exclusively used in Event Sourcing, though they are often used together.
+
+CQRS and Event Sourcing Relationship:
+While CQRS and Event Sourcing are often complementary and can be used together, CQRS can be implemented without Event Sourcing, and Event Sourcing can be used without CQRS. Let’s explore both patterns in more detail:
 
 ✅  Event Sourcing and CQRS
 
