@@ -1,0 +1,15 @@
+What is the difference between eager, lazy, and explicit loading?
+
+How do migrations work? What are common issues?
+
+What are tracking vs no-tracking queries?
+
+How would you handle concurrency in EF Core?
+
+Why might .Update() not work as expected?
+
+What’s the benefit of DTOs with EF Core?
+
+How do you seed data securely and idempotently?
+
+What causes N+1 query problems and how do you fix them?

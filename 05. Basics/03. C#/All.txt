@@ -1,0 +1,226 @@
+
+✅ C# Learning & Interview Prep Checklist
+🟦 Core Fundamentals
+Basic Syntax and Program Structure
+
+Data Types and Variables
+
+Operators and Expressions
+
+Control Structures (if, switch, loops)
+
+Arrays and Collections
+
+Strings and String Manipulation
+
+DateTime and TimeSpan
+
+Exception Handling (try/catch/finally)
+
+🟩 Object-Oriented Programming (OOP)
+Classes and Objects
+
+Encapsulation
+
+Inheritance
+
+Polymorphism
+
+Abstraction
+
+Interfaces
+
+Abstract Classes
+
+Constructors and Destructors
+
+Static Members
+
+Access Modifiers (public, private, protected, internal)
+
+🟨 Advanced Language Features
+Properties (get, set, init-only)
+
+Indexers
+
+Delegates and Events
+
+Lambda Expressions
+
+Anonymous Methods
+
+Nullable Types
+
+Extension Methods
+
+Tuples
+
+Pattern Matching
+
+Records vs Classes
+
+Dynamic Type
+
+Attributes and Reflection
+
+🧵 Asynchronous Programming
+Tasks and Task<T>
+
+async/await
+
+Parallel Programming (Parallel.For, PLINQ)
+
+CancellationToken
+
+Deadlocks and SynchronizationContext
+
+ConfigureAwait(false)
+
+🧠 LINQ (Language Integrated Query)
+LINQ to Objects
+
+LINQ Method Syntax vs Query Syntax
+
+Deferred vs Immediate Execution
+
+Projection, Filtering, Aggregation
+
+GroupBy, Join, SelectMany
+
+IEnumerable vs IQueryable
+
+🧰 .NET Core and Runtime Concepts
+.NET Core vs .NET Framework
+
+Common Language Runtime (CLR)
+
+Garbage Collection
+
+JIT vs AOT Compilation
+
+Memory Management
+
+Value Types vs Reference Types
+
+Boxing and Unboxing
+
+🗂️ File and Data Handling
+File I/O (System.IO)
+
+Serialization (JSON, XML)
+
+Working with Streams
+
+Reading/Writing CSV or Text files
+
+🌐 Networking & APIs
+HTTPClient Basics
+
+Calling and Consuming REST APIs
+
+Building APIs with ASP.NET Core Web API
+
+Model Binding & Validation
+
+Middleware in ASP.NET Core
+
+🔒 Security
+Authentication vs Authorization
+
+Hashing (SHA256, BCrypt)
+
+JWT (JSON Web Tokens)
+
+Data Protection (DPAPI, ASP.NET Core Identity)
+
+OWASP Top 10 Awareness
+
+🧪 Testing and Debugging
+Unit Testing with xUnit / NUnit / MSTest
+
+Mocking with Moq
+
+Dependency Injection in Tests
+
+Visual Studio Debugging Tools
+
+Exception Logging and Stack Tracing
+
+🧱 Architecture and Design Patterns
+SOLID Principles
+
+Dependency Injection (DI)
+
+Repository Pattern
+
+Factory Pattern
+
+Strategy Pattern
+
+Singleton Pattern
+
+Observer / Mediator Pattern
+
+Clean Architecture
+
+Domain Driven Design (DDD)
+
+💾 Database Access
+ADO.NET Basics
+
+Entity Framework Core
+
+DbContext, Migrations
+
+LINQ to Entities
+
+Transactions
+
+Stored Procedures and Raw SQL
+
+🚀 ASP.NET Core Web Development
+MVC Pattern (Model-View-Controller)
+
+Razor Pages vs MVC
+
+Routing and URL Patterns
+
+Model Binding & Validation
+
+Tag Helpers and View Components
+
+Session and TempData
+
+Deployment & Configuration (appsettings.json, secrets)
+
+📦 Other Important Topics
+NuGet Package Management
+
+Code Analysis and Roslyn
+
+Multithreading Basics
+
+Event-Driven Architecture (with delegates, events)
+
+Logging with Serilog / NLog
+
+🎯 Interview Must-Know Questions
+What is the difference between interface and abstract class?
+
+How does async/await work under the hood?
+
+What is the difference between IEnumerable and IQueryable?
+
+What are value types vs reference types?
+
+How does garbage collection work in .NET?
+
+What are SOLID principles and how do you apply them?
+
+How to implement a custom middleware in ASP.NET Core?
+
+How to prevent overposting in ASP.NET Core?
+
+How to improve EF Core query performance?
+
+Difference between DI and IoC?
