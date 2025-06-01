@@ -1,0 +1,3 @@
+# CIA Triad: Confidentiality, Integrity, Availability
+
+This is a placeholder for the topic: CIA Triad: Confidentiality, Integrity, Availability

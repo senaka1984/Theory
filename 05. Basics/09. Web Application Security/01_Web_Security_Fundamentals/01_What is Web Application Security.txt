@@ -1,0 +1,3 @@
+# What is Web Application Security?
+
+This is a placeholder for the topic: What is Web Application Security?

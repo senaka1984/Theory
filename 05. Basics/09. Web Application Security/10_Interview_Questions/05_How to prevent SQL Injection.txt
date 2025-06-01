@@ -1,0 +1,3 @@
+# How to prevent SQL Injection
+
+This is a placeholder for the topic: How to prevent SQL Injection

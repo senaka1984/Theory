@@ -1,0 +1,3 @@
+# A09: Security Logging and Monitoring Failures
+
+This is a placeholder for the topic: A09: Security Logging and Monitoring Failures

@@ -1,0 +1,3 @@
+# Purpose of Content-Security-Policy header
+
+This is a placeholder for the topic: Purpose of Content-Security-Policy header

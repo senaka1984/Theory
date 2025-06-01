@@ -1,0 +1,3 @@
+# Same-Origin Policy (SOP)
+
+This is a placeholder for the topic: Same-Origin Policy (SOP)

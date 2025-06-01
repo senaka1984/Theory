@@ -1,0 +1,3 @@
+# Proper file upload validation (file type, size, scanning)
+
+This is a placeholder for the topic: Proper file upload validation (file type, size, scanning)

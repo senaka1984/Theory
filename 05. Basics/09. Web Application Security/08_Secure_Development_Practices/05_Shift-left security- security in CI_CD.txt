@@ -1,0 +1,3 @@
+# Shift-left security: security in CI/CD
+
+This is a placeholder for the topic: Shift-left security: security in CI/CD

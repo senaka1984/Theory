@@ -1,0 +1,3 @@
+# Whitelisting vs Blacklisting
+
+This is a placeholder for the topic: Whitelisting vs Blacklisting

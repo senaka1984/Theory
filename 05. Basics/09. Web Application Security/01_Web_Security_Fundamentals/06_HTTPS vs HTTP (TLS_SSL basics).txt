@@ -1,0 +1,3 @@
+# HTTPS vs HTTP (TLS/SSL basics)
+
+This is a placeholder for the topic: HTTPS vs HTTP (TLS/SSL basics)

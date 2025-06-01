@@ -1,0 +1,20 @@
+🧠 7. Interview Must-Know Questions
+What is the difference between a Docker image and a container?
+
+What happens when you run docker run?
+
+How do you persist data in Docker containers?
+
+What are multi-stage builds and why use them?
+
+How does Kubernetes handle scaling?
+
+What’s the difference between a Deployment and a StatefulSet?
+
+How does Kubernetes achieve high availability?
+
+How do you secure secrets in Kubernetes?
+
+What are readiness and liveness probes used for?
+
+Explain the lifecycle of a pod.

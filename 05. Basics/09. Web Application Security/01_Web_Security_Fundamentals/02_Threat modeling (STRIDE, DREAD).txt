@@ -1,0 +1,3 @@
+# Threat modeling (STRIDE, DREAD)
+
+This is a placeholder for the topic: Threat modeling (STRIDE, DREAD)

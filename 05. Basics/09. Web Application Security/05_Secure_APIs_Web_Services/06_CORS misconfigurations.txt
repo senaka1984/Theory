@@ -1,0 +1,3 @@
+# CORS misconfigurations
+
+This is a placeholder for the topic: CORS misconfigurations

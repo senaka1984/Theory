@@ -1,0 +1,3 @@
+# HTTP-only and Secure cookie flags
+
+This is a placeholder for the topic: HTTP-only and Secure cookie flags

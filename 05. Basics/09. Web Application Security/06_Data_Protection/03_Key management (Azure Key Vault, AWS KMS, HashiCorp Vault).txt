@@ -1,0 +1,3 @@
+# Key management (Azure Key Vault, AWS KMS, HashiCorp Vault)
+
+This is a placeholder for the topic: Key management (Azure Key Vault, AWS KMS, HashiCorp Vault)

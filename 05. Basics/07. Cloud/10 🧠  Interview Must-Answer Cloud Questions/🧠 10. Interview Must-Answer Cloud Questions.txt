@@ -1,0 +1,20 @@
+🧠 10. Interview Must-Answer Cloud Questions
+What’s the difference between IaaS and PaaS?
+
+How do you secure secrets in the cloud?
+
+How would you deploy a web app with blue/green strategy?
+
+What’s the difference between Azure Functions and WebJobs?
+
+How does autoscaling work in Azure / AWS?
+
+How do you handle failover and redundancy in cloud apps?
+
+What’s the shared responsibility model?
+
+What’s the best way to restrict access to a cloud SQL DB?
+
+How would you optimize cloud costs in production?
+
+How do you secure API endpoints exposed via API Gateway?

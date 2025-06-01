@@ -1,0 +1,3 @@
+# Impact of CORS misconfiguration
+
+This is a placeholder for the topic: Impact of CORS misconfiguration

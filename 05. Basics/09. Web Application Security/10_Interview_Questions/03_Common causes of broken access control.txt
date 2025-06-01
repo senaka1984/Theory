@@ -1,0 +1,3 @@
+# Common causes of broken access control
+
+This is a placeholder for the topic: Common causes of broken access control

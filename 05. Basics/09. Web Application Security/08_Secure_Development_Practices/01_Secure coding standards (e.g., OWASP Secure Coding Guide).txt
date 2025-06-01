@@ -1,0 +1,3 @@
+# Secure coding standards (e.g., OWASP Secure Coding Guide)
+
+This is a placeholder for the topic: Secure coding standards (e.g., OWASP Secure Coding Guide)

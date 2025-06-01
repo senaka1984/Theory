@@ -1,0 +1,3 @@
+# Strict-Transport-Security
+
+This is a placeholder for the topic: Strict-Transport-Security

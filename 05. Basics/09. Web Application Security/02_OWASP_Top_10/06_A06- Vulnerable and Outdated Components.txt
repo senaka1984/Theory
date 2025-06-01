@@ -1,0 +1,3 @@
+# A06: Vulnerable and Outdated Components
+
+This is a placeholder for the topic: A06: Vulnerable and Outdated Components

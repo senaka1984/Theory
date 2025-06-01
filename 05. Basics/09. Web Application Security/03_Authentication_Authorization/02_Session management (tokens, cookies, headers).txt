@@ -1,0 +1,3 @@
+# Session management (tokens, cookies, headers)
+
+This is a placeholder for the topic: Session management (tokens, cookies, headers)

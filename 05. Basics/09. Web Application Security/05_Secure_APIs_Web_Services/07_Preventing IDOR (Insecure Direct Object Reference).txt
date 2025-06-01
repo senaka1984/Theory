@@ -1,0 +1,3 @@
+# Preventing IDOR (Insecure Direct Object Reference)
+
+This is a placeholder for the topic: Preventing IDOR (Insecure Direct Object Reference)

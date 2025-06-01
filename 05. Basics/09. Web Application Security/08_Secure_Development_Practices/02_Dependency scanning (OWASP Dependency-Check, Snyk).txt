@@ -1,0 +1,3 @@
+# Dependency scanning (OWASP Dependency-Check, Snyk)
+
+This is a placeholder for the topic: Dependency scanning (OWASP Dependency-Check, Snyk)

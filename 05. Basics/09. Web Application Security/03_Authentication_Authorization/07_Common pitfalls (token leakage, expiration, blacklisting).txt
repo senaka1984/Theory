@@ -1,0 +1,3 @@
+# Common pitfalls (token leakage, expiration, blacklisting)
+
+This is a placeholder for the topic: Common pitfalls (token leakage, expiration, blacklisting)

@@ -1,0 +1,3 @@
+# Web server hardening (headers, default ports, directory listing)
+
+This is a placeholder for the topic: Web server hardening (headers, default ports, directory listing)

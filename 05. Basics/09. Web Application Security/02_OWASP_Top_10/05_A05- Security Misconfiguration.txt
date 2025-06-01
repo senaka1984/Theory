@@ -1,0 +1,3 @@
+# A05: Security Misconfiguration
+
+This is a placeholder for the topic: A05: Security Misconfiguration

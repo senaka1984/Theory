@@ -1,0 +1,19 @@
+How is Python interpreted?
+
+What are mutable and immutable types in Python?
+
+Explain Python's memory management (ref counting, GC)
+
+What is a closure and how does it work?
+
+What's the difference between a list and a tuple?
+
+How do you handle circular imports?
+
+Explain decorators and provide a use case
+
+What’s the difference between deep copy and shallow copy?
+
+When would you use a generator?
+
+How does Python’s asyncio work?

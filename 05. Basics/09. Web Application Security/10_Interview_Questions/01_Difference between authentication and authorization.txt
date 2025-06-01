@@ -1,0 +1,3 @@
+# Difference between authentication and authorization
+
+This is a placeholder for the topic: Difference between authentication and authorization

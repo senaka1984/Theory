@@ -1,0 +1,3 @@
+# Preventing XSS (Cross-Site Scripting)
+
+This is a placeholder for the topic: Preventing XSS (Cross-Site Scripting)

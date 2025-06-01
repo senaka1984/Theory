@@ -1,0 +1,19 @@
+What is the difference between PUT and PATCH?
+
+How does API versioning work in .NET?
+
+How do you handle model validation?
+
+What is Swagger and how do you use it?
+
+What are the pros and cons of GraphQL over REST?
+
+How would you secure an API endpoint with JWT?
+
+How do you prevent overposting in Web API?
+
+What’s the difference between IActionResult and ActionResult<T>?
+
+How do you structure a scalable Web API project?
+
+When would you use background services in ASP.NET Core?
