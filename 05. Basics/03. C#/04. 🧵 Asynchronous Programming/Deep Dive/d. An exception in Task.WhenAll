@@ -1,0 +1,55 @@
+04.An exception in Task.WhenAll?
+
+🔍 What happens if one task throws an exception in Task.WhenAll?
+
+✅ Behavior Summary
+Task.WhenAll() waits for all tasks to complete, even if some fail.
+
+If one or more tasks throw, await Task.WhenAll():
+
+throws the first exception encountered.
+
+wraps the rest in an AggregateException under .InnerExceptions.
+
+📌 Example
+
+try
+{
+    await Task.WhenAll(
+        FetchDataFromApi1Async(),  // throws
+        FetchDataFromApi2Async(),  // completes
+        FetchDataFromApi3Async()   // throws
+    );
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message); // Shows first thrown exception
+    if (ex is AggregateException aggEx)
+    {
+        foreach (var inner in aggEx.InnerExceptions)
+            Console.WriteLine(inner.Message); // All exceptions
+    }
+}
+But with await, the AggregateException is automatically flattened, and only the first exception is rethrown.
+
+🔐 How to Catch All Exceptions?
+If you need to inspect all, wrap each task with try/catch:
+
+
+var tasks = new[]
+{
+    SafeFetchData(() => FetchDataFromApi1Async()),
+    SafeFetchData(() => FetchDataFromApi2Async()),
+    SafeFetchData(() => FetchDataFromApi3Async())
+};
+
+await Task.WhenAll(tasks);
+
+async Task SafeFetchData(Func<Task> action)
+{
+    try { await action(); }
+    catch (Exception ex) { LogError(ex); }
+}
+✅ Interview Tip
+"While Task.WhenAll() throws only the first exception in an await context, all tasks still run to completion. 
+I typically wrap tasks in try/catch when I want to log and recover from all exceptions, not just the first."

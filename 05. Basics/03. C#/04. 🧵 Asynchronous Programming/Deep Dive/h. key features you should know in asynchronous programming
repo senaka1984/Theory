@@ -1,0 +1,90 @@
+08. key features you should know in asynchronous programming 
+
+
+✅ 1. async and await Keywords
+Simplify writing asynchronous code that looks like synchronous code.
+
+
+public async Task<string> GetDataAsync()
+{
+    var result = await httpClient.GetStringAsync("https://api.example.com");
+    return result;
+}
+
+✅ 2. Task and Task<T>
+Represents an ongoing or future asynchronous operation.
+
+Task for void-like operations, Task<T> for returning data.
+
+
+✅ 3. ConfigureAwait(false)
+Prevents capturing the synchronization context (important in UI apps).
+
+Avoids deadlocks in non-UI threads (e.g., ASP.NET).
+
+
+await SomeMethodAsync().ConfigureAwait(false);
+
+✅ 4. Task.WhenAll()
+Waits for all tasks to complete.
+
+Useful for parallel async operations.
+
+
+await Task.WhenAll(Task1(), Task2());
+
+✅ 5. Task.WhenAny()
+Continues when any task completes.
+
+Use for timeouts, fallback logic, or race conditions.
+
+✅ 6. Exception Handling
+Use try/catch with await to catch exceptions.
+
+Multiple exceptions from Task.WhenAll are wrapped in AggregateException.
+
+✅ 7. Fire-and-Forget Tasks
+Avoid unless truly necessary (e.g., logging, telemetry).
+
+Consider logging and exception handling with .ContinueWith() or a background task runner.
+
+✅ 8. Avoid async void
+Only allowed for event handlers.
+
+Always use async Task for testable and catchable async code.
+
+✅ 9. Deadlocks & Synchronization Context
+Blocking async code (e.g., Task.Result, Task.Wait()) can cause deadlocks.
+
+Especially true in UI apps (WinForms, WPF) due to the single-threaded nature.
+
+✅ 10. Cancellation with CancellationToken
+Allows graceful task cancellation.
+
+
+public async Task DoWorkAsync(CancellationToken token)
+{
+    token.ThrowIfCancellationRequested();
+    await Task.Delay(1000, token);
+}
+
+✅ 11. Parallelism vs Concurrency
+Concurrency = responsive (e.g., awaiting multiple tasks)
+
+Parallelism = multiple tasks executing simultaneously (e.g., Parallel.ForEach, Task.WhenAll)
+
+✅ 12. Async Streams (IAsyncEnumerable<T>)
+Iterate over async data sources (e.g., database, API, file).
+
+
+await foreach (var item in GetItemsAsync())
+{
+    Console.WriteLine(item);
+}
+
+🧠 Bonus Best Practices
+Always use async all the way (avoid .Result, .Wait()).
+
+Use timeouts and cancellation tokens for resiliency.
+
+Profile and measure – async doesn’t guarantee performance without context.

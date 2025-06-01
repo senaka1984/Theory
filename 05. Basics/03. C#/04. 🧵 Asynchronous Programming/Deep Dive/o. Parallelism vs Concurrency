@@ -1,0 +1,52 @@
+o. Parallelism vs Concurrency
+
+🧠 Conceptual Difference
+
+| Feature     | **Concurrency**                                                             | **Parallelism**                               |
+| ----------- | --------------------------------------------------------------------------- | --------------------------------------------- |
+| **Goal**    | Handle **multiple tasks** at the same time (not necessarily simultaneously) | Run **multiple tasks at the same time**       |
+| **Focus**   | Structure and responsiveness                                                | Speed and efficiency                          |
+| **Example** | Serving multiple users via `async/await` in a web API                       | Running CPU-intensive tasks on multiple cores |
+| **Used in** | I/O-bound tasks (DB calls, HTTP requests)                                   | CPU-bound tasks (calculations, loops)         |
+| **Threads** | Might use one thread (via `await`)                                          | Requires multiple threads                     |
+
+
+⚙️ In C# / .NET
+🔹 Concurrency
+Best for I/O-bound operations
+
+Uses async / await, Task, or I/O Completion Ports
+
+public async Task HandleWebRequestAsync()
+{
+    var dbData = await db.GetAsync();
+    var fileData = await file.ReadAsync();
+    // responsive even while waiting
+}
+
+You handle many things at once, even on a single thread (e.g., ASP.NET Core).
+
+🔹 Parallelism
+Best for CPU-bound workloads
+
+Uses Parallel.For, Task.Run, or PLINQ
+
+Parallel.For(0, 1000, i =>
+{
+    ProcessImage(i); // each runs on different threads
+});
+You do many things at the same time, using multiple threads or cores.
+
+🧪 Real-World Analogy
+Concurrency: A single waiter managing multiple tables — takes orders, goes to kitchen, comes back (async).
+
+Parallelism: Multiple waiters each taking care of a table at the same time (multithreaded).
+
+✅ When to Use
+
+| Situation                 | Prefer                           |
+| ------------------------- | -------------------------------- |
+| High-latency I/O          | **Concurrency** (`async/await`)  |
+| High CPU computation      | **Parallelism** (`Parallel.For`) |
+| Responsive UI/Web servers | **Concurrency**                  |
+| Data processing pipelines | **Parallelism**                  |

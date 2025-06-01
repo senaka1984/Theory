@@ -1,0 +1,51 @@
+r. 🔍 When .Result or .Wait() can cause a deadlock
+
+
+does this everytime bring a deadlock? // ⛔️ Blocks the thread and waits for async to complete
+    return SomeAsyncMethod().Result;
+
+Not always, but it's dangerously unpredictable.
+
+It depends on what thread you're blocking and whether the awaited async code tries to resume on that thread.
+
+✅ Safe scenarios (no deadlock):
+Console apps (by default, no synchronization context).
+
+Background threads (ThreadPool).
+
+.ConfigureAwait(false) is used in the awaited code — so continuation doesn’t try to resume on the captured thread.
+
+❌ Dangerous scenarios (possible deadlock):
+ASP.NET (pre-Core): uses a synchronization context.
+
+WPF or WinForms UI threads.
+
+If the awaited code does not use .ConfigureAwait(false) and attempts to resume on the same thread you're blocking → deadlock.
+
+🔁 Why It’s Dangerous
+Here’s the simplified cycle that causes trouble:
+
+public string GetData()
+{
+    // Blocks current thread
+    return SomeAsyncMethod().Result;
+}
+
+public async Task<string> SomeAsyncMethod()
+{
+    await Task.Delay(1000); // tries to resume on original context
+    return "done";
+}
+If GetData() is running on the UI thread (or an ASP.NET context-bound thread), it blocks the thread needed to resume the async continuation, creating a deadlock loop.
+
+✅ Safe Pattern
+If you must block (and can't refactor the calling code to be async), do this:
+
+
+string result = Task.Run(() => SomeAsyncMethod()).GetAwaiter().GetResult();
+This avoids blocking the main thread and shifts the execution to a ThreadPool thread.
+
+🔑 Rule of Thumb:
+❌ Avoid .Result and .Wait() in any context-aware environment.
+
+✅ Use await end-to-end or ConfigureAwait(false) carefully.

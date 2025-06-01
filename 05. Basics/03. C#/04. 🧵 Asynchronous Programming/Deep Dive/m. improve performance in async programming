@@ -1,0 +1,165 @@
+13. improve performance in async programming
+
+Improving performance in asynchronous programming in C# involves not just using async/await, but using them wisely and strategically. Here are key practices to boost performance in async code:
+
+✅ 1. Avoid Blocking Calls (No .Result, .Wait())
+
+❌ Bad:
+var result = GetDataAsync().Result; // Blocks the thread
+✅ Good:
+
+csharp
+Copy
+Edit
+var result = await GetDataAsync(); // Non-blocking
+Blocking async code on the main thread or inside Task.Run can cause deadlocks and thread pool starvation.
+
+✅ 2. Use ConfigureAwait(false) in Libraries or Background Code
+This avoids resuming on the original (UI or captured) context.
+
+csharp
+Copy
+Edit
+await SomeLibraryCallAsync().ConfigureAwait(false);
+Improves throughput in web apps and libraries.
+
+Use in non-UI code or ASP.NET backend logic.
+
+✅ 3. Use Task.WhenAll() for Parallel Async Work
+Instead of awaiting sequentially:
+
+csharp
+Copy
+Edit
+var a = await GetAAsync();
+var b = await GetBAsync();
+Do this:
+
+csharp
+Copy
+Edit
+var taskA = GetAAsync();
+var taskB = GetBAsync();
+await Task.WhenAll(taskA, taskB);
+➡️ Runs in parallel, saving time.
+
+✅ 4. Avoid Overuse of async void
+Use async Task for methods except event handlers.
+
+csharp
+Copy
+Edit
+// ❌ Avoid this:
+async void DoWork()
+
+// ✅ Prefer this:
+async Task DoWorkAsync()
+✅ 5. Use ValueTask for Low-Allocation Scenarios
+Use when results are already available synchronously or for high-performance APIs.
+
+csharp
+Copy
+Edit
+public ValueTask<int> GetCachedDataAsync() =>
+    _cache.TryGet(out var result) 
+        ? new ValueTask<int>(result) 
+        : new ValueTask<int>(LoadFromDbAsync());
+✅ 6. Minimize Context Switching
+Avoid unnecessary await points — if no I/O or delay is involved, don’t make a method async.
+
+✅ 7. Use Batching and Throttling
+Avoid flooding APIs/DBs with too many concurrent requests.
+
+csharp
+Copy
+Edit
+var semaphore = new SemaphoreSlim(5); // limit concurrency
+
+var tasks = urls.Select(async url =>
+{
+    await semaphore.WaitAsync();
+    try
+    {
+        await DownloadAsync(url);
+    }
+    finally
+    {
+        semaphore.Release();
+    }
+});
+
+await Task.WhenAll(tasks);
+✅ 8. Profile with Tools
+Use Visual Studio Profiler, dotTrace, or PerfView to find:
+
+Long-running awaits
+
+Thread starvation
+
+High allocations
+
+
+
+- ------------------------------------------------------------
+
+🎯 Scenario
+You need to fetch data from 100 external APIs but:
+
+You don’t want to overload the remote service.
+
+You want the fastest completion time.
+
+You need to limit concurrency (e.g., max 5 at a time).
+
+✅ Optimized Code using SemaphoreSlim + Task.WhenAll
+csharp
+Copy
+Edit
+public async Task FetchDataInBatchesAsync(IEnumerable<string> urls)
+{
+    int maxConcurrency = 5;
+    var semaphore = new SemaphoreSlim(maxConcurrency);
+
+    var tasks = urls.Select(async url =>
+    {
+        await semaphore.WaitAsync();
+        try
+        {
+            var data = await GetApiDataAsync(url).ConfigureAwait(false);
+            ProcessData(data); // e.g., store in DB
+        }
+        finally
+        {
+            semaphore.Release();
+        }
+    });
+
+    await Task.WhenAll(tasks);
+}
+
+private async Task<string> GetApiDataAsync(string url)
+{
+    using var client = new HttpClient();
+    var response = await client.GetAsync(url);
+    return await response.Content.ReadAsStringAsync();
+}
+💡 Benefits in This Pattern
+Technique Used	Benefit
+Task.WhenAll()	Executes all requests concurrently, not sequentially.
+SemaphoreSlim	Limits max concurrent requests to avoid throttling/server overload.
+ConfigureAwait(false)	Frees up the calling thread, especially useful in server apps.
+Async/await	Keeps threads non-blocked and scalable.
+
+🔍 Performance Monitoring Tips
+Measure total execution time before/after batching.
+
+Use Stopwatch, Application Insights, or logs.
+
+Avoid memory pressure by processing results as they come, using Task.WhenAny() if needed.
+
+
+
+
+
+
+

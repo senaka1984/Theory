@@ -1,0 +1,93 @@
+07. Compare WaitAll vs WhenAll vs WhenAny
+
+✅ Quick Summary
+Feature					Task.WhenAll							Task.WaitAll										Task.WhenAny
+
+Type					Asynchronous 	(async/await)			Blocking (synchronous)								Asynchronous (async/await)
+Returns					A single task (awaitable)				void (blocks until all complete)					A single task that completes first
+Completion				When all tasks complete					When all tasks complete								When any one task completes
+Exception Handling		Throws first faulted task’s exception	Throws AggregateException if any task fails			Only when awaited task is faulted
+Best For				Concurrent, non-blocking coordination	Simple blocking coordination						Reacting to first completed task
+
+
+Throws first faulted task’s exception (wraps in AggregateException if multiple)
+
+
+🔄 Behavior in Code
+
+1. Task.WhenAll
+
+var tasks = new[]
+{
+    Task.Run(() => throw new InvalidOperationException()),
+    Task.Delay(1000)
+};
+
+try
+{
+    await Task.WhenAll(tasks);
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Caught: {ex.GetType()}");
+}
+✅ Does not block the thread
+
+❌ If one task fails, it waits for all to finish, then throws
+
+Throws the first exception, wraps others in AggregateException.InnerExceptions
+
+2. Task.WaitAll
+
+var tasks = new[]
+{
+    Task.Run(() => throw new InvalidOperationException()),
+    Task.Run(() => throw new ArgumentNullException())
+};
+
+try
+{
+    Task.WaitAll(tasks);
+}
+catch (AggregateException ex)
+{
+    foreach (var e in ex.InnerExceptions)
+        Console.WriteLine($"Caught: {e.GetType()} - {e.Message}");
+}
+❌ Blocks the calling thread
+
+❌ Exceptions are always wrapped in AggregateException
+
+❌ Less friendly with async code (not awaitable)
+
+3. Task.WhenAny
+
+var task1 = Task.Delay(3000);
+var task2 = Task.Delay(1000);
+var completed = await Task.WhenAny(task1, task2);
+Console.WriteLine("A task completed");
+
+✅ Completes as soon as one task finishes
+
+You still need to inspect or await the completed task if you want results/exceptions
+
+Useful for timeouts, cancellation, or racing strategies
+
+🧠 Use Cases
+
+Scenario							| Recommended Method
+---------------------------------------------------------
+Parallel async calls, no blocking	| Task.WhenAll
+Blocking main thread until all done	| Task.WaitAll
+React to first task to complete		| Task.WhenAny
+Await all and collect results		| await Task.WhenAll() with Task<T>[]
+Race condition or timeout strategy	| Task.WhenAny
+
+
+📝 Final Thoughts
+
+Prefer Task.WhenAll over WaitAll in modern async codebases.
+
+Use Task.WhenAny when you only care about the first task that completes or when implementing timeouts/fallbacks.
+
+Avoid Task.WaitAll unless you are doing low-level synchronous processing (e.g., in Main() without async).

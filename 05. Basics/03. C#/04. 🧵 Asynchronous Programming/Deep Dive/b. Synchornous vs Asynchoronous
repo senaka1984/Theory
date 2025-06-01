@@ -1,0 +1,133 @@
+
+
+✅ Synchronous vs Asynchronous Programming:
+
+In synchronous programming, code execution happens line by line, and each operation blocks the thread until it completes. If a task takes time
+ (e.g., reading a file, calling a web API), it will block the calling thread, reducing scalability, especially in web applications.
+
+In asynchronous programming, operations can be executed without blocking the thread. This is enabled using the async and await keywords in .NET,
+ which allow for non-blocking execution while maintaining readable, linear-style code.
+
+
+⚙️ How async/await Works Under the Hood:
+When a method is marked with async, the compiler transforms it into a state machine behind the scenes.
+
+When await is called on an awaitable (like Task or Task<T>), control is returned to the caller until the awaited operation completes.
+
+Once the operation completes, execution resumes from the point of await using a continuation.
+
+🧠 When to Use async/await:
+
+Ideal scenarios include:
+
+Calling I/O-bound operations like:
+
+Database queries
+
+File or network access (e.g., HttpClient, StreamReader)
+
+Asynchronous EF Core operations like ToListAsync()
+
+Web APIs and microservices, where handling many concurrent requests efficiently is important
+
+
+public async Task<IActionResult> GetUserDataAsync(int id)
+{
+    var user = await _dbContext.Users.FindAsync(id); // Non-blocking DB call
+    return Ok(user);
+}
+
+
+
+🚫 When Not to Use:
+CPU-bound operations (use parallelism instead, like Parallel.ForEach)
+
+Where the async call is not awaited (leads to fire and forget, which may cause issues)
+
+🚀 Performance Considerations:
+Improves scalability by freeing up threads during long-running I/O tasks
+
+Reduces thread pool exhaustion in high-load environments (e.g., ASP.NET Core)
+
+Slightly higher overhead due to state machine and context switching, but this is often outweighed by throughput benefits
+
+🔄 Follow-up Interview Question:
+
+"What are common pitfalls when using async/await in .NET, and how would you avoid them?"
+
+
+✅ Model Answer:
+Common pitfalls when using async/await in .NET include:
+
+	1. Blocking on async code (.Result or .Wait()):
+
+Problem: This can cause deadlocks, especially in UI or ASP.NET synchronization contexts.
+
+Fix: Always use await instead of blocking calls.
+
+	2. Not using ConfigureAwait(false) in library code:
+
+Problem: Capturing the synchronization context unnecessarily can lead to performance issues or deadlocks.
+
+Fix: Use ConfigureAwait(false) in library/helper methods where context is not needed.
+
+	3. Mixing synchronous and asynchronous code:
+
+Problem: This can reduce the benefits of asynchrony and cause unpredictable performance.
+
+Fix: Try to make the entire call chain asynchronous (async all the way).
+
+	4. Fire-and-forget tasks:
+
+Problem: Can lead to unhandled exceptions and loss of error context.
+
+Fix: Use Task.Run carefully and log/observe exceptions. Use background services or queue processors for long-running tasks.
+
+	5. Improper exception handling:
+
+Problem: Exceptions in async methods must be awaited or handled properly.
+
+Fix: Always await tasks or use try-catch around await.
+
+
+
+-----------------------------------------------------
+
+✅ 1. Explained the Deadlock Issue Clearly
+Feedback:
+If you explained that calling .Result or .Wait() on an async method can cause a deadlock, especially in UI or ASP.NET environments, that's excellent.
+🔹 Tip: The key detail is that the async method captures the synchronization context and tries to resume on it, but it’s blocked by .Wait() — which is waiting for the same context.
+
+Example Good Phrase:
+
+“Using .Result or .Wait() on async methods can lead to deadlocks because they block the current thread, which is also needed to resume the async method.”
+
+✅ 2. Mentioned ConfigureAwait(false)
+Feedback:
+If you included ConfigureAwait(false) and explained that it's used in library code to avoid capturing the synchronization context, that’s a strong signal you know async best practices.
+
+Example Good Phrase:
+
+“In library methods, I use ConfigureAwait(false) to avoid capturing the synchronization context and improve performance.”
+
+🔸 Tip: You don’t usually need this in ASP.NET Core, but it’s still good for reusable class libraries.
+
+✅ 3. Discussed Exception Handling in Async Methods
+Feedback:
+If you covered that async methods should always be awaited or exceptions might go unnoticed, and that try/catch should wrap await calls — very strong answer.
+
+Example Good Phrase:
+
+“I ensure every awaited method is wrapped in a try/catch block if it could throw, so I can handle or log exceptions properly.”
+
+🔸 Tip: Mentioning TaskScheduler.UnobservedTaskException would be an advanced point if asked to go deeper.
+
+✅ 4. Addressed Fire-and-Forget Concerns
+Feedback:
+If you brought up that fire-and-forget tasks can cause unobserved exceptions, especially in ASP.NET, and should be handled carefully — that’s spot-on.
+
+Example Good Phrase:
+
+“I avoid fire-and-forget tasks unless they’re in a background service, and I make sure to handle exceptions properly even there.”
+
+🔸 Tip: Suggest using IHostedService or background queues for such tasks.
