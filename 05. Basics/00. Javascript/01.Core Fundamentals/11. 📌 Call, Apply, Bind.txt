@@ -1,0 +1,264 @@
+
+🧠 Purpose of call, apply, and bind
+
+All three are used to change the value of this inside a function.
+
+
+🔍 Syntax & Differences
+
+| Method  | Calls Function Immediately?  | How Arguments Are Passed     | Returns                        |
+| ------- | ---------------------------  | ---------------------------- | ------------------------------ |
+| `call`  | ✅ Yes                       | Comma-separated list         | Function result                |
+| `apply` | ✅ Yes                       | Array (or array-like object) | Function result                |
+| `bind`  | ❌ No (delays execution)     | Comma-separated list         | New function with bound `this` |
+
+
+✅ Basic Example
+
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: "Senaka" };
+
+
+🔸 call
+
+greet.call(person, "Hello", "!");  
+// 👉 "Hello, Senaka!"
+
+
+
+🔸 apply
+
+greet.apply(person, ["Hi", "."]); 
+// 👉 "Hi, Senaka."
+
+
+🔸 bind
+
+const greetSenaka = greet.bind(person, "Hey", "!!");
+greetSenaka();  
+// 👉 "Hey, Senaka!!"
+
+
+⚙️ When to Use What?
+
+| Use Case                                                    | Best Method      |
+| ----------------------------------------------------------- | ---------------- |
+| Call a function immediately with `this`                     | `call` / `apply` |
+| Delay or reuse function with preset `this` and/or arguments | `bind`           |
+| You already have arguments in an array                      | `apply`          |
+
+
+🧪 Real-World Example: Event Handling
+
+const handler = {
+  name: "Button",
+  handleClick(message) {
+    console.log(`${this.name} clicked: ${message}`);
+  }
+};
+
+document.querySelector("button").addEventListener("click", handler.handleClick.bind(handler, "Submit"));
+// `this` is now always bound to `handler`
+
+Without bind, this would refer to the button, not the handler object.
+
+
+🧠 Summary Table
+
+| Method  | `this` context | Args format         | Immediate? | Return value       |
+| ------- | -------------- | ------------------- | ---------- | ------------------ |
+| `call`  | Explicit       | Comma-separated     | ✅ Yes      | Return of the fn   |
+| `apply` | Explicit       | Array or array-like | ✅ Yes      | Return of the fn   |
+| `bind`  | Explicit       | Comma-separated     | ❌ No       | New bound function |
+
+
+================================================================================================================================================
+
+🔧 1. What Problem Do These Solve?
+
+In JavaScript, the value of this depends on how a function is called, not where it's defined.
+
+Example:
+
+const person = { name: "Senaka" };
+function sayName() {
+  console.log(this.name);
+}
+
+	sayName(); // ❌ undefined (in strict mode) or window.name
+
+
+We want sayName() to refer to person.name. That's where call, apply, and bind come in.
+
+
+
+🧩 2. Function.prototype.call()
+
+🔹 Syntax
+
+	func.call(thisArg, arg1, arg2, ...)
+
+	thisArg: what you want this to be.
+
+	Arguments: passed individually.
+
+🔸 Example
+
+	function greet(greeting, punctuation) {
+		console.log(`${greeting}, ${this.name}${punctuation}`);
+	}
+
+	const person = { name: "Senaka" };
+		greet.call(person, "Hi", "!"); 
+	// 👉 "Hi, Senaka!"
+
+
+🧩 3. Function.prototype.apply()
+
+🔹 Syntax
+
+func.apply(thisArg, [argsArray])
+
+Exactly like call, except arguments are passed as an array.
+
+
+🔸 Example
+
+greet.apply(person, ["Hello", "."]);
+// 👉 "Hello, Senaka."
+
+
+✅ When is apply useful?
+
+When you already have arguments in an array (e.g., user input, function wrapper):
+
+const numbers = [1, 2, 3];
+Math.max.apply(null, numbers); // 👉 3
+
+
+🧩 4. Function.prototype.bind()
+
+🔹 Syntax
+
+const boundFn = func.bind(thisArg, arg1, arg2, ...)
+
+Doesn't call the function immediately.
+
+Returns a new function with this and optionally arguments pre-set.
+
+🔸 Example
+
+const boundGreet = greet.bind(person, "Good day");
+boundGreet("!!"); 
+// 👉 "Good day, Senaka!!"
+
+
+🧠 5. Internal Mechanics
+What bind really does:
+
+function bindPolyfill(fn, context, ...args) {
+  return function (...newArgs) {
+    return fn.apply(context, [...args, ...newArgs]);
+  };
+}
+
+So:
+
+const bound = bindPolyfill(greet, person, "Hi");
+bound("!"); // 👉 "Hi, Senaka!"
+
+
+🌀 6. this in Arrow Functions
+
+Arrow functions don’t have their own this. They ignore call, apply, or bind when used.
+
+❌ bind has no effect
+
+const arrow = () => {
+  console.log(this.name);
+};
+
+const boundArrow = arrow.bind({ name: "Senaka" });
+boundArrow(); // 👉 still logs undefined or outer `this`
+
+⚠️ 7. Common Pitfalls
+❌ Losing this in method references:
+
+
+const user = {
+  name: "Senaka",
+  greet() {
+    console.log(this.name);
+  }
+};
+
+const greetFn = user.greet;
+greetFn(); // ❌ undefined
+
+✅ Fix with bind:
+
+const boundGreet = user.greet.bind(user);
+boundGreet(); // ✅ "Senaka"
+
+
+🎯 8. Real-World Scenarios
+
+🔹 setTimeout / setInterval
+
+const user = {
+  count: 0,
+  increment() {
+    setTimeout(function () {
+      this.count++; // ❌ this is window/global
+    }, 1000);
+  }
+};
+
+✅ Fix:
+
+setTimeout(() => this.count++, 1000); // OR
+setTimeout(function () {
+  this.count++;
+}.bind(this), 1000);
+
+
+🔹 Event Listeners with Objects
+
+class ButtonHandler {
+  constructor(name) {
+    this.name = name;
+  }
+
+  handleClick() {
+    console.log(`Clicked by ${this.name}`);
+  }
+}
+
+const handler = new ButtonHandler("Senaka");
+
+document.querySelector("button")
+  .addEventListener("click", handler.handleClick.bind(handler));
+
+
+Without bind, this would point to the button element, not the instance.
+
+
+📌 Final Summary Table
+
+| Feature         | `call`                       | `apply`                   | `bind`                            |
+| --------------- | ---------------------------- | ------------------------- | --------------------------------- |
+| Invokes func?   | ✅ Immediately                | ✅ Immediately             | ❌ Returns bound function          |
+| Args format     | Comma-separated              | Array                     | Comma-separated (partial allowed) |
+| Used for        | Manual `this`, multiple args | Manual `this`, array args | Pre-setting `this` for later use  |
+| Arrow functions | ❌ Ignored                    | ❌ Ignored                 | ❌ Ignored                         |
+
+
+
+
+
+
+
+

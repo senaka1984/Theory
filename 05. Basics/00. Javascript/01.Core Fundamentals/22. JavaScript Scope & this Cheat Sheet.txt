@@ -1,0 +1,71 @@
+
+🧠 JavaScript Scope & this Cheat Sheet
+
+| Concept                 | Definition                                                                | Example / Notes                                                                      |
+| ----------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Lexical Scope**       | Scope determined by **where code is written** (not how it runs)           | Inner functions have access to variables declared in outer functions                 |
+| **Dynamic Scope**       | Scope determined by **how code is called** at runtime (⚠️ not used in JS) | Used in languages like Bash, older Lisps — *not JavaScript*                          |
+| **Closure**             | A function that “remembers” variables from its lexical scope              | Outer variables are kept alive by inner function, even after outer returns           |
+| **Lexical Binding**     | Arrow functions inherit `this` from their **defining context**            | Unlike regular functions, `this` is **not re-bound** when arrow functions are called |
+| **`this` (regular fn)** | Determined by **how the function is called**                              | Default: `window`, or the object that owns the method                                |
+| **`this` (arrow fn)**   | Lexically bound — determined by **where the function is defined**         | Doesn't change even when called differently                                          |
+
+
+🔍 Lexical Scope vs Dynamic Scope
+
+| Feature                 | Lexical Scope (JavaScript) | Dynamic Scope (not in JS)      |
+| ----------------------- | -------------------------- | ------------------------------ |
+| **Scope determined by** | Code location              | Function call stack at runtime |
+| **Supported in JS?**    | ✅ Yes                     | ❌ No                          |
+| **Example language**    | JavaScript, Python, C++    | Bash, old Lisp                 |
+
+
+🔧 Closure Example (Lexical Scope)
+
+function outer() {
+  let name = "Senaka";
+  return function inner() {
+    console.log(name); // 🧠 Closure: retains access to `name`
+  };
+}
+const fn = outer();
+fn(); // 👉 "Senaka"
+
+
+🔥 Lexically Bound this (Arrow Function)
+
+const user = {
+  name: "Kiara",
+  greet: function () {
+    const sayHi = () => {
+      console.log(`Hi, ${this.name}`); // `this` is inherited from `greet`
+    };
+    sayHi();
+  }
+};
+
+user.greet(); // 👉 "Hi, Kiara"
+
+
+Compare with a regular function (loses this):
+
+greet: function () {
+  const sayHi = function () {
+    console.log(`Hi, ${this.name}`); // ❌ `this` is not `user`
+  };
+  sayHi();
+}
+
+
+🎯 Key Takeaways
+
+	Closures use lexical scope to remember variables.
+
+	Arrow functions use lexically bound this, avoiding common pitfalls.
+
+	this in regular functions can be dynamic and must be manually controlled (e.g., with bind()).
+
+	JavaScript does not support dynamic scope for variables — only for this (in regular functions).
+
+
+
