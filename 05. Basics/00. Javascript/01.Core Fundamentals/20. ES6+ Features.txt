@@ -1,0 +1,291 @@
+
+
+✅ Method Definition Shorthand (ES6 feature)
+
+In ES6 (ECMAScript 2015), JavaScript introduced a more concise way to define methods in object literals.
+
+🔹 Instead of:
+
+deposit: function(amount) {
+  return initialBalance + amount;
+}
+
+You can simply write:
+deposit(amount) {
+  return initialBalance + amount;
+}
+
+
+🔹 1. let and const
+let: block-scoped variable (can be reassigned)
+
+const: block-scoped constant (cannot be reassigned)
+
+let name = "John";
+const age = 30;
+
+
+🔹 2. Arrow Functions (=>)
+Concise syntax and lexical this.
+
+const greet = (name) => `Hello, ${name}`;
+
+
+🔹 3. Template Literals
+String interpolation using backticks `.
+
+const name = "Anna";
+console.log(`Hi, ${name}!`);
+
+
+🔹 4. Default Parameters
+Function parameters with default values.
+
+function greet(name = "Guest") {
+  return `Hello, ${name}`;
+}
+
+
+🔹 5. Destructuring Assignment
+Unpack values from arrays or properties from objects.
+
+// Object
+const user = { name: "John", age: 25 };
+const { name, age } = user;
+
+// Array
+const [first, second] = [10, 20];
+
+
+🔹 6. Rest and Spread Operators (...)
+
+// Rest
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+
+// Spread
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
+
+
+🔹 7. Enhanced Object Literals
+Shorthand property and method definitions.
+
+const name = "Alice";
+const user = {
+  name,
+  greet() {
+    return `Hi, ${this.name}`;
+  }
+};
+
+
+🔹 8. Classes
+Syntactic sugar over prototypal inheritance.
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(`${this.name} makes a sound`);
+  }
+}
+
+
+🔹 9. Promises
+Handle asynchronous operations.
+
+const fetchData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve("Data loaded"), 1000);
+  });
+};
+
+fetchData().then(console.log);
+
+🔹 10. Modules (import/export)
+Modular JavaScript code.
+
+// math.js
+export const add = (a, b) => a + b;
+
+// app.js
+import { add } from './math.js';
+
+
+🔹 11. Map and Set
+
+New collection types.
+
+const set = new Set([1, 2, 2, 3]); // {1, 2, 3}
+const map = new Map();
+map.set("a", 1);
+
+
+
+🔹 12. for...of Loop
+
+Iterates over iterable objects (like arrays, sets, etc.)
+
+for (const val of [10, 20, 30]) {
+  console.log(val);
+}
+
+
+🔹 13. Symbols
+
+Unique and immutable primitive values often used as object keys.
+
+const sym = Symbol("id");
+const user = { [sym]: 123 };
+
+
+🔹 14. Iterators and Generators
+
+Used to define custom iteration behavior.
+
+▪️ Iterator
+An object with a next() method.
+
+const myIterable = {
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+};
+for (let val of myIterable) {
+  console.log(val);
+}
+
+🔹 15. Object.assign()
+
+Copy properties from one or more source objects to a target object.
+
+const target = { a: 1 };
+const source = { b: 2 };
+Object.assign(target, source); // { a: 1, b: 2 }
+
+
+🔹 16. Number.isNaN() and Number.isFinite()
+
+Safer numerical checks than the global isNaN or isFinite.
+
+Number.isNaN("hello"); // false
+Number.isNaN(NaN);     // true
+
+
+🔹 17. String.includes(), startsWith(), endsWith()
+
+const str = "JavaScript";
+str.includes("Script");    // true
+str.startsWith("Java");    // true
+str.endsWith("pt");        // true
+
+
+🔹 18. Array.find() and findIndex()
+
+const arr = [5, 12, 8];
+arr.find(x => x > 10);      // 12
+arr.findIndex(x => x > 10); // 1
+
+
+🔹 19. Array.from() and Array.of()
+
+Array.from("abc"); // ['a', 'b', 'c']
+Array.of(7);       // [7]
+
+
+🔹 20. Block-Level Functions
+In strict mode, functions can be block-scoped:
+
+{
+  function test() {
+    console.log("inside block");
+  }
+}
+test(); // works in some environments (not all browsers)
+
+
+🔹 21. Reflect API
+
+Provides methods for interceptable JavaScript operations — like those used by Proxy.
+
+const obj = { x: 1 };
+Reflect.set(obj, 'y', 2); // { x: 1, y: 2 }
+
+
+🔹 22. Proxy
+
+Used to define custom behavior for fundamental operations like reading/writing properties.
+
+const person = {
+  name: "Alice"
+};
+
+const proxy = new Proxy(person, {
+  get(target, prop) {
+    return prop in target ? target[prop] : "Not Found";
+  }
+});
+
+console.log(proxy.name);  // Alice
+console.log(proxy.age);   // Not Found
+
+
+🔹 23. Tail Call Optimization (TCO)
+Eliminates the need for additional stack frames for tail-recursive functions (supported in strict mode and in some JS engines).
+
+
+"use strict";
+function factorial(n, acc = 1) {
+  if (n === 0) return acc;
+  return factorial(n - 1, n * acc); // Tail call
+}
+
+
+🔹 24. Object.setPrototypeOf() and Object.getPrototypeOf()
+Direct manipulation of an object's prototype.
+
+const animal = { eats: true };
+const rabbit = {};
+Object.setPrototypeOf(rabbit, animal);
+console.log(Object.getPrototypeOf(rabbit)); // animal
+
+
+🔹 25. New Math Methods
+Helpful numerical utilities:
+
+
+Math.trunc(4.9);       // 4
+Math.sign(-3);         // -1
+Math.cbrt(27);         // 3
+Math.expm1(1);         // e^1 - 1
+
+
+🔹 26. New Object methods
+
+Object.entries({ a: 1 }); // [['a', 1]]
+Object.values({ a: 1 });  // [1]
+Object.keys({ a: 1 });    // ['a']
+
+⚠️ Object.entries and Object.values were introduced in ES8, but many people lump them in with ES6 because they’re closely related.
+
+
+
+🔹 27. Unicode Escapes in Strings
+Support for Unicode code point escapes.
+
+const smile = '\u{1F600}';
+console.log(smile); // 😀
+
+
+🔹 28. Binary and Octal Literals
+Support for binary (0b) and octal (0o) number formats.
+
+const bin = 0b1010; // 10
+const oct = 0o755;  // 493
+
+

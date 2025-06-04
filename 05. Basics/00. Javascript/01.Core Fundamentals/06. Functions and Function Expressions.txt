@@ -1,0 +1,101 @@
+
+
+🔹 1. Function Declaration
+
+
+✅ Syntax:
+
+function greet() {
+  console.log("Hello!");
+}
+
+✅ Characteristics:
+
+| Feature                       | Behavior                           |
+| ----------------------------- | ---------------------------------- |
+| **Hoisted**                   | ✅ Yes — fully hoisted with body    |
+| **Can call before declared?** | ✅ Yes                              |
+| **Name required?**            | ✅ Yes                              |
+| **Used for**                  | Defining named, reusable functions |
+
+
+🔸 Example:
+
+
+greet(); // ✅ Works
+function greet() {
+  console.log("Hello from function declaration");
+}
+
+
+🔹 2. Function Expression
+
+✅ Syntax:
+
+const sayHi = function () {
+  console.log("Hi!");
+};
+
+✅ Characteristics:
+
+| Feature                       | Behavior                                                |
+| ----------------------------- | ------------------------------------------------------- |
+| **Hoisted?**                  | ❌ No (the variable may be hoisted, but not initialized) |
+| **Can call before declared?** | ❌ No                                                    |
+| **Anonymous or Named?**       | Can be either                                           |
+| **Used for**                  | Dynamic assignment, callbacks, closures                 |
+
+
+
+sayHi(); // ❌ ReferenceError or TypeError if called before this line
+
+const sayHi = function () { // var --> undefined , let --> Reference Error
+  console.log("Hi from function expression");
+};
+
+
+🔍 Named Function Expression
+
+const sayHello = function greetByName() {
+  console.log("Hello!");
+};
+
+sayHello();       // ✅ Works
+greetByName();    // ❌ ReferenceError: greetByName is not defined
+
+
+greetByName is only available inside the function itself (for recursion/debugging).
+
+It’s not accessible outside
+
+
+
+
+
+
+
+🔁 Expression vs Declaration — Summary Table
+
+| Feature                       | Function Declaration        | Function Expression                 |
+| ----------------------------- | --------------------------- | ----------------------------------- |
+| Hoisted?                      | ✅ Yes (with body)           | ❌ No (only the variable, not value) |
+| Can call before definition?   | ✅ Yes                       | ❌ No                                |
+| Syntax                        | `function name() {}`        | `const name = function() {}`        |
+| Use case                      | Standard reusable functions | Assigning to variables, dynamic use |
+| Named inside?                 | ✅ Yes (externally visible)  | Optional, often anonymous           |
+| TDZ if used with `let/const`? | ❌ No                        | ✅ Yes                               |
+
+
+🧠 Best Practices
+
+ 🖊 Use function declarations for utility or top-level functions.
+
+ 🖊 Use function expressions for:
+
+ 🖊	Closures
+
+ 🖊 Event handlers
+
+ 🖊 Immediately Invoked Function Expressions (IIFE)
+
+ 🖊 Passing as arguments

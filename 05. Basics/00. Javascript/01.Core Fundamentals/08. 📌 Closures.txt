@@ -43,7 +43,7 @@ count(); // Counter is now: 3
 
 function createBankAccount(initialBalance) {
 	
-		let balance = initialBalance;
+	let balance = initialBalance;
 
 	return {
 		deposit(amount) {
@@ -55,10 +55,10 @@ function createBankAccount(initialBalance) {
 				balance -= amount;
 				return balance;
 		},
-			getBalance() {
+		getBalance() {
 				return balance;
 		}
-  };
+  }; 
 }
 
 const account = createBankAccount(100);

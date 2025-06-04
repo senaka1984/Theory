@@ -1,0 +1,82 @@
+
+🔄 IIFE vs ES6 Modules vs Closures
+
+| Feature                           | 🌀 IIFE                          | 📦 ES6 Module       | 🔒 Closure                                       |
+| --------------------------------- | -------------------------------- | ------------------- | ------------------------------------------------ |
+| **Scope isolation**               | ✅ Yes                            | ✅ Yes               | ✅ Yes                                            |
+| **Runs automatically**            | ✅ Yes                            | ❌ (needs import)    | ❌                                                |
+| **Private variables**             | ✅ Yes                            | ✅ Yes               | ✅ Yes                                            |
+| **Can export/reuse across files** | ❌ No                             | ✅ Yes               | ❌ (manually)                                     |
+| **Modern standard**               | ❌ Legacy                         | ✅ Modern            | ✅ Core JS Feature                                |
+| **Used for modules**              | ✅ (old pattern)                  | ✅ (preferred)       | ✅ (used inside modules/functions)                |
+| **Hoisting behavior**             | Function is hoisted inside scope | Imports are hoisted | Variables inside closure are not hoisted outside |
+
+
+
+
+📌 Examples
+
+🌀 IIFE
+
+	const counter = (function() {
+		let count = 0;
+		return {
+			increment() { return ++count; },
+			decrement() { return --count; }
+		};
+	})();
+
+	console.log(counter.increment()); // 1
+	
+📦 ES6 Module (file: counter.js)
+
+		let count = 0;
+
+        export function increment() {
+          return ++count;
+        }
+        
+        export function decrement() {
+          return --count;
+        }
+
+	
+  Then in another file:
+  
+   import { increment, decrement } from './counter.js';
+
+	console.log(increment()); // 1
+	
+🔒 Closure
+
+	function createCounter() {
+	
+	let count = 0;
+		return {
+			increment() { return ++count; },
+			decrement() { return --count; }
+	};
+	}
+
+const counter = createCounter();
+console.log(counter.increment()); // 1
+
+
+✅ When to Use What?
+
+| Situation                               | Use This               |
+| --------------------------------------- | ---------------------- |
+| Quick function to isolate variables     | IIFE                   |
+| Need reusable code between files        | ES6 Module             |
+| Want private state in a function object | Closure                |
+| Modern scalable applications            | ES6 Modules + Closures |
+| Legacy code or old browser support      | IIFE + Closures        |
+
+
+
+
+
+
+	
+  
+

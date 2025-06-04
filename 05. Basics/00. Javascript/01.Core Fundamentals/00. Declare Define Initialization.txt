@@ -1,0 +1,75 @@
+
+JSFiddle, CodeSandbox, or StackBlitz.
+
+
+📌 💰 💵 💸 💳 📉 📈 💹 💲 🧾 📄 📝 🖊 🗂 🧠 ⚠ ❗ ✅ ❌ 📌 🔍 👨‍💼 👔 🧑 🧑 💼 📝🧳 🏡 🧠 🎯 🛑 ✅ 💡
+
+🟩 1. Declaration
+
+Tells the compiler/interpreter that a variable exists.
+
+🔹 Syntax Example:
+
+var x;
+let y;
+const z; // ❌ SyntaxError: Missing initializer in const declaration
+
+
+	✅ Characteristics:
+
+		Memory is allocated.
+
+		Variable is known to the system.
+
+		Value is not assigned (it’s undefined unless it's const).
+
+
+
+🟨 2. Initialization
+
+Assigning an initial value to the variable for the first time.
+
+🔹 Example:
+
+	x = 10; // Initialization (if x was already declared)
+
+
+	✅ Characteristics:
+	
+		Variable gets its first value.
+
+		Can happen at the time of declaration or later.
+		
+		
+
+🟦 3. Definition (in JavaScript context)
+
+	A combination of declaration and initialization in one step.
+
+🔹 Example:
+
+	let a = 5; // Declaration + Initialization = Definition
+
+⚠️ In other languages (like C/C++), "definition" may imply memory allocation + full specification.
+
+
+
+✅ JavaScript Example Recap:
+
+	// Declaration
+	var x;      // declared, value is undefined
+
+	// Initialization
+	x = 42;     // initialized (assigned a value)
+
+	// Definition
+	let y = 10; // declared and initialized (defined)
+
+
+🧠 Summary Table
+
+	| Term               | Description                             | Example      |
+	| ------------------ | --------------------------------------- | ------------ |
+	| **Declaration**    | Introduces the variable name            | `let x;`     |
+	| **Initialization** | Assigns the first value to the variable | `x = 5;`     |
+	| **Definition**     | Declaration + Initialization together   | `let x = 5;` |

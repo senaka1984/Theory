@@ -1,0 +1,93 @@
+
+
+🔹 IIFE (Immediately Invoked Function Expression) in JavaScript
+
+An IIFE is a function that runs immediately after it's defined.
+
+✅ Syntax
+
+	(function() {
+		console.log("IIFE executed!");
+		})();
+
+OR using arrow functions:
+
+	(() => {
+		console.log("Arrow IIFE!");
+	})();
+
+
+🔍 Why use IIFE?
+
+
+| Purpose                          | Explanation                                          |
+| -------------------------------- | ---------------------------------------------------- |
+| **Avoid polluting global scope** | Wraps variables/functions in a private scope         |
+| **Encapsulation**                | Useful for data hiding (like modules)                |
+| **Run-once setup logic**         | Ideal for initializing configs or bootstrapping code |
+| **Legacy scope isolation**       | Before `let`/`const`, used to create block scope     |
+
+
+📦 Example: Scope Isolation
+
+var x = 10;
+
+(function() {
+  var x = 20;
+  console.log("Inside IIFE:", x); // 20
+})();
+
+console.log("Outside IIFE:", x); // 10
+
+
+🔁 IIFE with Parameters
+
+
+(function(name) {
+  console.log(`Hello, ${name}`);
+})("Senaka");
+
+
+
+⚠️ Common Pitfall: Misunderstanding Function Declaration vs Expression
+
+This won’t work:
+
+
+function() { ... }(); // ❌ Syntax Error
+
+Because JS expects a function declaration, not an expression.
+
+✅ So we wrap it:
+
+(function() { ... })(); // Now it’s an expression
+
+
+🧪 Real-World Usage Example
+
+const app = (() => {
+  const privateVar = "secret";
+
+  function privateFn() {
+    return privateVar;
+  }
+
+  return {
+    getSecret: privateFn
+  };
+})();
+
+console.log(app.getSecret()); // secret
+
+
+✅ Summary
+
+| Feature             | IIFE                                         |
+| ------------------- | -------------------------------------------- |
+| Full Form           | Immediately Invoked Function Expression      |
+| Execution Time      | Immediately after it's defined               |
+| Use Cases           | Scope isolation, module patterns, setup code |
+| Modern Alternatives | ES6 Modules, `let`/`const` block scope       |
+
+
+

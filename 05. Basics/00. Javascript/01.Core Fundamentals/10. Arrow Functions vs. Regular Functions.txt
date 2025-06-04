@@ -1,0 +1,110 @@
+
+📌 💰 💵 💸 💳 📉 📈 💹 💲 🧾 📄 📝 🖊 🗂 🧠 ⚠ ❗ ✅ ❌ 📌 🔍 👨‍💼 👔 🧑 🧑 💼 📝🧳 🏡 🧠 🎯 🛑 ✅ 💡
+
+
+Arrow functions vs Regular functions
+
+Arrow functions and regular functions in JavaScript differ in several important ways, especially in terms of syntax, behavior of this, and how they handle arguments and constructors.
+
+Here’s a breakdown:
+------------------
+
+🔹 1. Syntax
+
+ 💡 Arrow Function:
+
+		const add = (a, b) => a + b;
+
+
+	const add = (a, b) => a + b;
+
+ 💡 Regular Function:
+
+		function add(a, b) {
+			return a + b;
+		}
+
+
+🔹 2. this Binding
+
+| Feature        | Regular Function                                       | Arrow Function                                      |
+| -------------- | ------------------------------------------------------ | --------------------------------------------------- |
+| `this` context | Dynamic (`this` depends on how the function is called) | Lexical (`this` is inherited from the parent scope) |
+| Use case       | Good for object methods                                | Good for callbacks (e.g. `map`, `setTimeout`)       |
+
+
+ 💡 Example:
+
+	const obj = {
+		value: 10,
+		regularFn() {
+			console.log(this.value); // ✅ 10
+		},
+		arrowFn: () => {
+			console.log(this.value); // ❌ undefined (lexical `this`, not bound to obj)
+		}
+	};
+
+	obj.regularFn();
+	obj.arrowFn();
+
+
+🔹 3. arguments Object 
+
+| Feature         | Regular Function | Arrow Function |
+| --------------- | ---------------- | -------------- |
+| Has `arguments` | ✅ Yes           | ❌ No          |
+
+
+ 💡 Example:
+	
+	function regular() {
+		console.log(arguments); // ✅ Works
+	}
+
+	const arrow = () => {
+		console.log(arguments); // ❌ ReferenceError
+	};
+
+
+🔹 4. Constructor Usage
+
+| Feature                | Regular Function | Arrow Function |
+| ---------------------- | ---------------- | -------------- |
+| Can be used with `new` | ✅ Yes            | ❌ No           |
+
+
+ 💡 Example:
+
+    function Person(name) {
+      this.name = name;
+    }
+    const p = new Person("Alice"); // ✅ works
+    
+    const PersonArrow = (name) => {
+      this.name = name;
+    };
+    const p2 = new PersonArrow("Bob"); // ❌ TypeError
+
+
+🔹 5. Use Cases
+
+| Use Case                               | Use...           |
+| -------------------------------------- | ---------------- |
+| Object methods                         | Regular function |
+| Event handlers in objects              | Regular function |
+| Callbacks (e.g., `.map`, `.filter`)    | Arrow function   |
+| Inline functions with lexical `this`   | Arrow function   |
+| Functions needing `arguments` or `new` | Regular function |
+
+
+
+✅ Summary
+
+| Feature             | Regular Function      | Arrow Function             |
+| ------------------- | --------------------- | -------------------------- |
+| `this` binding      | Dynamic               | Lexical (from parent)      |
+| `arguments`         | Available             | Not available              |
+| Used as constructor | Yes (`new`)           | No                         |
+| Syntax              | Verbose               | Concise                    |
+| Best for            | Methods, constructors | Callbacks, short functions |

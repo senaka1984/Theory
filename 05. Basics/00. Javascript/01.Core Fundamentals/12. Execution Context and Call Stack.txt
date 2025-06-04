@@ -1,0 +1,159 @@
+
+
+🔹 1. Execution Context
+
+	An Execution Context (EC) is an environment in which JavaScript code is evaluated and executed.
+
+
+	💰 Types of Execution Contexts:
+
+| Type                 | Description                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Global EC**        | Default context where code starts execution. Creates the global object (`window` in browser, `global` in Node.js). |
+| **Function EC**      | Created whenever a function is invoked. Each function has its own EC.                                              |
+| **Eval EC** *(rare)* | Created when code is run inside `eval()` (not recommended).                                                        |
+
+
+	💰 Execution Context has:
+
+		🖊 Variable Environment (variables, function declarations)
+
+		🖊 Lexical Environment (scope chain)
+
+		🖊 this Binding
+
+		🖊 Reference to Outer Environment
+
+
+	🧠 Creation and Execution Phases:
+
+       1. Creation Phase
+
+			Creates the Variable Object (stores variables and functions)
+
+			Establishes the scope chain
+
+			Determines the value of this
+
+			Hoists var (as undefined) and function declarations
+
+		2. Execution Phase
+
+			Executes the code line by line
+
+			Assigns values to variables
+
+			Runs functions
+			
+			
+🔹 2. Call Stack
+
+	The Call Stack keeps track of function calls in a Last In, First Out (LIFO) manner.
+
+        Example:
+        
+        function greet() {
+          console.log("Hello");
+        }
+        
+        function start() {
+          greet();
+        }
+        
+        start();
+
+
+How the Call Stack Works:
+
+start() is called → pushed to stack
+
+Inside start(), greet() is called → pushed to stack
+
+greet() finishes → popped
+
+start() finishes → popped
+
+Stack is empty ✅
+
+Stack Trace (visually):
+
+
+
+| greet      | ← Top of stack (currently running)
+| start      |
+| global     |
+
+
+After execution:
+
+(empty)
+
+
+
+🔁 Combined Flow
+
+	Step 1: Global Execution Context is created and pushed to Call Stack
+	Step 2: Code starts running
+	Step 3: When a function is called → New Function Execution Context is created and pushed to stack
+	Step 4: When function returns → its EC is popped off the stack
+	
+	
+🧪 Example with Logs
+
+	console.log("Start");
+
+    function sayHi() {
+      console.log("Hi");
+    }
+    
+    function callMe() {
+      sayHi();
+    }
+    
+    callMe();
+    
+    console.log("End");
+
+
+	Execution Flow:
+
+			Global EC → console.log("Start")
+           → callMe() → sayHi() → console.log("Hi")
+           → console.log("End")
+
+
+	Call Stack at peak:
+
+		| sayHi     |
+		| callMe    |
+		| global    |
+ 
+
+✅ Summary
+
+
+	| Concept               | Description                                         |
+| --------------------- | --------------------------------------------------- |
+| **Execution Context** | Environment where JS code runs (global or function) |
+| **Call Stack**        | Tracks function calls in LIFO order                 |
+| **Creation Phase**    | Hoists vars/functions, sets up `this`               |
+| **Execution Phase**   | Executes code line-by-line                          |
+| **Lexical Scope**     | Determined at creation, not runtime                 |
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

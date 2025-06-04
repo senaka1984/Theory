@@ -1,0 +1,84 @@
+
+
+
+🔒 What is the Temporal Dead Zone (TDZ) in JavaScript?
+
+The Temporal Dead Zone (TDZ) is the period between entering a scope and the point where a variable declared with let or const is initialized.
+
+During the TDZ, accessing the variable causes a ReferenceError, even though the variable is technically hoisted.
+
+
+🔹 Example
+
+console.log(a); // ❌ ReferenceError: Cannot access 'a' before initialization
+let a = 10;
+
+This does not happen with var:
+
+console.log(b); // ✅ undefined
+var b = 10;
+
+
+🧠 Why Does TDZ Exist?
+
+It enforces better coding practices by:
+
+Preventing accidental usage of uninitialized variables.
+
+Making code more predictable and easier to debug.
+
+
+🔍 How TDZ Works
+
+{
+  // TDZ starts here for `x`
+  console.log(x); // ❌ ReferenceError
+  let x = 3;      // TDZ ends here
+  console.log(x); // ✅ 3
+}
+
+Even though x is hoisted to the top of the block, it’s not initialized until the line let x = 3 is reached — that's why it throws an error before that point.
+
+
+🔐 TDZ with const
+
+{
+  console.log(y); // ❌ ReferenceError
+  const y = 5;
+}
+
+const also has a TDZ and must be initialized at declaration.
+
+🔁 TDZ in Function Parameters (Less Known!)
+
+function demo(a = b, b = 2) {
+  console.log(a, b);
+}
+
+demo(); // ❌ ReferenceError: Cannot access 'b' before initialization
+
+Here, b is still in its TDZ when a = b is evaluated.
+
+
+✅ Summary
+
+| Keyword | Hoisted | TDZ?  | Accessible Before Init? |
+| ------- | ------- | ----- | ----------------------- |
+| `var`   | ✅ Yes   | ❌ No  | ✅ Yes (as `undefined`)  |
+| `let`   | ✅ Yes   | ✅ Yes | ❌ ReferenceError        |
+| `const` | ✅ Yes   | ✅ Yes | ❌ ReferenceError        |
+
+
+| Declaration Type                  | Hoisted?         | TDZ?  | Accessible Before Init?                     | Initialized at Hoisting? |
+| --------------------------------- | ---------------- | ----- | ------------------------------------------- | ------------------------ |
+| `var`                             | ✅ Yes            | ❌ No  | ✅ Yes (`undefined`)                         | ❌ No                     |
+| `let`                             | ✅ Yes            | ✅ Yes | ❌ ReferenceError                            | ❌ No                     |
+| `const`                           | ✅ Yes            | ✅ Yes | ❌ ReferenceError                            | ❌ No                     |
+| `function declaration`            | ✅ Yes            | ❌ No  | ✅ Yes (fully callable)                      | ✅ Yes                    |
+| `var function expression`         | ✅ Yes (var only) | ❌ No  | ❌ TypeError (`undefined is not a function`) | ❌ No                     |
+| `let/const function expression`   | ❌ No             | ✅ Yes | ❌ ReferenceError                            | ❌ No                     |
+| `arrow function (with let/const)` | ❌ No             | ✅ Yes | ❌ ReferenceError                            | ❌ No                     |
+
+
+
+
