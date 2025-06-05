@@ -1,0 +1,193 @@
+
+
+🟢 Beginner Level Patterns
+============================
+
+🔹 1. Functional Components
+
+	Stateless UI components using functions
+
+		function Welcome(props) {
+			return <h1>Hello, {props.name}</h1>;
+		}
+
+🔹 2. JSX Pattern
+
+	JavaScript + XML syntax to describe UI
+	
+		const element = <div className="box">Hello</div>;
+
+🔹 3. Props & Children
+
+	Pass data via props, reuse components
+	
+		<MyComponent title="Hello" />
+		{props.children}
+
+🔹 4. State Management (useState)
+
+	Local state using React Hooks
+	
+		const [count, setCount] = useState(0);
+
+🔹 5. Event Handling
+	
+	Inline functions or method references
+
+		<button onClick={() => setCount(count + 1)}>Click</button>
+
+🔹 6. Conditional Rendering
+
+	Render based on state/props
+	
+		{isLoggedIn ? <Logout /> : <Login />}
+
+
+
+🟢 Intermediate Level Patterns
+==============================
+
+🔹 7. Lifting State Up
+
+	Share state between sibling components via a common parent
+
+🔹 8. Controlled vs Uncontrolled Components
+
+	Controlled: value comes from state
+
+	Uncontrolled: uses refs
+
+🔹 9. Composition Over Inheritance
+
+	Prefer combining components via props rather than extending
+
+🔹 10. Custom Hooks
+
+	Reuse logic across components
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.onresize = () => setWidth(window.innerWidth);
+  }, []);
+  return width;
+}
+
+🔹 11. Context API
+
+	Global state without prop drilling
+
+
+🟢  Advanced Level Patterns
+============================
+
+🔹 12. Higher-Order Components (HOC)
+	A function that takes a component and returns a new component
+
+	function withLogger(Component) {
+  return function Wrapped(props) {
+    console.log('Rendering', Component.name);
+    return <Component {...props} />;
+  };
+}
+
+
+🔹 13. Render Props Pattern
+	Pass a function as a prop to control rendering
+
+	<DataFetcher render={(data) => <Chart data={data} />} />
+
+🔹 14. Compound Components
+	Components work together by sharing implicit state
+
+	<Tabs>
+      <Tabs.List>...</Tabs.List>
+      <Tabs.Panel>...</Tabs.Panel>
+    </Tabs>
+
+
+🔹 15. Provider Pattern
+
+	Used with Context to supply shared state
+		<ThemeProvider value="dark"><App /></ThemeProvider>
+
+
+🔹 16. Portals
+	Render children into a different part of the DOM
+	
+
+🚀 Performance & Optimization Patterns
+======================================
+
+
+🔹 17. Memoization (React.memo, useMemo, useCallback)
+Avoid unnecessary re-renders
+
+const MemoComp = React.memo(MyComponent);
+
+🔹 18. Code Splitting & Lazy Loading
+Load parts of the app only when needed
+
+const LazyComp = React.lazy(() => import('./Comp'));
+
+
+🔹 19. Virtualization
+Efficient rendering of long lists
+Using libraries like react-window or react-virtualized
+
+🔹 20. Error Boundaries
+Catch rendering errors in child components
+
+class ErrorBoundary extends React.Component {
+  componentDidCatch(error, info) {
+    // Handle error
+  }
+  render() {
+    return this.props.children;
+  }
+}
+
+🧪 Testing Patterns
+🔹 21. Unit Testing with Jest
+Test logic and pure components
+
+🔹 22. Integration Testing
+Use React Testing Library
+
+🔹 23. E2E Testing
+Tools like Cypress or Playwright simulate real user interaction
+
+====================================================================================================================================================
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+📁 Bonus: Project Architecture & Best Practices
+Component Folder Structure
+
+Smart vs Dumb Components
+
+Code Reusability (hooks/HOC)
+
+Types with TypeScript (optional)
+
+Mobile Responsiveness (media queries or CSS-in-JS)
+
+🧠 Interview Must-Answer Topics
+What are keys and why are they important?
+
+Difference between useEffect and componentDidMount
+
+How does the virtual DOM work?
+
+When to use Context API vs Redux?
+
+How to avoid unnecessary re-renders?
+
+What’s the difference between useMemo and useCallback?
+
+How would you implement a modal or tooltip component?
+
+How does useRef help you persist values across renders?
+
+How to manage global async state (e.g., loading a user profile)?
+
+How to test a form component?

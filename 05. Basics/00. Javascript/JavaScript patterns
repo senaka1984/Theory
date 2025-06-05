@@ -1,0 +1,375 @@
+
+JavaScript patterns 
+
+
+🔹 1. Variable Declarations
+
+| Keyword    | Scope          | Hoisted   | Reassignable | Redeclarable |
+| ---------- | -------------- | -------   | ------------ | ------------ |
+| `var`      | Function       | ✅ Yes   | ✅ Yes        | ✅ Yes        |
+| `let`      | Block          | ✅ (TDZ) | ✅ Yes        | ❌ No         |
+| `const`    | Block          | ✅ (TDZ) | ❌ No         | ❌ No         |
+| `function` | Function/block | ✅ Yes   | —               ✅ Yes        |
+
+
+
+🔹 2. Function Declarations
+
+| Type                 | Syntax Example                | Hoisted | `this` Behavior            |
+| -------------------- | ----------------------------- | ------- | -------------------------- |
+| Function Declaration | `function greet() {}`         | ✅ Yes   | Dynamic (`call site`)      |
+| Function Expression  | `const greet = function() {}` | ❌ No    | Dynamic (`call site`)      |
+| Arrow Function       | `const greet = () => {}`      | ❌ No    | Lexical (from outer scope) |
+
+
+
+🔹 3. Scoping Rules
+
+| Keyword | Scope Level | Accessible Outside Block |
+| ------- | ----------- | ------------------------ |
+| `var`   | Function    | ✅ Yes                    |
+| `let`   | Block       | ❌ No                     |
+| `const` | Block       | ❌ No                     |
+
+
+
+🔹 4. Hoisting Behavior
+
+| Construct                   | Hoisted | Initialized   |
+| --------------------------- | ------- | ------------- |
+| `var`                       | ✅ Yes   | ❌ (undefined) |
+| `let` / `const`             | ✅ Yes   | ❌ (TDZ)       |
+| `function`                  | ✅ Yes   | ✅ Yes         |
+| Function Expression / Arrow | ❌ No    | ❌ No          |
+
+
+🔹 5. Object-Oriented Patterns
+
+| Concept     | ES5 Style                        | ES6+ Style                      |
+| ----------- | -------------------------------- | ------------------------------- |
+| Constructor | `function Person() {}`           | `class Person {}`               |
+| Prototype   | `Person.prototype.greet`         | `greet() {}` in class           |
+| Inheritance | `Child.prototype = new Parent()` | `class Child extends Parent {}` |
+
+
+🔹 6. Modules Pattern
+
+| Type     | Usage                             |
+| -------- | --------------------------------- |
+| `export` | `export const foo = ...`          |
+| `import` | `import { foo } from './file.js'` |
+
+
+🔹 7. Function Execution Context
+
+| Context Type     | Example               | `this` refers to...    |
+| ---------------- | --------------------- | ---------------------- |
+| Regular Function | `function greet() {}` | caller object / global |
+| Arrow Function   | `() => {}`            | outer lexical context  |
+| Method Call      | `obj.method()`        | `obj`                  |
+| Constructor Call | `new MyFunc()`        | new instance           |
+| `call` / `apply` | `func.call(obj)`      | `obj`                  |
+
+
+
+🔹 8. Iterables & Loops
+
+| Syntax       | Works With             | Can Break? |
+| ------------ | ---------------------- | ---------- |
+| `for`        | Number-based iteration | ✅ Yes      |
+| `for...in`   | Object keys            | ✅ Yes      |
+| `for...of`   | Arrays, Strings, Sets  | ✅ Yes      |
+| `.forEach()` | Arrays                 | ❌ No       |
+
+
+
+
+🔹 9. Design Patterns (Software Engineering)
+
+| Pattern              | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+| **Module Pattern**   | Encapsulates private variables/functions.                  |
+| **Revealing Module** | Same as Module, but clearly exposes only specific members. |
+| **Factory**          | Returns different objects from a common interface.         |
+| **Singleton**        | Ensures only one instance exists (e.g. config manager).    |
+| **Observer**         | Notifies subscribers of state changes (e.g. EventEmitter). |
+| **Decorator**        | Adds behavior to objects dynamically.                      |
+| **Strategy**         | Switch behavior at runtime (e.g., sorting algorithms).     |
+| **Proxy**            | Control access to another object.                          |
+| **Command**          | Encapsulates method invocation. Used in undo/redo.         |
+
+
+
+🔹 10. Functional Programming Patterns
+
+| Pattern                    | Description                                                |
+| -------------------------- | ---------------------------------------------------------- |
+| **Pure Functions**         | No side effects, always return same output for same input. |
+| **Higher-Order Functions** | Accepts/returns functions (e.g. `map`, `filter`).          |
+| **Currying**               | Convert multi-arg functions into single-arg chains.        |
+| **Composition**            | Combine small functions into more complex ones.            |
+| **Immutability**           | Avoid changing data — return new copies.                   |
+| **Closure**                | Inner function retains access to outer variables.          |
+
+
+🔹 11. Asynchronous Patterns
+
+| Pattern               | Description                                                      |
+| --------------------- | ---------------------------------------------------------------- |
+| **Callback**          | Function passed as an argument to another.                       |
+| **Promise**           | Handles async operations (then/catch).                           |
+| **Async/Await**       | Modern syntax for working with Promises.                         |
+| **Event Loop**        | Manages non-blocking async execution.                            |
+| **Debounce/Throttle** | Control function execution frequency (e.g. for scrolling/input). |
+
+
+🔹 12. Component/Architecture Patterns (Frontend)
+
+| Pattern                                 | Description                          |
+| --------------------------------------- | ------------------------------------ |
+| **MVC (Model-View-Controller)**         | Separation of concerns.              |
+| **MVVM (Model-View-ViewModel)**         | Common in frameworks like Angular.   |
+| **Container/Presentational Components** | Separate logic vs UI (React).        |
+| **HOC (Higher-Order Component)**        | Reuse logic by wrapping components.  |
+| **Hooks (React)**                       | Encapsulate reusable stateful logic. |
+
+
+🔹 13. Code Structuring Patterns
+
+| Pattern                           | Description                                          |
+| --------------------------------- | ---------------------------------------------------- |
+| **Separation of Concerns**        | Split logic, data, and UI responsibilities.          |
+| **DRY (Don't Repeat Yourself)**   | Avoid redundant code.                                |
+| **YAGNI**                         | Don't implement until necessary.                     |
+| **KISS (Keep It Simple, Stupid)** | Favor simplicity over cleverness.                    |
+| **SOLID Principles**              | OOP design principles (can apply to JS classes too). |
+
+
+🔹 14.  Module & Dependency Patterns
+
+| Pattern                  | Description                                       |
+| ------------------------ | ------------------------------------------------- |
+| **CommonJS**             | `require()` / `module.exports` (Node.js).         |
+| **ES Modules**           | `import/export` — modern browser standard.        |
+| **UMD**                  | Universal Module Definition (works everywhere).   |
+| **Dependency Injection** | Provide dependencies externally to decouple code. |
+
+
+🔹 15. Security Patterns
+
+| Pattern                           | Description                            |
+| --------------------------------- | -------------------------------------- |
+| **Input Sanitization**            | Prevent XSS/SQL injection.             |
+| **Content Security Policy (CSP)** | Restrict what scripts can execute.     |
+| **Token-based Auth (JWT)**        | Secure identity in stateless systems.  |
+| **Same-Origin Policy / CORS**     | Browser security for API requests.     |
+| **Secure Contexts**               | Always use HTTPS, avoid `eval()`, etc. |
+
+
+
+More .......
+
+🟢 Beginner Level Patterns
+
+🔹 1. Declaration & Scope Patterns
+	
+	var, let, const
+
+		Function declarations vs expressions
+
+		Block vs function vs global scope
+
+🔹 2. Hoisting Pattern
+
+	Variables (var is hoisted, let/const in TDZ)
+
+	Functions (declarations hoisted, expressions not)
+
+🔹 3. Closure Pattern
+
+Functions retain access to the outer scope even after that scope has returned
+
+function outer() {
+  let counter = 0;
+  return function () {
+    return ++counter;
+  };
+}
+🔹 4. Immediately Invoked Function Expression (IIFE)
+
+	Used to create isolated scopes and avoid polluting global scope
+
+(function () {
+  console.log("Executed Immediately");
+})();
+
+🔹 5. Module Pattern (Basic)
+Simulates private/public access with closures
+
+js
+Copy
+Edit
+const counter = (function () {
+  let count = 0;
+  return {
+    increment: () => ++count,
+    get: () => count
+  };
+})();
+🟡 Intermediate Level Patterns
+🔹 6. Revealing Module Pattern
+Clearly defines what is private and public
+
+js
+Copy
+Edit
+const api = (function () {
+  let data = [];
+  function add(item) { data.push(item); }
+  function list() { return [...data]; }
+  return { add, list };
+})();
+🔹 7. Factory Pattern
+Creates objects without using classes
+
+js
+Copy
+Edit
+function createUser(name) {
+  return {
+    name,
+    greet() {
+      return `Hi, I'm ${name}`;
+    }
+  };
+}
+🔹 8. Constructor Pattern
+Used with new keyword to instantiate objects
+
+js
+Copy
+Edit
+function User(name) {
+  this.name = name;
+  this.greet = function () {
+    return `Hi, I'm ${this.name}`;
+  };
+}
+🔹 9. Prototype Pattern
+Shares methods across instances efficiently
+
+js
+Copy
+Edit
+User.prototype.greet = function () {
+  return `Hi, I'm ${this.name}`;
+};
+🔹 10. Singleton Pattern
+Restricts instantiation to one object
+
+js
+Copy
+Edit
+const Singleton = (function () {
+  let instance;
+  function create() {
+    return { timestamp: Date.now() };
+  }
+  return {
+    getInstance: () => instance || (instance = create())
+  };
+})();
+🔴 Advanced Level Patterns
+🔹 11. Observer Pattern
+Subscriber gets notified on state changes (pub-sub)
+
+js
+Copy
+Edit
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+  on(event, listener) {
+    (this.events[event] ||= []).push(listener);
+  }
+  emit(event, ...args) {
+    (this.events[event] || []).forEach(fn => fn(...args));
+  }
+}
+🔹 12. Strategy Pattern
+Swap algorithms at runtime
+
+js
+Copy
+Edit
+const sorter = {
+  strategy: null,
+  setStrategy(fn) { this.strategy = fn; },
+  sort(arr) { return this.strategy(arr); }
+};
+🔹 13. Command Pattern
+Encapsulates actions as objects (e.g., undo/redo)
+
+🔹 14. Proxy Pattern
+Intercepts operations on objects
+
+js
+Copy
+Edit
+const target = { msg: "Hello" };
+const handler = {
+  get(obj, prop) {
+    return prop in obj ? obj[prop] : "Not Found";
+  }
+};
+const proxy = new Proxy(target, handler);
+🔹 15. Decorator Pattern
+Dynamically extends functionality
+
+js
+Copy
+Edit
+function withTimestamp(fn) {
+  return function (...args) {
+    console.log("Time:", Date.now());
+    return fn(...args);
+  };
+}
+🔹 16. Functional Patterns
+Pure functions, currying, composition, immutability
+
+js
+Copy
+Edit
+const add = x => y => x + y; // currying
+🔹 17. Asynchronous Patterns
+Callbacks → Promises → async/await
+
+Debounce / Throttle
+
+Event Loop, Microtasks, Macrotasks
+
+📦 Cross-Cutting Patterns
+🔹 Module Loading Patterns
+CommonJS (require)
+
+ES Modules (import/export)
+
+UMD
+
+🔹 Error Handling Pattern
+Try/Catch
+
+Global error listeners
+
+Fallback strategies
+
+🔹 Security Patterns
+Input validation/sanitization
+
+Avoiding eval
+
+Content Security Policy (CSP)
+
+Secure this binding

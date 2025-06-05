@@ -21,8 +21,8 @@ function greet() {
 
 🔸 Example:
 
-
 greet(); // ✅ Works
+
 function greet() {
   console.log("Hello from function declaration");
 }
