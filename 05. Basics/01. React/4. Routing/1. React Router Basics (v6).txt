@@ -1,0 +1,21 @@
+
+🟢 Beginner Level: React Router Basics
+
+1. What is React Router?
+
+	React Router is a library for handling routing in React apps. It lets you show different components/pages based on the URL.
+	
+2. Setup
+
+		npm install react-router-dom
+
+
+	Then wrap your app in <BrowserRouter>:
+		
+		import { BrowserRouter } from 'react-router-dom';
+
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+
+

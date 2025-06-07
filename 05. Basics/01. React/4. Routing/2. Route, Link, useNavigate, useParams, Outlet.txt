@@ -1,0 +1,323 @@
+
+
+1. Route and Routes
+
+	Used to map URLs to components.
+	
+	import { Routes, Route } from 'react-router-dom';
+
+    function App() {
+      return (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      );
+    }
+
+	
+2. Link
+
+	Used for navigation without full page reload.
+
+	import { Link } from 'react-router-dom';
+
+	<Link to="/">Home</Link>
+	<Link to="/about">About</Link>
+
+
+3. useNavigate
+
+	Used for navigation programmatically (e.g., after login).
+
+	import { useNavigate } from 'react-router-dom';
+
+	const navigate = useNavigate();
+	navigate("/dashboard");
+
+4. useParams
+
+	Used to get URL parameters (e.g., /user/:id).
+
+	<Route path="/user/:id" element={<User />} />
+
+       function User() {
+         const { id } = useParams();
+         return <div>User ID: {id}</div>;
+       }
+
+===================================================================================================================
+
+
+✅ useNavigate – When You Need Logic-Based Navigation
+
+You use useNavigate() when navigation is conditional, depends on user actions, or occurs inside JavaScript code instead of directly in the UI (like a button).
+
+
+🔧 Examples of Logic Where useNavigate Shines
+
+1. Login or Signup Flow
+
+function LoginForm() {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const isValid = await loginUser();
+
+    if (isValid) {
+      navigate('/dashboard'); // ✅ Only navigate on success
+    } else {
+      alert('Invalid credentials');
+    }
+  };
+}
+
+📌 Why not <Link>?
+Because you only want to redirect if login succeeds.
+
+
+
+2. Form Submission Success
+
+function ContactForm() {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    // after posting data to API
+    navigate('/thank-you');
+  };
+}
+
+
+3. Logout Button
+
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearSession();
+    navigate('/login');
+  };
+}
+
+
+4. Conditional Redirect
+
+useEffect(() => {
+  if (!user.isPremium) {
+    navigate('/upgrade');
+  }
+}, []);
+
+
+
+5. Step-Based Navigation (Multi-step Form)
+
+function StepOne() {
+  const navigate = useNavigate();
+
+  const next = () => {
+    if (formDataIsValid()) {
+      navigate('/step-two');
+    }
+  };
+}
+
+
+🆚 Why Not Just Use <Link>?
+
+| Situation                        | Use `Link` | Use `useNavigate` |
+| -------------------------------- | ---------- | ----------------- |
+| User clicks a static nav link    | ✅          | ❌                 |
+| Navigate **after login**         | ❌          | ✅                 |
+| Navigate **after saving data**   | ❌          | ✅                 |
+| Redirect **based on conditions** | ❌          | ✅                 |
+| Automatically redirect on load   | ❌          | ✅                 |
+
+
+
+===================================================================================================================================
+
+🔗 Link in React Router
+
+✅ Purpose:
+Link is used to navigate between routes/pages in a React app without reloading the browser (i.e., without a full-page refresh).
+
+🚫 Why Not Use <a href="">?
+Using a regular HTML anchor tag:
+
+<a href="/about">About</a>
+
+
+❌ Causes a full page reload, which:
+
+Slows down the app
+
+Destroys current component state
+
+Loses the single-page app (SPA) experience
+
+
+✅ How Link Works
+
+import { Link } from 'react-router-dom';
+
+<Link to="/about">About</Link>
+
+import { Link } from 'react-router-dom';
+
+<Link to="/about">About</Link>
+
+
+It updates the URL in the browser
+
+It renders the target route's component
+
+It does NOT reload the whole page
+
+
+🧠 Example
+
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> | 
+        <Link to="/about">About</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<h2>Home Page</h2>} />
+        <Route path="/about" element={<h2>About Page</h2>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+📌 Clicking “About” will:
+
+Change the URL to /about
+
+Show the About Page
+
+NOT reload the entire page
+
+
+✅ Summary
+
+| Feature             | `<a>` Tag   | `<Link>` from React Router |
+| ------------------- | ----------- | -------------------------- |
+| Full Page Reload    | ✅ Yes       | ❌ No                       |
+| Maintains App State | ❌ No        | ✅ Yes                      |
+| SPA Navigation      | ❌ Breaks it | ✅ Works perfectly          |
+
+
+======================================================================================================
+
+🔍 useParams — React Router Hook
+
+✅ Purpose:
+useParams lets you access the dynamic parts of the URL (a.k.a. route parameters).
+
+
+🧠 When Do You Use It?
+When you define a route like /user/:id, you want to read the id value from the URL inside the component.
+
+For example:
+
+/user/42 → you get id = 42
+
+/product/abc123 → you get id = abc123
+
+
+🧪 Basic Example
+
+🔹 Step 1: Define a Route with a Parameter
+
+<Route path="/user/:id" element={<User />} />
+
+/user/:id means :id is a dynamic value.
+
+
+🔹 Step 2: Use useParams to Read the URL Param
+
+import { useParams } from 'react-router-dom';
+
+function User() {
+  const { id } = useParams(); // 👈 Read the id from the URL
+
+  return <h2>User ID: {id}</h2>;
+}
+
+🧭 If You Visit These URLs:
+
+| URL            | `useParams()` returns |
+| -------------- | --------------------- |
+| `/user/42`     | `{ id: "42" }`        |
+| `/user/john`   | `{ id: "john" }`      |
+| `/user/abc123` | `{ id: "abc123" }`    |
+
+
+📦 Multiple Params Example
+
+<Route path="/user/:userId/post/:postId" element={<Post />} />
+
+function Post() {
+  const { userId, postId } = useParams();
+  return (
+    <div>
+      <h3>User: {userId}</h3>
+      <h4>Post: {postId}</h4>
+    </div>
+  );
+}
+
+🟢 URL /user/99/post/123
+🟡 Output:
+
+User: 99
+Post: 123
+
+🔧 Use Case Examples
+
+| Use Case             | URL                      | Use `useParams` to get... |
+| -------------------- | ------------------------ | ------------------------- |
+| View user profile    | `/user/:id`              | the user's ID             |
+| View product details | `/product/:productId`    | the product ID            |
+| Article page         | `/blog/:slug`            | article slug              |
+| Order status         | `/order/:orderId/status` | order ID                  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+
+
+🟡 Intermediate Level: Nested Routing
+
+1. What is Nested Routing?
+Nested routes allow you to show child components inside a parent layout.
+
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
+
+
+2. Outlet
+
+This tells React Router where to render child routes.
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <Outlet /> {/* Nested routes will render here */}
+    </div>
+  );
+}
+
+
+
+

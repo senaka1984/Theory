@@ -1,0 +1,63 @@
+
+
+ Lifting state up in React is a technique used to move the shared state to the closest common ancestor of components that need to access or modify that state.
+ It enables better coordination and data flow between components.
+ 
+ 
+ 🔧 Why Lift State Up? 
+ 
+	When two or more sibling components need to share and modify the same data, keeping state in each of them individually leads to inconsistency. 
+	Instead, lift the state to their parent and pass it down via props.
+	
+📊 Example: Without Lifting State Up
+	
+	function TemperatureInput() {
+	
+	const [temperature, setTemperature] = useState('');
+		return (
+			<input
+				value={temperature}
+			onChange={e => setTemperature(e.target.value)}
+			/>
+	);
+	}
+	
+	This works alone, but if another component also needs the same state, they’ll diverge.
+	
+	
+	
+✅ With Lifting State Up
+
+	function TemperatureInput({ temperature, onTemperatureChange }) {
+		return (
+			<input
+				value={temperature}
+				onChange={e => onTemperatureChange(e.target.value)}
+			/>
+		);
+	}
+
+	function ParentComponent() {
+		const [temperature, setTemperature] = useState('');
+
+		return (
+			<>
+				<TemperatureInput
+					temperature={temperature}
+					onTemperatureChange={setTemperature}
+			/>
+			<p>The temperature is {temperature}°</p>
+    </>
+  );
+}
+
+🔄 Benefits
+Centralized state management
+
+Sibling communication becomes easy
+
+Predictable data flow (top-down)
+
+Improves maintainability
+
+

@@ -43,12 +43,12 @@ Hoisting is JavaScript's behavior of moving declarations to the top of their sco
 
 📦 Hoisting Behavior
 
-| Keyword    | Hoisted | Initialized  | Scope          |
-| ---------- | ------- | ------------ | -------------- |
-| `var`      | ✅ Yes   | ❌ No         | Function scope |
-| `let`      | ✅ Yes   | ❌ No (TDZ\*) | Block scope    |
-| `const`    | ✅ Yes   | ❌ No (TDZ\*) | Block scope    |
-| `function` | ✅ Yes   | ✅ Yes        | Function scope |
+| Keyword    | Hoisted | Initialized  		 | Scope          |
+| ---------- | ------- | ------------ 		 | -------------- |
+| `var`      | ✅ Yes   | ❌ No - undefined  | Function scope |
+| `let`      | ✅ Yes   | ❌ No (TDZ\*)     | Block scope    |
+| `const`    | ✅ Yes   | ❌ No (TDZ\*)     | Block scope    |
+| `function` | ✅ Yes   | ✅ Yes            | Function scope |
 
 🔸 TDZ = Temporal Dead Zone: You cannot access the variable before its declaration.
 

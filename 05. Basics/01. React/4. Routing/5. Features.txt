@@ -1,0 +1,135 @@
+
+🟢 Core Features
+
+1. Declarative Routing
+
+	Define routes using JSX — readable and component-friendly.
+
+	<Route path="/about" element={<About />} />
+
+2. Nested Routes
+
+	Allows child routes to be rendered within parent layouts using <Outlet />.
+
+	<Route path="/dashboard" element={<Dashboard />}>
+		<Route path="profile" element={<Profile />} />
+	</Route>
+
+
+3. Dynamic Route Params
+ 
+Supports dynamic values in the path (e.g., /user/:id), accessible via useParams().
+
+
+4. Programmatic Navigation
+
+Use useNavigate() to redirect users based on logic (e.g., after login, on button click).
+
+
+5. Route-Based Code Splitting
+
+Use React’s lazy loading with dynamic imports for better performance.
+
+const Home = React.lazy(() => import('./Home'));
+
+<Route path="/" element={
+  <React.Suspense fallback={<Loading />}>
+    <Home />
+  </React.Suspense>
+} />
+
+
+🟡 Intermediate Features
+
+6. Outlet
+Placeholder for rendering child components in nested routes.
+
+
+7. Index Routes
+Used for the default child when parent route is matched.
+
+<Route path="dashboard" element={<Dashboard />}>
+  <Route index element={<DashboardHome />} />
+</Route>
+
+
+8. Redirects (Navigate)
+Redirect users programmatically or declaratively.
+
+<Route path="/old" element={<Navigate to="/new" />} />
+
+
+9. Route Guards (Protected Routes)
+Manually build logic to protect routes (e.g., authenticated users only).
+
+10. Custom Hooks
+useLocation() – Get current URL/location object
+
+useSearchParams() – Read/write query strings (?page=2)
+
+useNavigationType() – Tells if navigation was a PUSH, POP, or REPLACE
+
+
+🔴 Advanced Features
+
+11. Query String Handling
+
+const [searchParams, setSearchParams] = useSearchParams();
+const page = searchParams.get("page");
+
+12. Data Loaders and Actions (v6.4+)
+Load data before rendering components, like in frameworks (React Router Data APIs).
+
+<Route
+  path="/dashboard"
+  loader={dashboardLoader}
+  element={<Dashboard />}
+/>
+
+Useful for SSR and form actions
+
+
+13. Error Boundaries per Route
+
+<Route
+  path="/fail"
+  element={<Component />}
+  errorElement={<ErrorPage />}
+/>
+
+
+14. Form Handling with <Form> (v6.4+)
+
+Declarative form submissions handled directly by routes.
+
+<Form method="post">
+  <input name="email" />
+  <button type="submit">Submit</button>
+</Form>
+
+
+
+15. Scroll Restoration
+
+Manages scroll behavior between navigations.
+
+
+🧩 Feature Summary Table
+
+| Feature            | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| `<Route>`          | Map path to component                       |
+| `<Link>`           | SPA-friendly navigation                     |
+| `useNavigate`      | Programmatic routing                        |
+| `useParams`        | Extract path parameters                     |
+| `Outlet`           | Render child routes                         |
+| `Navigate`         | Redirect users                              |
+| `useSearchParams`  | Handle query strings                        |
+| Loaders/Actions    | Data fetching and form handling (v6.4+)     |
+| Error Elements     | Route-specific error handling               |
+| `<Form>` component | Declarative form submissions                |
+| Lazy loading       | Code splitting for performance              |
+| Scroll restoration | Maintain scroll position across navigations |
+
+
+

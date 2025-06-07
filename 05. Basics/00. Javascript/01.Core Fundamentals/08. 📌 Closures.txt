@@ -1,10 +1,12 @@
 
 📌 💰 💵 💸 💳 📉 📈 💹 💲 🧾 📄 📝 🖊 🗂 🧠 ⚠ ❗ ✅ ❌ 📌 🔍 👨‍💼 👔 🧑 🧑 💼 📝🧳 🏡 🧠 🎯 🛑 ✅ 💡
 
-A JavaScript closure is a powerful feature that allows a function to “remember” the scope in which it was created — even after that scope has finished executing.
+A JavaScript closure is a powerful feature that allows a function to “remember” the scope in which it was created —
+ even after that scope has finished executing.
 
 🔍 Definition:
-		A closure is a function that has access to its own scope, the outer function’s scope, and the global scope, even after the outer function has returned.
+		A closure is a function that has access to its own scope, the outer function’s scope, and the global scope, even after the outer 
+		function has returned.
 
 🧠 Why Are Closures Important?
 
@@ -90,6 +92,10 @@ console.log(account.balance);      // undefined (private!)
 	💲	How do closures enable private variables?
 
 	💲	Explain how closures can cause memory leaks or unexpected behavior in loops.
+	
+
+💲	What is a closure, and when would you use it?
+
 
 
 ------------------------------------------------------------------------------------------------------------------------

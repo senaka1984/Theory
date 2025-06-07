@@ -1,0 +1,44 @@
+
+🔴 Advanced Level: Protected Routes (Route Guards)
+
+1. Why?
+
+To restrict access to certain routes based on authentication or roles.
+
+
+2. Create a Protected Route 
+
+function ProtectedRoute({ children }) {
+  const isAuthenticated = useAuth(); // custom hook or state
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+}
+
+
+3. Use It in Routes
+
+<Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
+
+
+✅ Summary Table
+
+| Concept         | Use Case                                 |
+| --------------- | ---------------------------------------- |
+| `Route`         | Define paths and components to render    |
+| `Link`          | Navigate between pages without reload    |
+| `useNavigate`   | Navigate programmatically                |
+| `useParams`     | Read dynamic values from URL             |
+| `Outlet`        | Show nested route content                |
+| Nested Routes   | Build layouts with child routes          |
+| Protected Route | Restrict routes based on auth/conditions |

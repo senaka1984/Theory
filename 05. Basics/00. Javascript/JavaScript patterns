@@ -31,7 +31,9 @@ JavaScript patterns
 | `let`   | Block       | ❌ No                     |
 | `const` | Block       | ❌ No                     |
 
-
+lexical Scope : Lexical scoping, also known as static scoping, is a fundamental concept in 
+programming that determines the accessibility of variables and functions based on their 
+physical location in the source code. 
 
 🔹 4. Hoisting Behavior
 

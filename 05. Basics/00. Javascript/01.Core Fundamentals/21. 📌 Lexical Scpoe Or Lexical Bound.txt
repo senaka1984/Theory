@@ -1,0 +1,119 @@
+
+🔹 1. Lexical Scope
+
+	What is it?
+
+		Lexical scope (a.k.a. static scope) means the scope of a variable is determined by its physical location in the source code — at write time, 
+		not at runtime.
+
+✅ Example:
+
+	function outer() {
+		const a = 10;
+
+		function inner() {
+			console.log(a); // `a` is accessible here due to lexical scope
+		}
+
+	inner();
+	}
+	
+	
+🔍 Here, inner() has access to a because it is defined inside outer(). That access is fixed at code-writing time — that’s lexical scoping.
+
+🔹 2. Hoisting
+
+What is it?
+
+	Hoisting is a JavaScript engine behavior where variable and function declarations are moved to the top of their scope before code execution.
+
+✅ Example:
+
+	console.log(x); // undefined
+	var x = 5;
+
+🔍 Due to hoisting, the above code is interpreted as:
+
+
+	var x;
+	console.log(x); // undefined
+	x = 5;
+	But with let or const, hoisting still occurs — just not initialized:
+
+	console.log(y); // ❌ ReferenceError (Temporal Dead Zone)
+	let y = 10;
+
+
+🧠 Key Differences
+
+| Feature         | Lexical Scope                         | Hoisting                                                |
+| --------------- | ------------------------------------- | ------------------------------------------------------- |
+| When it happens | At code **definition** (compile time) | At code **execution preparation** (runtime)             |
+| What it affects | Variable/function **accessibility**   | Variable/function **availability**                      |
+| Determined by   | **Position** of declarations in code  | **Engine behavior** before running code                 |
+| Applies to      | `var`, `let`, `const`, functions      | `var`, function declarations, (`let`/`const` partially) |
+| Related concept | **Closures**                          | **Temporal Dead Zone** for `let`/`const`                |
+
+
+
+
+🔹 What is Lexical Scope?
+
+	Lexical scope (also called static scope) means:
+
+	The scope of variables is determined by the structure of your code, at write-time, not run-time.
+
+🧪 Example:
+
+function outer() {
+  let msg = "Hello";
+
+  function inner() {
+    console.log(msg); // <-- has access to `msg`
+  }
+
+  return inner;
+}
+
+const fn = outer();
+fn(); // 👉 logs: Hello
+	inner has lexical scope over msg, because it was defined inside outer.
+
+	The JavaScript engine can tell at compile time what variables inner can access — that’s lexical scope.
+
+
+🔸 What is Lexically Bound?
+
+	When we say something is lexically bound, we mean it uses the this or variable from its lexical (outer) context.
+
+🔧 Most common case: Arrow Functions
+
+const obj = {
+  value: 42,
+  print: function () {
+    const arrow = () => {
+      console.log(this.value); // 👈 lexically bound `this`
+    };
+    arrow();
+  }
+};
+
+obj.print(); // 👉 42
+
+The arrow function does not have its own this.
+
+It uses this from where it was defined (inside print()).
+
+So this is lexically bound.
+
+
+✅ Summary
+
+| Term                         | Meaning                                                             |
+| ---------------------------- | ------------------------------------------------------------------- |
+| **Lexical Scope**            | Variables are accessible based on where they’re **written** in code |
+| **Lexically Bound (`this`)** | Arrow functions use `this` from their enclosing **lexical context** |
+
+
+🔑 Lexical scope refers to how variables are resolved.
+🔑 Lexical binding (esp. of this) refers to where a function gets its this from.

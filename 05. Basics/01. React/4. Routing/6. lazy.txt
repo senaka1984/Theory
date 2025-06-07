@@ -1,0 +1,48 @@
+
+The lazy() function in React is used for code-splitting and lazy loading components — which helps improve your app’s performance by loading components only when needed.
+
+🔍 What is lazy() in React?
+
+const CreatePatientPage = lazy(() => import('./features/createPatient/pages/CreatePatientPage'));
+
+This line means:
+
+	➡️ Don’t load CreatePatientPage immediately.
+	➡️ Load it only when it’s actually needed (e.g., when the user navigates to that route).
+
+
+🚀 Why Use React.lazy()?
+
+	⏱️ Faster initial load time: Your main bundle is smaller.
+
+📦 On-demand loading: Each lazy component is split into its own JS file.
+
+	🔁 Better performance: Users only download what they need.
+
+⚙️ How to Use It with <Suspense>
+
+	When using lazy, you must wrap it in <Suspense> to show a fallback UI while loading:
+
+	import { lazy, Suspense } from 'react';
+
+	const CreatePatientPage = lazy(() => import('./features/createPatient/pages/CreatePatientPage'));
+
+    function AppRoutes() {
+      return (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/create-patient" element={<CreatePatientPage />} />
+          </Routes>
+        </Suspense>
+      );
+    }
+
+✅ Summary
+
+| Feature       | Explanation                                                  |
+| ------------- | ------------------------------------------------------------ |
+| `lazy()`      | Defers loading a component until it's needed                 |
+| `import(...)` | Dynamic ES module import that supports code splitting        |
+| `<Suspense>`  | Displays fallback while lazy component is loading            |
+| Use case      | Route-based code splitting, modal windows, rarely used pages |
+
