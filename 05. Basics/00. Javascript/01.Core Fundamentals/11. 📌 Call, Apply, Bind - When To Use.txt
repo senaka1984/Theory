@@ -1,0 +1,79 @@
+
+
+ When and why you should use .bind(), .call(), and .apply() — they all control how this is set when a function is invoked, but they serve different purposes.
+
+🧠 When to Use Which (Decision Table)
+
+| You want to...                                        | Use        | Why                                       |
+| ----------------------------------------------------- | ---------- | ----------------------------------------- |
+| Pass a method to `setTimeout`, event handler          | `.bind()`  | Save `this` for later                     |
+| Immediately invoke a function with new `this`         | `.call()`  | Works with individual arguments           |
+| Immediately invoke with an array of arguments         | `.apply()` | Works better when args come as array      |
+| Work with variadic utility functions (e.g., Math.max) | `.apply()` | Spread-like behavior                      |
+| Create reusable methods with fixed `this`             | `.bind()`  | Great for partial functions and callbacks |
+
+
+
+
+
+🧠 Understanding the Tools
+
+| Technique        | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- | 
+| `.bind()`        | Permanently binds `this` and optionally preset arguments |
+| Arrow function   | Inherits `this` from the surrounding (lexical) scope     |
+| Regular function | Gets `this` from how it's called (dynamic)               |
+
+
+
+✅ Real-World Scenarios
+
+🔁 1. .bind() — Preserve context for later
+Use when passing a method to a callback/event handler and you want to preserve this.
+
+const button = document.querySelector("button");
+const user = {
+  name: "Senaka",
+  greet() {
+    console.log("Hi, I'm " + this.name);
+  }
+};
+
+button.addEventListener("click", user.greet.bind(user)); // ✅ `this` stays as user
+
+
+
+
+⚡ 2. .call() — Invoke immediately with specific this
+
+Use when you want to run a function now, but in the context of a different object.
+
+function greet(greeting) {
+  console.log(`${greeting}, I'm ${this.name}`);
+}
+
+const person = { name: "Dinel" };
+greet.call(person, "Hello"); // ✅ "Hello, I'm Dinel"
+
+
+📦 3. .apply() — Same as .call(), but with array of arguments
+Useful when you already have arguments as an array.
+
+function introduce(city, age) {
+  console.log(`I'm ${this.name} from ${city}, age ${age}`);
+}
+
+const person = { name: "Senaka" };
+introduce.apply(person, ["Auckland", 35]); // ✅ Works just like call
+
+
+📌 Real-world with Math:
+
+const numbers = [3, 6, 2, 8];
+const max = Math.max.apply(null, numbers); // ✅ Spread as arguments
+console.log(max); // 8
+
+
+
+
+

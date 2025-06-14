@@ -1,0 +1,18 @@
+
+1. Callbacks
+
+A function passed as an argument to be executed later.
+
+function getData(callback) {
+  setTimeout(() => {
+    callback("Data received");
+  }, 1000);
+}
+
+getData((msg) => console.log(msg)); // "Data received"
+
+
+🔴 Problem: Callback hell (nested callbacks, hard to manage).
+
+
+

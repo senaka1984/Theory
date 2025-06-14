@@ -1,0 +1,15 @@
+
+
+🕹 Real-World Example (API call)
+
+async function fetchUsers() {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const users = await res.json();
+    console.log(users);
+  } catch (err) {
+    console.error("Error fetching users", err);
+  }
+}
+
+fetchUsers();

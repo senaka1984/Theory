@@ -1,0 +1,18 @@
+
+3. Async/Await
+Syntactic sugar over promises, introduced in ES2017.
+
+Makes async code look synchronous.
+
+const getData = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Data received"), 1000);
+  });
+};
+
+async function showData() {
+  const data = await getData();
+  console.log(data);
+}
+
+showData(); // "Data received"

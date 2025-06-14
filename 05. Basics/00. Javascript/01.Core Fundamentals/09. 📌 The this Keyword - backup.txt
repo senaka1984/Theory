@@ -1,0 +1,301 @@
+
+📌 💰 💵 💸 💳 📉 📈 💹 💲 🧾 📄 📝 🖊 🗂 🧠 ⚠ ❗ ✅ ❌ 📌 🔍 👨‍💼 👔 🧑 🧑 💼 📝🧳 🏡 🧠 🎯 🛑 ✅ 💡
+
+	🧠 Summary Table
+	
+	| Context                       | Value of `this`                   |
+	| ----------------------------- | --------------------------------- |
+	| Method of an object           | The object itself                 |
+	| Regular function (non-strict) | `window` (or `global`)            |
+	| Regular function (strict)     | `undefined`                       |
+	| Arrow function                | Lexical `this` from outer context |
+	| Constructor with `new`        | Newly created instance            |
+	| `call`, `apply`, `bind`       | What you explicitly set           |
+	| Event handler (normal fn)     | The element that fired the event  |
+
+The this keyword in JavaScript is context-sensitive — its value depends on how a function is called, not where it's defined.
+
+Let’s break it down with clarity:
+
+🔹 What is this?
+
+	this refers to the object that is executing the current function.
+	
+
+🔸 Common Scenarios
+
+	1. 🛑 In a Method (object function)
+	
+		const user = {
+			name: "Senaka",
+			greet() {
+				console.log(this.name);
+			}
+		};
+
+		user.greet(); // 👉 "Senaka"	
+
+this refers to user, the object that owns the method.
+
+
+
+	2. 🛑 In a Regular Function (not in object)
+	
+	function sayHi() {
+		console.log(this);
+	}
+
+	sayHi(); // 👉 In browser: `window`, In strict mode: `undefined`
+
+	🖊 In non-strict mode, this is the global object (window in browser).
+
+	🖊 In strict mode ('use strict';), this is undefined.
+	
+	
+	3. 🛑 In an Arrow Function
+	
+	
+	const user = {
+		name: "Senaka",
+		greet: () => {
+			console.log(this.name);
+		}
+	};
+
+	user.greet(); // 👉 undefined
+	
+	
+	📌 this in arrow functions is lexically bound — it uses this from the surrounding scope where it was defined, not when it is called.
+
+	📌 In this case, this doesn't refer to user, but to the outer context (likely window).
+
+
+		🔧🛑  Most common case: Arrow Functions
+
+			const obj = {
+            value: 42,
+            print: function () {
+              const arrow = () => {
+                console.log(this.value); // 👈 lexically bound `this`
+              };
+              arrow();
+            }
+         };
+
+         obj.print(); // 👉 42
+         
+         The arrow function does not have its own this.
+         
+         It uses this from where it was defined (inside print()).
+         
+         So this is lexically bound.
+
+	4. 🛑 Inside a Constructor	
+	
+		function Person(name) {
+			this.name = name;
+		}
+
+		const p = new Person("Kiara");
+		console.log(p.name); // 👉 "Kiara"
+
+	this refers to the newly created object when using new.
+	
+	
+	5. 🛑 With call, apply, bind
+	
+		function show() {
+			console.log(this.language);
+		}
+
+		const obj = { language: "JavaScript" };
+
+		show.call(obj);  // 👉 "JavaScript"
+		show.apply(obj); // 👉 "JavaScript"
+		const boundShow = show.bind(obj);
+		boundShow();     // 👉 "JavaScript"
+
+	These methods let you explicitly control what this refers to.
+	
+	
+	6. 🛑 In Event Handlers
+	
+		document.querySelector("button").addEventListener("click", function () {
+			console.log(this); // 👉 the button element
+		});
+		
+	Here, this refers to the DOM element that triggered the event.
+
+
+🔹 1. Lexical this in Arrow Functions
+
+Arrow functions don’t have their own this. They inherit this from their surrounding (lexical) scope. This has powerful implications in nested functions and callbacks.
+
+🔧 Example: Avoid losing this inside callbacks
+
+	const team = {
+		name: "Tigers",
+		players: ["Senaka", "Dinel"],
+			printPlayers() {
+				this.players.forEach(player => {
+				console.log(`${player} plays for ${this.name}`);
+    });
+  }
+};
+
+team.printPlayers();
+
+// ✅ Senaka plays for Tigers
+// ✅ Dinel plays for Tigers
+
+
+If you used a regular function instead of an arrow function, this.name would be undefined.
+
+
+🔹 2. this in Class Fields vs Methods
+
+When using ES6+ classes, you can use arrow functions to automatically bind this:
+
+class Counter {
+  count = 0;
+  
+  // Automatically binds `this`
+  increment = () => {
+    this.count++;
+    console.log(this.count);
+  };
+}
+
+const c = new Counter();
+const inc = c.increment;
+inc(); // ✅ still works! logs: 1
+
+
+But with a regular method:
+
+class Counter {
+  count = 0;
+
+  increment() {
+    this.count++;
+    console.log(this.count);
+  }
+}
+
+const c = new Counter();
+const inc = c.increment;
+inc(); // ❌ TypeError: Cannot read properties of undefined
+
+Why? Because this is not bound unless you explicitly do it:
+
+
+const inc = c.increment.bind(c);
+
+
+🔹 3. Global this in Modules vs Scripts
+
+console.log(this); // ✅ window in script
+
+But in an ES module, this at the top level is undefined.
+
+// in an ES6 module
+console.log(this); // ❌ undefined
+
+
+🔹 4. this in setTimeout and setInterval
+
+const obj = {
+  count: 0,
+  start() {
+    setInterval(function () {
+      this.count++; // ❌ this is not obj
+      console.log(this.count);
+    }, 1000);
+  }
+};
+
+obj.start();
+
+Fix it with an arrow function:
+
+
+setInterval(() => {
+  this.count++; // ✅ this is obj
+}, 1000);
+
+
+Or capture outer this:
+
+const self = this;
+setInterval(function () {
+  self.count++;
+}, 1000);
+
+
+🔹 5. this in eval()
+If you use eval() inside a function:
+
+function foo() {
+  console.log(eval('this'));
+}
+
+foo(); // logs: window (in non-strict)
+
+
+In strict mode, eval('this') returns undefined.
+
+🔹 6. this and Prototype Chains
+
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a sound.`);
+};
+
+const dog = new Animal("Buddy");
+dog.speak(); // ✅ "Buddy makes a sound."
+
+
+Even though speak is on the prototype, this still refers to the dog object.
+
+this is determined by the caller, not where the function lives.
+
+
+🔹 7. Function Borrowing (with call, apply)
+
+const person = { name: "Senaka" };
+function greet() {
+  return `Hello, ${this.name}`;
+}
+
+console.log(greet.call(person)); // ✅ Hello, Senaka
+
+Used heavily in mixin patterns and inheritance hacks before class was introduced.
+
+
+🧠 Summary of Advanced this Topics
+
+| Concept                      | Notes                                                |
+| ---------------------------- | ---------------------------------------------------- |
+| Arrow functions              | Lexical `this` — no rebinding needed                 |
+| Class fields vs methods      | Use arrow functions for safe `this`                  |
+| Modules vs scripts           | Top-level `this` differs                             |
+| `setTimeout` / `setInterval` | Watch for lost context                               |
+| `eval()`                     | `this` changes with strict mode                      |
+| Prototype chain              | `this` still refers to the object calling the method |
+| `call`, `apply`, `bind`      | Manual control over `this`                           |
+
+
+
+
+
+
+
+
+
+
+
+
+

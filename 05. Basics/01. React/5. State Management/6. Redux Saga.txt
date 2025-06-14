@@ -1,0 +1,124 @@
+
+📦 Why Redux Saga?
+
+	Redux only supports synchronous state updates. But real-world apps need to:
+
+	Fetch data from APIs
+
+	Delay actions
+
+	Perform background tasks
+
+	Retry on failures
+
+	Cancel ongoing requests
+
+Redux Saga helps you write these async flows in a clean, testable, and declarative way.
+
+⚙️ How It Works
+
+	It listens for Redux actions, performs side effects (e.g., fetch, delay, etc.), and dispatches new actions with the result.
+
+	Under the hood, it uses generator functions (functions with function*) that can pause and resume execution.
+
+
+🧪 Basic Saga Example
+
+// saga.js
+import { takeEvery, call, put } from 'redux-saga/effects';
+
+// Simulate API
+const fetchUser = (userId) =>
+  fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    .then((res) => res.json());
+
+// Worker Saga
+function* getUserSaga(action) {
+  try {
+    const user = yield call(fetchUser, action.payload);
+    yield put({ type: "USER_FETCH_SUCCESS", payload: user });
+  } catch (e) {
+    yield put({ type: "USER_FETCH_FAILED", payload: e.message });
+  }
+}
+
+// Watcher Saga
+function* watchUserSaga() {
+  yield takeEvery("USER_FETCH_REQUEST", getUserSaga);
+}
+
+export default watchUserSaga;
+
+
+📋 Action Flow
+UI dispatches:
+{ type: "USER_FETCH_REQUEST", payload: 1 }
+
+Saga intercepts it with takeEvery
+
+Saga runs getUserSaga(), which calls API and yields result
+
+Saga dispatches success or failure action
+
+
+
+🛠 Common Saga Effects
+
+| Effect       | Description                                |
+| ------------ | ------------------------------------------ |
+| `takeEvery`  | Runs saga on **every** matched action      |
+| `takeLatest` | Runs only the **latest**, cancels old ones |
+| `call`       | Invokes a function (async or not)          |
+| `put`        | Dispatches an action                       |
+| `delay`      | Pauses saga for a given time (ms)          |
+| `fork`       | Runs saga in background (non-blocking)     |
+| `cancel`     | Cancels a running saga                     |
+| `all`        | Runs multiple effects in parallel          |
+
+
+⚡ Example Use Case: Debounce Search
+
+import { takeLatest, call, delay, put } from 'redux-saga/effects';
+
+function* handleSearch(action) {
+  yield delay(500); // wait 500ms
+  const results = yield call(apiSearch, action.payload);
+  yield put({ type: "SEARCH_SUCCESS", payload: results });
+}
+
+function* watchSearch() {
+  yield takeLatest("SEARCH_QUERY", handleSearch);
+}
+
+
+🧪 Testable and Declarative
+Unlike thunks, sagas can be unit tested easily since they yield plain objects.
+
+
+🚀 Setup Steps
+Install:
+npm install redux-saga
+
+Connect middleware:
+
+import createSagaMiddleware from 'redux-saga';
+import { configureStore } from '@reduxjs/toolkit';
+import rootSaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+});
+
+sagaMiddleware.run(rootSaga);
+
+
+
+
+
+
+
+
