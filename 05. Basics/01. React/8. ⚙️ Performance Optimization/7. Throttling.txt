@@ -1,0 +1,146 @@
+
+⚡ Throttling in React – Explained Simply
+
+Throttling is a performance optimization technique that limits how often a function can be executed over time — even if it’s triggered more frequently.
+
+✅ Why Use Throttling in React?
+To improve performance by reducing the number of times an event handler is called — especially on events that fire rapidly:
+
+| Use Case                       | Why Throttle?                                |
+| ------------------------------ | -------------------------------------------- |
+| `scroll` event on a large page | Prevent layout jank from too many updates    |
+| `resize` window                | Avoid triggering calculations on every pixel |
+| `mousemove` or `drag` events   | Reduce resource load while tracking          |
+| Search or autocomplete         | Avoid making too many API calls              |
+
+🔄 How Throttling Works
+
+✅ It ensures a function is called at most once per time interval.
+
+E.g., if you throttle a function to 500ms, it will run at most once every 500ms, no matter how often the event fires.
+
+🧪 Example with lodash.throttle
+
+npm install lodash
+
+import { useCallback } from "react";
+import throttle from "lodash.throttle";
+
+const ScrollComponent = () => {
+  const handleScroll = useCallback(
+    throttle(() => {
+      console.log("Scrolled!", Date.now());
+    }, 1000), // once per 1000ms
+    []
+  );
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  return <div style={{ height: "200vh" }}>Scroll me!</div>;
+};
+
+		✅ 1. Component Overview
+		
+				const ScrollComponent = () => {
+				...
+				};
+
+		This is a React functional component that tracks scroll events and logs them — but using throttling to avoid performance issues.
+
+		🔄 2. useCallback + throttle
+		
+		
+			const handleScroll = useCallback(
+				throttle(() => {
+					console.log("Scrolled!", Date.now());
+			}, 1000),
+			[]
+		);
+
+			🔍 What’s happening?
+				throttle(...):
+				
+				From lodash.throttle.
+				
+				Wraps the function so it can only run once every 1000ms, even if called more often.
+				
+				useCallback(...):
+				
+				Ensures that the throttled function stays the same between re-renders (so it doesn't re-subscribe every time).
+				
+				[]: Empty dependency array means this memoized function is created once.
+				
+			📌 Why use both?
+				
+				throttle() creates a new function on each call.
+				
+				useCallback() ensures the throttled function is only created once, unless dependencies change.
+
+
+		📦 3. useEffect – Set up and clean up scroll listener
+		
+			useEffect(() => {
+				window.addEventListener("scroll", handleScroll);
+				return () => window.removeEventListener("scroll", handleScroll);
+				}, [handleScroll]);
+	
+			 🔍 What’s happening?
+					When the component mounts:
+					
+					It adds a scroll listener to the window.
+					
+					The listener calls handleScroll, which is throttled to only run once every second.
+					
+					When the component unmounts:
+					
+					It removes the scroll listener to prevent memory leaks.
+					
+					[handleScroll] is the dependency:
+					
+					So React knows to re-run this effect only if handleScroll ever changes (which it won’t here because of useCallback([])).
+			 
+
+			✅ Final Behavior
+				When you scroll the page, it logs:
+				Scrolled! 1718401400000
+				
+				But only once per 1000ms, even if you scroll 100 times per second.
+				
+				This helps boost performance and avoids overloading the browser with too many logs or calculations.
+
+🧠 React Best Practices
+
+✅ Use useCallback() with throttle() so the throttled function is stable across renders.
+
+✅ Always cleanup event listeners in useEffect.
+
+❌ Don’t throttle inside render body (it would create a new throttled version every render!).
+
+
+📌 Custom Throttle Without Lodash (optional)
+
+function throttle(fn, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      fn(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+🆚 Throttling vs Debouncing
+
+| Feature     | Throttling                        | Debouncing                  |
+| ----------- | --------------------------------- | --------------------------- |
+| Fires...    | At regular intervals (max 1/time) | After user stops triggering |
+| Good for... | Scroll, resize, mousemove         | Search inputs, text fields  |
+| Example     | `lodash.throttle(fn, 1000)`       | `lodash.debounce(fn, 1000)` |
+
+
+
+

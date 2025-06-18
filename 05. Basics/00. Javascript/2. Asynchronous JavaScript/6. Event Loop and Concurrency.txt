@@ -1,0 +1,62 @@
+📌 💰 💵 💸 💳 📉 📈 💹 💲 🧾 📄 📝 🖊 🗂 🧠 ⚠ ❗ ✅ ❌ 📌 🔍 👨‍💼 👔 🧑 🧑 💼 📝🧳 🏡 🧠 🎯 🛑 ✅ 💡
+
+
+🔁 Event Loop (JavaScript Specific)
+
+JavaScript is single-threaded — it executes one thing at a time. 
+But it can still perform non-blocking operations (like network requests, timers, etc.) thanks to the event loop.
+
+🔧 Components:
+
+	🖊 Call Stack – where functions are executed one at a time.
+
+	🖊 Web APIs – browser APIs like setTimeout, fetch, etc., that handle tasks asynchronously.
+
+	🖊 Callback Queue / Task Queue – stores completed asynchronous callbacks (setTimeout, DOM events, etc.).
+
+	🖊 Microtask Queue – stores promises (.then, catch, finally) and queueMicrotask(). It has priority over callback queue.
+
+	🖊 Event Loop – the mechanism that checks if the call stack is empty, and if so, pushes tasks from queues into it.
+	
+	
+🔄 How It Works:
+
+    console.log("1");
+    
+    setTimeout(() => console.log("2"), 0);
+    
+    Promise.resolve().then(() => console.log("3"));
+    
+    console.log("4");
+
+🔀 Concurrency
+
+Concurrency is about doing many things at once (or appearing to). Since JavaScript is single-threaded, it achieves this through asynchronous programming — 
+rather than starting multiple threads.
+
+
+🔸 Achieved via:
+
+Callbacks
+
+Promises / Async-Await
+
+Web Workers (multi-threaded, rare in general frontend)
+
+Event Loop (orchestrates concurrency behind the scenes)
+
+🧠 Real-World Analogy
+
+Imagine a chef (call stack) preparing dishes. He can only cook one dish at a time. When a dish needs time in the oven (Web API), he sets a timer and starts on the next dish.
+When the oven beeps (task queue), he puts it back on his table to finish.
+
+🧪 Summary Table
+
+| Concept             | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| **Call Stack**      | Executes code line-by-line                                    |
+| **Web APIs**        | Handles async operations outside JS engine                    |
+| **Callback Queue**  | Holds async callbacks (e.g., `setTimeout`)                    |
+| **Microtask Queue** | Higher-priority tasks (`Promise.then`)                        |
+| **Event Loop**      | Manages stack and queues                                      |
+| **Concurrency**     | JS’s way to *appear* to handle multiple things via async code |

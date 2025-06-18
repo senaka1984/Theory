@@ -1,0 +1,115 @@
+
+React using React.memo, useMemo, and useCallback is primarily about preventing unnecessary re-renders and function/object re-creations. 
+
+Here's a structured breakdown with practical examples:
+
+🔹 1. React.memo
+
+✅ Purpose:
+Prevents unnecessary re-rendering of functional components if props haven’t changed.
+
+🧠 How it works:
+React.memo(MyComponent) does a shallow comparison of props. If props are the same, it skips rendering.
+
+🧪 Example:
+
+const Child = React.memo(({ name }) => {
+  console.log("Child render");
+  return <div>Hello {name}</div>;
+});
+
+const Parent = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <Child name="Kiara" />
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </>
+  );
+};
+
+✅ Clicking the button won’t re-render Child since name is the same.
+
+
+🔹 2. useCallback
+
+✅ Purpose:
+Memoizes a function so it keeps the same reference between renders unless dependencies change.
+
+🧠 Why use it:
+Useful when passing functions to children wrapped with React.memo.
+
+🧪 Example:
+
+const Child = React.memo(({ onClick }) => {
+  console.log("Child render");
+  return <button onClick={onClick}>Click</button>;
+});
+
+const Parent = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log("Clicked");
+  }, []); // no deps, never recreated
+
+  return (
+    <>
+      <Child onClick={handleClick} />
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </>
+  );
+};
+
+✅ Child doesn't re-render on increment because handleClick has same reference.
+
+
+
+🔹 3. useMemo
+✅ Purpose:
+Memoizes a computed value so it's not recalculated unless dependencies change.
+
+🧠 Why use it:
+Useful for expensive computations or stable object references.
+
+🧪 Example:
+
+const ExpensiveComponent = ({ num }) => {
+  const result = useMemo(() => {
+    console.log("Computing...");
+    return num * 2;
+  }, [num]);
+
+  return <div>{result}</div>;
+};
+
+✅ result is only recalculated when num changes.
+
+
+🧠 When to Use
+
+| Hook          | Use Case                                                          |
+| ------------- | ----------------------------------------------------------------- |
+| `React.memo`  | Prevent child component re-renders when props don’t change        |
+| `useCallback` | Prevent function re-creation (for props, event handlers, effects) |
+| `useMemo`     | Avoid expensive recalculations, stabilize object/array references |
+
+
+⚠️ Gotchas
+Don’t overuse! These tools add complexity and memory overhead.
+
+React.memo only does shallow comparison — objects/arrays as props may still cause re-renders.
+
+useCallback is only helpful if function is passed to child or used in dependency array.
+
+useMemo doesn't guarantee performance boost — test before using.
+
+
+
+
+
+
+
+
+
+

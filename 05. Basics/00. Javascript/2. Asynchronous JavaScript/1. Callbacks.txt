@@ -1,0 +1,325 @@
+🔧 Callback-Based Implementation (Original Style)
+
+function loginUser(username, password, callback) {
+  setTimeout(() => {
+    if (username === "admin" && password === "1234") {
+      const user = { id: 1, username: "admin" };
+      callback(user);
+    } else {
+      console.error("Invalid credentials");
+    }
+  }, 500); // simulate async login
+}
+
+function getUserDetails(userId, callback) {
+  setTimeout(() => {
+    const details = { id: userId, name: "Admin User", role: "admin" };
+    callback(details);
+  }, 500); // simulate async fetch
+}
+
+function getPermissions(role, callback) {
+  setTimeout(() => {
+    const rolePermissions = {
+      admin: ["read", "write", "delete"],
+      user: ["read"],
+    };
+    callback(rolePermissions[role] || []);
+  }, 500); // simulate async fetch
+}
+
+function showDashboard(permissions) {
+  console.log("Showing dashboard with permissions:", permissions);
+}
+
+// Call the flow
+loginUser("admin", "1234", (user) => {
+  getUserDetails(user.id, (details) => {
+    getPermissions(details.role, (permissions) => {
+      showDashboard(permissions);
+    });
+  });
+});
+
+===============================================================================================================================
+
+✅ Promise-Based Implementations
+
+function loginUser(username, password) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (username === "admin" && password === "1234") {
+        resolve({ id: 1, username: "admin" });
+      } else {
+        reject("Invalid credentials");
+      }
+    }, 500);
+  });
+}
+
+function getUserDetails(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ id: userId, name: "Admin User", role: "admin" });
+    }, 500);
+  });
+}
+
+function getPermissions(role) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const rolePermissions = {
+        admin: ["read", "write", "delete"],
+        user: ["read"],
+      };
+      resolve(rolePermissions[role] || []);
+    }, 500);
+  });
+}
+
+function showDashboard(permissions) {
+  console.log("Showing dashboard with permissions:", permissions);
+}
+
+
+🚀 Main Execution Using async/await
+
+async function initDashboard() {
+  try {
+    const user = await loginUser("admin", "1234");
+    const details = await getUserDetails(user.id);
+    const permissions = await getPermissions(details.role);
+    showDashboard(permissions);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+initDashboard();
+
+🧠 Key Benefits:
+Cleaner, more readable
+
+Easier error handling with try/catch
+
+Scalable for future async features
+=================================================================================================
+
+🔹 What is a Callback?
+
+A callback is a function passed as an argument to another function, to be executed later.
+
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+greet("Alice", sayBye);
+// Output:
+// Hello Alice
+// Goodbye!
+
+
+🔹 Why Use Callbacks?
+
+To run code after an async task is completed.
+
+Example: API call, file reading, DB query, or timer.
+
+setTimeout(() => {
+  console.log("3 seconds passed!");
+}, 3000);
+
+Here, () => { console.log(...) } is a callback function passed to setTimeout.
+
+🔹 Callback in Asynchronous Operations
+
+Example: Reading data (simulation) 
+
+function getData(callback) {
+  setTimeout(() => {
+    callback("Data received");
+  }, 1000);
+}
+
+getData((data) => {
+  console.log(data);
+});
+
+🔹 Callback Hell (Pyramid of Doom)
+
+When callbacks are nested inside callbacks, it becomes unreadable and error-prone.
+
+loginUser(username, password, (user) => {
+  getUserDetails(user.id, (details) => {
+    getPermissions(details.role, (permissions) => {
+      showDashboard(permissions);
+    });
+  });
+});
+
+😖 Problems with Callback Hell
+
+	Hard to read
+
+	Hard to debug
+
+	Difficult error handling
+
+	Difficult to reuse code
+	
+	
+🔹 Solution: Use Promises or async/await
+
+loginUser(username, password)
+  .then(user => getUserDetails(user.id))
+  .then(details => getPermissions(details.role))
+  .then(permissions => showDashboard(permissions))
+  .catch(error => handleError(error));
+
+OR
+
+async function loginFlow() {
+  try {
+    const user = await loginUser(username, password);
+    const details = await getUserDetails(user.id);
+    const permissions = await getPermissions(details.role);
+    showDashboard(permissions);
+  } catch (err) {
+    handleError(err);
+  }
+}
+
+
+
+🔹 Synchronous vs Asynchronous Callback
+
+| Type         | Example                              |
+| ------------ | ------------------------------------ |
+| Synchronous  | `Array.prototype.map`, `forEach`     |
+| Asynchronous | `setTimeout`, `fetch`, `fs.readFile` |
+
+
+Synchronous:
+
+[1, 2, 3].forEach(num => console.log(num));
+
+
+Asynchronous:
+
+setTimeout(() => console.log("Done!"), 1000);
+
+🔹 Real-World Example
+
+Event Listener:
+
+document.querySelector("button").addEventListener("click", () => {
+  console.log("Button clicked!");
+});
+
+AJAX (old-school):
+
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "/data.json");
+xhr.onload = () => {
+  console.log("Data loaded:", xhr.responseText);
+};
+xhr.send();
+
+
+
+Let's walk through an example by rewriting a callback-based function into:
+
+✅ Using Promises
+
+✅ Using async/await
+
+
+🔹 1. Original: Callback-based Function
+
+function getUser(id, callback) {
+  setTimeout(() => {
+    callback(null, { id, name: "Alice" });
+  }, 1000);
+}
+
+getUser(1, (err, user) => {
+  if (err) {
+    console.error("Error:", err);
+  } else {
+    console.log("User:", user);
+  }
+});
+
+
+🔸 2. Rewritten: Using Promises
+
+function getUser(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (!id) reject("No ID provided");
+      else resolve({ id, name: "Alice" });
+    }, 1000);
+  });
+}
+
+getUser(1)
+  .then(user => console.log("User:", user))
+  .catch(err => console.error("Error:", err));
+
+
+🔸 3. Rewritten: Using async/await
+
+function getUser(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (!id) reject("No ID provided");
+      else resolve({ id, name: "Alice" });
+    }, 1000);
+  });
+}
+
+async function fetchUser() {
+  try {
+    const user = await getUser(1);
+    console.log("User:", user);
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
+
+fetchUser();
+
+
+
+🔁 Bonus: Callback → Promise Wrapper
+
+You can convert any callback-based function to a Promise using a helper like this:
+
+function promisify(fn) {
+  return function (...args) {
+    return new Promise((resolve, reject) => {
+      fn(...args, (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
+    });
+  };
+}
+
+Example:
+
+const fs = require("fs");
+const readFileAsync = promisify(fs.readFile);
+
+readFileAsync("file.txt", "utf8")
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+
+
+

@@ -1,17 +1,122 @@
 
-2. Promises
+🔹 Promise Utilities
 
-Represents a value that may be available now, later, or never.
+| Method                   | Description                               |
+| ------------------------ | ----------------------------------------- |
+| `Promise.all([])`        | Wait for all to fulfill, fail fast        |
+| `Promise.race([])`       | Resolve/reject as soon as one settles     |
+| `Promise.any([])`        | Resolve on first success, ignore failures |
+| `Promise.allSettled([])` | Wait for all, regardless of result        |
 
-const getData = () => {
-  return new Promise((resolve, reject) => {
+
+🔹 What is a Promise?
+
+	A Promise is a JavaScript object representing the eventual completion or failure of an asynchronous operation.
+
+🧠 Think of it like:
+
+	"I promise to give you data later."
+
+🔹 States of a Promise
+
+| State       | Meaning                          |
+| ----------- | -------------------------------- |
+| `pending`   | Operation not completed yet      |
+| `fulfilled` | Operation completed successfully |
+| `rejected`  | Operation failed                 |
+
+
+🔹 Creating a Promise
+
+  const myPromise = new Promise((resolve, reject) => {
+    const success = true;
+  
     setTimeout(() => {
-      resolve("Data received");
+      if (success) resolve("✅ Success!");
+      else reject("❌ Failure!");
     }, 1000);
   });
-};
 
-getData().then(console.log).catch(console.error);
 
-✅ Cleaner and chainable.
+🔹 Consuming a Promise
+   Using .then() and .catch()
+   
+   myPromise
+     .then(result => {
+       console.log(result); // ✅ Success!
+     })
+     .catch(error => {
+       console.error(error); // ❌ Failure!
+     });
+   
 
+🔹 Chaining Promises
+
+fetchData()
+  .then(data => process(data))
+  .then(result => save(result))
+  .then(() => console.log("All done"))
+  .catch(error => console.error("Something failed:", error));
+
+✅ Each .then() returns a new Promise and allows chaining
+❌ If any step throws or rejects, it skips to .catch()
+
+
+
+🔹 Common Real-World Use
+
+Example: Simulate fetching user data
+
+function getUser(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({ id, name: "Alice" }), 1000);
+  });
+}
+
+getUser(1).then(user => console.log("User:", user));
+
+
+🔹 Returning Data in .then()
+
+getUser(1)
+  .then(user => {
+    return user.name; // returns new Promise with just the name
+  })
+  .then(name => {
+    console.log("Name is", name);
+  });
+
+
+🔹 Error Handling with .catch()
+
+
+getUser(null)
+  .then(user => {
+    if (!user) throw new Error("User not found");
+    return user;
+  })
+  .catch(err => {
+    console.error("Error:", err.message);
+  });
+  
+  
+  
+  🔹 finally() – Always Runs
+  
+  getUser(1)
+  .then(user => console.log(user))
+  .catch(err => console.error(err))
+  .finally(() => console.log("Request completed"));
+
+
+
+🔹 Wrap Callback APIs with Promises (Manual Example)
+
+function readFilePromise(path) {
+  return new Promise((resolve, reject) => {
+    require("fs").readFile(path, "utf8", (err, data) => {
+      if (err) reject(err);
+      else resolve(data);
+    });
+  });
+}

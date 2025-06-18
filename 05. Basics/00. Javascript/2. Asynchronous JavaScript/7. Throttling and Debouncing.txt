@@ -1,0 +1,83 @@
+
+
+ Throttling and Debouncing are two techniques used in JavaScript to control how often a function gets executed — 
+ especially helpful for performance optimization when handling rapidly firing events like:
+
+scroll
+
+resize
+
+mousemove
+
+keypress
+
+input
+
+
+🕒 Debouncing
+Debouncing delays the execution of a function until after a certain period has passed since the last time the event was triggered.
+
+🧠 Use case:
+Search input: Only trigger API call after user stops typing for 300ms.
+
+🔧 Behavior:
+Keeps resetting the timer until the event stops firing.
+
+✅ Example:
+
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+const logInput = debounce((e) => console.log(e.target.value), 300);
+
+document.getElementById("search").addEventListener("input", logInput);
+
+
+🚦 Throttling
+Throttling ensures a function is called at most once every X milliseconds, no matter how often the event is triggered.
+
+🧠 Use case:
+Scroll event: Only trigger analytics/logging every 500ms as the user scrolls.
+
+🔧 Behavior:
+Ignores intermediate calls until the time period passes.
+
+✅ Example:
+
+function throttle(fn, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+const handleScroll = throttle(() => console.log("scrolling..."), 500);
+
+window.addEventListener("scroll", handleScroll);
+
+
+
+
+🔁 Comparison Table
+
+| Feature           | Debounce                    | Throttle                        |
+| ----------------- | --------------------------- | ------------------------------- |
+| **Use case**      | User stops typing, resizing | Repeated scrolling, resizing    |
+| **Execution**     | Only **after** delay        | Executes every **X ms**         |
+| **Timer resets?** | Yes, on each event          | No, fixed time intervals        |
+| **Example**       | Search bar                  | Infinite scroll / progress logs |
+
+
+🧪 Quick Analogy:
+Debounce: "Wait until I'm done talking, then respond."
+
+Throttle: "Only respond to me once every 5 seconds, no matter how much I talk."
