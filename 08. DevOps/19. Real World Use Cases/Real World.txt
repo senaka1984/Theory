@@ -1,0 +1,10 @@
+
+✅ Microservices deployment with Kubernetes & Helm
+
+✅ Auto-scaling web apps with metrics-based triggers
+
+✅ Secure CI/CD for fintech or healthcare apps
+
+✅ IaC for provisioning complete environments
+
+✅ Self-healing systems with chaos testing

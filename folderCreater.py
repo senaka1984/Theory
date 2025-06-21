@@ -2,20 +2,27 @@ import os
 
 # List of folder names to create
 folder_names = [
-    "01. Docker basics: images, containers, volumes",
-    "02. Azure Container Registry AWS ECR",
-    "03. Azure Kubernetes Service (AKS) Amazon EKS",
-    "04. Deployments, Services, ConfigMaps, Secrets",
-    "05. Helm Charts",
-    "06. Horizontal Pod Autoscaler",
-    "07. CICD for containers (GitHub Actions, Azure DevOps Pipelines)",
-    "08. Secure container images and scanning",
-    "09. Observability in Kubernetes (Prometheus, Grafana, etc.)"
-
+    "01. DevOps Fundamentals",
+    "02. Source Control Management",
+    "03. Continuous Integration CI Basics",
+    "04. Build Tools",
+    "05. Cloud and Infrastructure Basics",
+    "06. Configuration Management",
+    "07. Continuous Deployment CD",
+    "08. Infrastructure as Code IaC",
+    "09. Containerization AND Orchestration",
+    "10. Monitoring & Logging",
+    "11. Security Practices DevSecOps",
+    "12. Site Reliability Engineering SRE",
+    "13. Advanced CICD Strategies",
+    "14. Cost and Performance Optimization",
+    "15. Policy as Code AND Compliance",
+    "16. Multi-cloud and Hybrid Strategies",
+    "17. Platform Engineering & Internal Developer Platforms IDP"
 ]
 
 # Parent directory where folders will be created
-parent_dir = "E:/Theory/05. Basics/07. Cloud/09 📦 Containers and Kubernetes in the Cloud"
+parent_dir = "E:/Theory/08. DevOps"
 
 # Create each folder
 for name in folder_names:

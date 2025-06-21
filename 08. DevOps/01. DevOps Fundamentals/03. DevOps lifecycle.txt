@@ -1,0 +1,156 @@
+Plan → Develop → Build → Test → Release → Deploy → Operate → Monitor
+
+
+🔄 DevOps Lifecycle: Overview
+
+	DevOps is a continuous cycle that spans planning, coding, deploying, operating, and monitoring software systems — automating and optimizing every stage.
+
+🔁 Phases:
+	Plan → Develop → Build → Test → Release → Deploy → Operate → Monitor → (Back to Plan)
+
+	🔹 1. Plan
+		Goal: Define business requirements, user stories, features, and release timelines.
+
+			📌 Practices:
+	
+				Agile planning (Scrum, Kanban)
+	
+				Backlog grooming
+	
+				Sprint planning
+	
+			📌 Tools:
+	
+				Jira, Azure Boards, Trello, Confluence, Notion
+
+	🔹 2. Develop
+		Goal: Write code collaboratively, with version control and coding standards.
+
+			📌 Practices:
+
+				Pair programming, code reviews
+				
+				Branching strategies (e.g., GitFlow)
+				
+				Unit testing and static code analysis
+				
+			📌 Tools:
+				
+				Git (GitHub, GitLab, Bitbucket)
+				
+				IDEs (VS Code, IntelliJ)
+				
+				SonarQube, ESLint
+
+	🔹 3. Build
+		Goal: Compile code, resolve dependencies, and create build artifacts.
+
+			📌 Practices:
+			
+				Automated builds triggered by commits
+			
+				Artifact versioning
+			
+				Packaging and containerization
+			
+			📌 Tools:
+			
+				Maven, Gradle, MSBuild
+			
+				Docker, JFrog Artifactory, Nexus
+
+	🔹 4. Test
+		Goal: Validate quality and functionality of the software.
+			
+			📌 Practices:
+			
+				Unit, integration, and UI testing
+				
+				Load and security testing
+				
+				Shift-left testing (early testing)
+			
+			📌 Tools:
+			
+				Selenium, JUnit, NUnit, Postman
+				
+				Cypress, JMeter, OWASP ZAP
+				
+				GitHub Actions/Test, GitLab CI
+
+🔹 5. Release
+		Goal: Approve and schedule a production-ready version.
+
+			📌 Practices:
+			
+				Release tagging and approvals
+			
+				Change management & rollback plans
+			
+			📌 Tools:
+			
+				Git tags, Azure DevOps Release Pipelines
+			
+				ServiceNow (for approvals), LaunchDarkly (feature flags)
+
+🔹 6. Deploy
+		Goal: Deliver the release to production or staging environments.
+
+			📌 Practices:
+			
+				Blue/Green, Canary, or Rolling deployments
+			
+				Infrastructure as Code (IaC)
+			
+				GitOps deployment model
+			
+			📌 Tools:
+			
+				Kubernetes, Helm, Terraform
+			
+				Jenkins, ArgoCD, Spinnaker, Octopus Deploy
+
+🔹 7. Operate
+	Goal: Run and support the application in production reliably.
+
+			📌 Practices:
+			
+				Observability (metrics, logs, traces)
+			
+				Capacity management
+			
+				Incident response, alerting
+			
+			📌 Tools:
+			
+				Kubernetes/Docker Swarm, AWS ECS/EKS
+			
+				Systemd, Supervisor, PM2
+
+🔹 8. Monitor
+	Goal: Track performance, errors, and user behavior; enable feedback loops.
+
+			📌 Practices:
+			
+				Real-time monitoring and alerting
+			
+				SLO/SLI/SLAs
+			
+				Feedback to planning and development teams
+			
+			📌 Tools:
+			
+				Prometheus + Grafana, ELK stack (Elasticsearch, Logstash, Kibana)
+			
+				Datadog, Dynatrace, New Relic
+			
+				Sentry, AppDynamics
+
+🔁 Continuous Feedback Loop
+			Each phase provides feedback to earlier stages:
+			
+			Monitoring insights → feed into planning.
+			
+			Test failures → improve development.
+			
+			Deployment metrics → enhance build/release strategies.

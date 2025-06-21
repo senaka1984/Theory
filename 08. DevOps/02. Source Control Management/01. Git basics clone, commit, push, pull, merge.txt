@@ -1,0 +1,125 @@
+
+
+🧠 What is Git?
+
+Git is a distributed version control system that helps you track changes in code, collaborate with others, and manage different versions of a project.
+
+🔧 1. git clone
+
+	✅ Copy a remote repository to your local machine.
+
+		Command:
+			git clone <repository-url>
+
+		Example:
+			git clone https://github.com/username/project.git
+
+		🔹 Result: Creates a local copy of the repo in a folder named project.
+
+
+✍️ 2. git commit
+
+	🗃️ Record a snapshot of changes to the repository.
+
+		Workflow:
+		
+			git add <filename>      # stage changes
+			git commit -m "message" # commit staged changes
+
+		Example:
+			
+			git add app.js
+			git commit -m "Add login functionality"
+
+		🔹 Note: A commit is like a save point in your project’s history.
+
+
+⬆️ 3. git push
+
+	🚀 Send your local commits to the remote repository (e.g., GitHub).
+
+		Command:
+			git push origin <branch-name>
+
+
+		Example:
+			git push origin main
+
+		🔹 Note: Your changes are now available for others to see and pull.
+		
+
+⬇️ 4. git pull
+
+	🔄 Fetch and merge changes from the remote branch into your current branch.
+
+		Command:	
+
+			git pull origin <branch-name>
+
+		Example:
+		
+			git pull origin main
+
+		🔹 Tip: Always pull before starting new work to avoid conflicts.
+		
+		
+🔀 5. git merge
+
+	🔧 Combine changes from one branch into another.
+
+		Scenario:
+			You're on the main branch and want to merge changes from feature-xyz.
+
+		Command:
+		
+			git checkout main
+			git merge feature-xyz
+
+		🔹 Outcome: All commits from feature-xyz are added to main.
+		
+	
+📌 Summary Table
+
+| Command      | Purpose                             | Common Use Case                      |
+| ------------ | ----------------------------------- | ------------------------------------ |
+| `git clone`  | Copy remote repo to local           | Start working on an existing project |
+| `git commit` | Save staged changes with message    | Track code updates locally           |
+| `git push`   | Upload commits to remote            | Share your work                      |
+| `git pull`   | Download and merge remote changes   | Sync with latest updates             |
+| `git merge`  | Combine changes from another branch | Integrate new features               |
+
+
+🔰 Essential Daily Commands
+
+| Command                 | Purpose                                       |                                 |
+| ----------------------- | --------------------------------------------- | ------------------------------- |
+| `git status`            | Show current changes, staged/unstaged files   |                                 |
+| `git add <file>`        | Stage file(s) for commit                      |                                 |
+| `git log`               | View commit history                           |                                 |
+| `git diff`              | Show changes between commits or working files |                                 |
+| `git init`              | Initialize a new local Git repository         |                                 |
+| \`git checkout \<branch | file>\`                                       | Switch branches or restore file |
+
+
+🌿 Branching & Merging
+
+| Command                  | Purpose                                   |
+| ------------------------ | ----------------------------------------- |
+| `git branch`             | List, create, or delete branches          |
+| `git branch <name>`      | Create a new branch                       |
+| `git checkout -b <name>` | Create and switch to a new branch         | 💡
+| `git merge <branch>`     | Merge another branch into the current one |
+| `git rebase <branch>`    | Reapply commits on top of another base    | 💡
+
+
+
+🧼 Undo & Fix Mistakes
+
+| Command                  | Purpose                                           |
+| ------------------------ | ------------------------------------------------- |
+| `git reset <file>`       | Unstage file                                      |
+| `git reset --hard`       | Discard all uncommitted changes                   |
+| `git reset HEAD~1`       | Undo last commit (keep changes in working dir)    |
+| `git checkout -- <file>` | Discard changes in working directory              |
+| `git revert <commit>`    | Revert a specific commit with a new commit        |
+| `git clean -fd`          | Remove untracked files and directories (careful!) |
